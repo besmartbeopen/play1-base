@@ -3,10 +3,8 @@ package models;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import models.base.BaseModel;
 import models.enums.TaskType;
 import models.interfaces.IFlowable;
@@ -33,8 +31,7 @@ public class Task extends BaseModel {
   @Required
   public TaskType type;
 
-  @OneToOne(optional=true, cascade=CascadeType.PERSIST)
-  public Taskable target;
+  public Integer targetId;
 
   /**
    * può essere null
