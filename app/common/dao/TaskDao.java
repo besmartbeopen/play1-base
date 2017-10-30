@@ -12,7 +12,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import models.Operator;
 import models.Task;
-import models.enums.TaskType;
+import models.enums.TaskTargetType;
 import models.query.QTask;
 import org.joda.time.LocalDate;
 
@@ -32,7 +32,7 @@ public class TaskDao {
 
   public Supplier<SimpleResults<Task>> tasksSupplierFor(
       final Supplier<Operator> operator,
-      final TaskType ...type) {
+      final TaskTargetType ...type) {
     Preconditions.checkNotNull(operator);
     Preconditions.checkNotNull(type);
 
@@ -46,7 +46,7 @@ public class TaskDao {
    * per tipi di task.
    */
   public SimpleResults<Task> tasksFor(Operator operator,
-      Set<TaskType> types) {
+      Set<TaskTargetType> types) {
     return allTasks(Optional.of(operator), Optional.of(true), types);
   }
 
@@ -60,7 +60,7 @@ public class TaskDao {
   }
 
   public SimpleResults<Task> allTasks(Optional<Operator> operator,
-      Optional<Boolean> alreadyStarted, Set<TaskType> types) {
+      Optional<Boolean> alreadyStarted, Set<TaskTargetType> types) {
       Preconditions.checkNotNull(types);
 
     final QTask task = QTask.task;

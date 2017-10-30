@@ -128,11 +128,8 @@ public class OperatorDao {
    * @return l'elenco dei responsabili di questo operatore.
    */
   public Set<Operator> managerOf(Operator operator) {
-    if (operator.manager != null) {
-      return ImmutableSet.of(operator.manager);
-    } else {
-      return administratorsNotSuperUser();
-    }
+    // XXX: da ripristinare.
+    return administratorsNotSuperUser();
   }
 
 //  /**

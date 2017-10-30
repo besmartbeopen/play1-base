@@ -2,15 +2,11 @@ package models;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.google.common.hash.Hashing;
 import common.Tools;
 import common.binders.CapitalizeBinder;
-import common.binders.CurrencyBinder;
 import common.binders.StringTrimBinder;
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -35,7 +31,6 @@ import org.hibernate.envers.NotAudited;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 import play.data.binding.As;
-import play.data.validation.Min;
 import play.data.validation.Required;
 import play.data.validation.Unique;
 import play.db.jpa.Blob;
@@ -72,8 +67,6 @@ public class Operator extends BaseModel implements Comparable<Operator> {
   @Size(min = PASSWORD_MIN_SIZE)
   public String password;
 
-  public boolean employee = true;
-
   public boolean enabled = true;
 
   @NotAudited
@@ -100,20 +93,14 @@ public class Operator extends BaseModel implements Comparable<Operator> {
 
   public Blob photo;
 
-  @Min(0) @As(binder=CurrencyBinder.class)
-  public BigDecimal costPerKm;
-
-  @Min(0) @As(binder=CurrencyBinder.class)
-  public BigDecimal refundPerKm;
-
   @Iban
   public String iban;
 
   /**
    * I dettagli dei messaggi ricevuti da questo operatore
    */
-  @OneToMany(mappedBy="operator")
-  public Set<MessageDetail> messageDetails = Sets.newHashSet();
+//  @OneToMany(mappedBy="operator")
+//  public Set<MessageDetail> messageDetails = Sets.newHashSet();
 
   /**
    * I messaggi spediti da questo operatore
@@ -136,21 +123,6 @@ public class Operator extends BaseModel implements Comparable<Operator> {
   @OrderBy("createdAt desc")
   @LazyCollection(LazyCollectionOption.EXTRA)
   public Set<Notification> notifications = Sets.newHashSet();
-
-  /**
-   * manager opzionale:
-   */
-  @ManyToOne(optional=true)
-  public Operator manager;
-
-  @OrderBy("lastname, firstname")
-  @OneToMany(mappedBy="manager")
-  public Set<Operator> managedOperators = new HashSet<>();
-
-  @Transient
-  public Set<Operator> getManagedOperatorsPlusSelf() {
-    return ImmutableSet.<Operator>builder().add(this).addAll(managedOperators).build();
-  }
 
   public Operator cryptPassword(String newPassword) {
     password = Hashing.sha512().hashString(newPassword, Charsets.UTF_8).toString();

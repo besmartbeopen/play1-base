@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import models.Operator;
 import models.Task;
-import models.enums.TaskType;
+import models.enums.TaskTargetType;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -29,8 +29,8 @@ public class Tasks extends Controller {
   static TaskDao taskDao;
 
   public static void list(Optional<Operator> operator,
-      Optional<Boolean> alreadyStarted, Optional<TaskType> taskType) {
-    Set<TaskType> types = taskType.asSet();
+      Optional<Boolean> alreadyStarted, Optional<TaskTargetType> taskType) {
+    Set<TaskTargetType> types = taskType.asSet();
     QueryResults<Task> tasks = taskDao
         .allTasks(operator, alreadyStarted, types).listResults();
     render(tasks, operator, alreadyStarted, taskType);
@@ -41,7 +41,7 @@ public class Tasks extends Controller {
     notFoundIfNull(task);
     rules.checkIfPermitted(task);
 
-    throw new IllegalStateException("not implemented yet... " + task.type);
+    throw new IllegalStateException("not implemented yet... " + task.targetType);
   }
 
     /**
@@ -57,6 +57,6 @@ public class Tasks extends Controller {
        log.info("Task deleted. id = {}, description = {}",
            task.id, task.description);
     flash.success(Messages.get(Web.MSG_DELETED, task));
-      list(Optional.<Operator>absent(), Optional.<Boolean>absent(), Optional.<TaskType>absent());
+      list(Optional.<Operator>absent(), Optional.<Boolean>absent(), Optional.<TaskTargetType>absent());
     }
 }

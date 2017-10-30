@@ -123,11 +123,6 @@ CREATE TABLE operator (
     lastname text NOT NULL,
     version integer DEFAULT 0,
     photo text,
-    stock_id integer,
-    employee boolean DEFAULT true NOT NULL,
-    cost_per_km numeric,
-    refund_per_km numeric,
-    manager_id integer,
     page_layout text DEFAULT 'DEFAULT'::text,
     iban text,
     profile_id integer NOT NULL
@@ -147,12 +142,6 @@ CREATE TABLE operator_history (
     lastname TEXT,
     password TEXT,
     photo text,
-    stock_id integer,
-    employee boolean DEFAULT true,
-    cost_per_km numeric,
-    refund_per_km numeric,
-    manager_id integer,
-    page_layout text DEFAULT 'DEFAULT'::text,
     iban text,
     profile_id integer,
     PRIMARY KEY (id, revision)
@@ -170,11 +159,8 @@ CREATE TABLE operator_profile (
     name text NOT NULL,
     description text,
     active boolean DEFAULT true NOT NULL,
-    employee boolean NOT NULL,
-    agent boolean NOT NULL,
     login_url text,
-    disclaimer text,
-    page_layout text NOT NULL
+    disclaimer text
 );
 
 --
@@ -188,8 +174,6 @@ CREATE TABLE operator_profile_history (
     name text,
     description text,
     active boolean DEFAULT true,
-    employee boolean,
-    agent boolean,
     login_url text,
     disclaimer text,
     page_layout text
@@ -246,7 +230,8 @@ CREATE TABLE task (
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     version integer DEFAULT 0,
     description text NOT NULL,
-    taskable integer
+    target_type TEXT NOT NULL,
+    target_id integer
 );
 
 --
@@ -360,14 +345,6 @@ CREATE INDEX notification_destination_key ON notification USING btree (destinati
 
 CREATE INDEX operator_history_revision_key ON operator_history USING btree (revision);
 
-
---
--- Name: operator_manager_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX operator_manager_key ON operator USING btree (manager_id);
-
-
 --
 -- Name: operator_profile_key; Type: INDEX; Schema: public
 --
@@ -415,16 +392,6 @@ CREATE INDEX task_candidate_assignees_task_for_candidate_assignee_key ON task_ca
 ALTER TABLE ONLY notification
     ADD CONSTRAINT notification_destination_fkey FOREIGN KEY (destination_id) REFERENCES operator(id);
 
-
-
---
--- Name: operator operator_manager_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator
-    ADD CONSTRAINT operator_manager_fkey FOREIGN KEY (manager_id) REFERENCES operator(id);
-
-
 --
 -- Name: operator operator_profile_fkey; Type: FK CONSTRAINT; Schema: public
 --
@@ -462,7 +429,7 @@ ALTER TABLE ONLY task_candidate_assignees
 
 ALTER TABLE ONLY task_candidate_assignees
     ADD CONSTRAINT task_candidate_assignees_task_for_candidate_assignee_fkey FOREIGN KEY (task_for_candidate_assignee_id) REFERENCES task(id);
-    
+
 # --- !Downs
 
 DROP TABLE comment;
