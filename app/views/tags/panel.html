@@ -8,7 +8,7 @@
  Qualsiasi altro attributo viene inserito direttamente sul div più esterno.
 }*
 <div class="panel panel-${_panel?:'default'}"
-${helpers.Web.serialize(_attrs, "arg", "title", "class", "fa").raw()}>
+${common.Web.serialize(_attrs, "arg", "title", "class", "fa").raw()}>
  <div class="panel-heading">
   #{if _fa}<i class="fa fa-${_fa}"></i>#{/if}
   ${_title?:_arg}

@@ -64,40 +64,12 @@ when
      "Operators.uploadPhoto", /* abilitata per il metodo, ristretta poi */
      "Notifications.notifications", "Notifications.read", "Notifications.list",
      "Notifications.readAndRedirect", "Notifications.archiveds",
-     "Comments.save", "Comments.delete", "Comments.show",
+     "Comments.save", "Comments.delete", "Comments.show"
      ), target == null, granted == false)
  Operator()
 then
  $c.grant();
 end
-
-/**
- * I gestori di magazzino possono compiere resi al magazzino anche per gli
- * altri operatori.
- */
-rule CanReturnProductForOthers
-when
- $o: Operator(this == currentOperator, stock != null)
- $c: PermissionCheck(action in ("Stocks.newReturn", "Stocks.saveReturn"),
-     target != null, granted == false)
-  Role(this == Role.stockman || this == Role.administrator)
-then
- $c.grant();
-end
-
-/**
- * Gli operatori che non sono proprietari del magazzino non possono operarvi
- */
-rule CantOperateOnOtherStock
-no-loop
-when
- $o: Operator(this == currentOperator)
- $s: Stock(this != $o.stock)
- $c: PermissionCheck(action in ("Stocks.newTransfer", "Stocks.createTransfer",
-   "Stocks.inventory"), target == $s)
-then
- $c.revoke();
-end;
 
 /* gli operatori possono: */
 rule EditAndViewPersonalData
@@ -105,9 +77,7 @@ when
  $o: Operator(this == currentOperator)
  $c: PermissionCheck(action in (
      "Operators.uploadPhoto", "Operators.deletePhoto",
-     "Personal.index", "Personal.editPassword", "Personal.updatePassword",
-     "Calendars.eventsData", "Operators.calendar", "VisitToDoctors.listJson",
-     "VisitToDoctors.listJsonGrouped", "Activities.listJson"
+     "Personal.index", "Personal.editPassword", "Personal.updatePassword"
      ),	target == $o, granted == false)
 then
  $c.grant();
@@ -155,18 +125,6 @@ when
   $k: Comment(persistent == true, owner == $o)
   $c: PermissionCheck(action in ("Comments.save", "Comments.delete"),
     target == $k, granted == false)
-then
-  $c.grant();
-end
-
-rule CanCreateComment
-no-loop
-when
-  $o: Operator(this == currentOperator)
-  $v: Commentable() // indica che si lavora sul nuovo
-  $c: PermissionCheck(action in ("Comments.save"), target == $v,
-    granted == false)
-  Role(this in (Role.accounting, Role.personnel))
 then
   $c.grant();
 end

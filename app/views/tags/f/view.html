@@ -40,7 +40,7 @@
     #{if !_bodyonly}
     #{if !empty}
           #{if _link && secured}
-<a href="${_link}" ${helpers.Web.serialize(_attrs, "arg", "value", "label", "link", "half").raw()}>#{/if}#{if value instanceof String}${value}#{/if}#{else}
+<a href="${_link}" ${common.Web.serialize(_attrs, "arg", "value", "label", "link", "half").raw()}>#{/if}#{if value instanceof String}${value}#{/if}#{else}
       #{if value instanceof Boolean}
         <i class="fa fa-${value ? 'check-' : ''}square-o"></i>
           <span class="sr-only">${value ? 'si':'no'}</span>

@@ -7,5 +7,5 @@ disabled (optional) default to false
 #{f.edit _arg, label:_label, value:_value, feedback:'clock-o'}
 <input type="text" name="${field.name}" id="${field.id}" class="form-control ${_attrs['class']}"
        value="${(!_attrs.containsKey('value') ? field.value : _value)?.value()}" data-clockpicker
-       ${helpers.Web.serialize(_attrs, "arg", "value", "label", "required", "inline", "description", "data-clockpicker").raw()} />
+       ${common.Web.serialize(_attrs, "arg", "value", "label", "required", "inline", "description", "data-clockpicker").raw()} />
 #{/f.edit}

@@ -8,5 +8,5 @@
 #{f.edit _arg, label:_label, value:_value}
 <input type="${_type == null ? 'text' : _type}" name="${field.name}" id="${field.id}" class="form-control ${_attrs['class']}"
   	value="${_value == null ? field.value : _value}"
-  	${helpers.Web.serialize(_attrs, "arg", "value", "label", "required", "inline", "feedback", "type").raw()} />
+  	${common.Web.serialize(_attrs, "arg", "value", "label", "required", "inline", "feedback", "type").raw()} />
 #{/f.edit}

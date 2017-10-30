@@ -1,7 +1,7 @@
 %{
   results = _arg
   if (_attrs) {
-  	attributes = ' ' + helpers.Web.serialize(_attrs, "arg")
+  	attributes = ' ' + common.Web.serialize(_attrs, "arg")
   } else {
     attributes = ''
   }
@@ -22,7 +22,7 @@ ${'pagedResults'.label(results.total, results.offset + 1, Math.min(results.offse
 </div>
 <div class="">
 %{
-  paginator = helpers.Paginator.instanceFor(results);
+  paginator = common.Paginator.instanceFor(results);
 }%
 #{if paginator.hasPrevious || paginator.hasNext}
 <ul class="pagination">
