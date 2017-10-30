@@ -12,6 +12,8 @@ import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
  */
 public class OurImplicitNamingStrategy extends ImplicitNamingStrategyJpaCompliantImpl {
 
+  private static final long serialVersionUID = -721875022035961973L;
+
   @Override
   public Identifier determineJoinTableName(ImplicitJoinTableNameSource source) {
        String name = source.getOwningPhysicalTableName() + "_"

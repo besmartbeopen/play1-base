@@ -1,7 +1,6 @@
 package common.dao;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPAExpressions;
@@ -9,8 +8,8 @@ import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.JPQLQueryFactory;
 import common.DateRange;
 import common.ModelQuery;
-import common.Tools;
 import common.ModelQuery.SimpleResults;
+import common.Tools;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
@@ -109,32 +108,6 @@ public class OperatorDao {
         .filter(o -> !o.roles.contains(Role.super_user))
         .collect(ImmutableSet.toImmutableSet());
   }
-
-  public List<Operator> allAccounting() {
-    return byRole(Role.accounting);
-  }
-
-  /**
-   * @return tutti i magazzinieri attivi.
-   */
-  public List<Operator> allStockmen() {
-    return byRole(Role.stockman);
-  }
-
-  /**
-   * @return tutti i venditori attivi.
-   */
-  public List<Operator> allSalesmen() {
-    return byRole(Role.salesman);
-  }
-
-  /**
-   * @return tutti i responsabili vendita attivi.
-   */
-  public List<Operator> allSalesmanagers() {
-    return byRole(Role.sales_manager);
-  }
-
   /**
    * @param role
    * @return gli operatori attivi che hanno il ruolo indicato.
@@ -145,23 +118,6 @@ public class OperatorDao {
       .where(op.roles.any().eq(role), op.enabled.isTrue())
       .orderBy(op.email.asc())
       .select(op).fetch();
-  }
-
-  /**
-   * @param operator
-   * @return l'elenco dei sottoposti diretti
-   */
-  public List<Operator> under(Operator operator) {
-    if (operator.roles.contains(Role.administrator)) {
-      return byRole(Role.informant_head);
-    } else if (operator.roles.contains(Role.informant_head)) {
-      // gli informatori attivi relativi a quel capoarea
-      return operator.managedOperators.stream().filter(o -> o.enabled)
-          .filter(o -> !o.equals(operator))
-          .collect(ImmutableList.toImmutableList());
-    } else {
-      return ImmutableList.of();
-    }
   }
 
   /**
