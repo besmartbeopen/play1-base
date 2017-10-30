@@ -24,35 +24,5 @@ DELETE  /{controller}/{action}/{<[0-9]+>id}     {controller}.{action}
 POST    /{controller}/{action}/{<[0-9]+>id}     {controller}.{action}
 PUT     /{controller}/{action}/{<[0-9]+>id}     {controller}.{action}
 
-GET     /documentations/?                              Documentations.list
-GET     /documentations/{<[a-zA-Z.]+>routeAction}      Documentations.inline
-GET     /documentations/{<[a-zA-Z.]+>routeAction}/show Documentations.show
-GET     /documentations/{<[a-zA-Z.]+>routeAction}/edit Documentations.edit
-POST    /documentations/{<[a-zA-Z.]+>routeAction}/edit Documentations.save
-
-# API v2
-GET     /api/v2/microArea/lastUpdated             RestApiV2.microAreasLastUpdated(format:'json')
-GET     /api/v2/microArea/{<.+[0-9]+>name}        RestApiV2.microArea(format:'json')
-GET     /api/v2/microArea                         RestApiV2.microAreas(format:'json')
-POST    /api/v2/microArea                         RestApiV2.updateMicroAreas(format:'json')
-PUT     /api/v2/microArea/{<.+[0-9]+>name}        RestApiV2.updateMicroArea(format:'json')
-
-GET     /api/v2/municipal/lastUpdated             RestApiV2.municipalsLastUpdated(format:'json')
-# GET     /api/v2/municipal                       RestApiV2.municipals(format:'json')
-POST    /api/v2/municipal                         RestApiV2.updateMunicipals(format:'json')
-PUT     /api/v2/municipal/{<[0-9]+>code}          RestApiV2.updateMunicipal(format:'json')
-
-GET     /api/v2/region/lastUpdated                RestApiV2.regionsLastUpdated(format:'json')
-GET     /api/v2/region                            RestApiV2.regions(format:'json')
-POST    /api/v2/region                            RestApiV2.updateRegions(format:'json')
-
-GET     /api/v2/province/lastUpdated              RestApiV2.provincesLastUpdated(format:'json')
-GET     /api/v2/province                          RestApiV2.provinces(format:'json')
-POST    /api/v2/province                          RestApiV2.updateProvinces(format:'json')
-
-GET     /api/v2/microAreaMunicipal/lastUpdated    RestApiV2.microAreaMunicipalsLastUpdated(format:'json')
-GET     /api/v2/microAreaMunicipal                RestApiV2.microAreaMunicipals(format:'json')
-POST    /api/v2/microAreaMunicipal                RestApiV2.updateMicroAreaMunicipals(format:'json')
-
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
