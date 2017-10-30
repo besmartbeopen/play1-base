@@ -4,6 +4,6 @@ package models.enums;
  * @author marco
  *
  */
-public enum TaskType {
+public enum TaskTargetType {
   // TODO: DA COMPLETARE.
 }

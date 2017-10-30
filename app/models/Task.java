@@ -4,9 +4,11 @@ import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import models.base.BaseModel;
-import models.enums.TaskType;
+import models.enums.TaskTargetType;
 import models.interfaces.IFlowable;
 import org.joda.time.LocalDate;
 import play.data.validation.Required;
@@ -29,7 +31,8 @@ public class Task extends BaseModel {
   public Set<Operator> candidateAssignees = Sets.newHashSet();
 
   @Required
-  public TaskType type;
+  @Enumerated(EnumType.STRING)
+  public TaskTargetType targetType;
 
   public Integer targetId;
 
