@@ -1,0 +1,187 @@
+#{if session.username}
+<ul class="nav navbar-nav">
+  #{secure.check 'Doctors.list'}
+   #{submenu '<i class="fa fa-archive fa-fw"></i> <span class="hidden-sm">'
+     + messages.get('doctors') + '</span>' +
+     (($data.customerTasks.count > 0) ?
+  (' <sup>'+ ($data.customerTasks.count)+'</sup>') : '')}
+    #{menuitem @Doctors.list(), fa:'user-md'}&{'doctor.list'}#{/menuitem}
+    #{menuitem @Addresses.index(), fa:'globe'}&{'address.list'}#{/menuitem}
+    #{menuitem @Doctors.list(numberOfVisits:'ZERO'), fa:'sort-numeric-asc'}&{'doctor.toBeVisited'}#{/menuitem}
+    #{menuitem @Customers.list(), fa:'folder-open'}&{'customer.list'}#{/menuitem}
+    #{secure.check 'Doctors.listWoPrivacy'}
+     #{menuitem @Doctors.listWithPrivacy(), fa:'gavel'}&{'doctor.listWithPrivacy'}#{/menuitem}
+    #{/secure.check}
+    #{menuitem @MedicalSpecializations.list(), fa:'stethoscope'}&{'medicalSpecialization.list'}#{/menuitem}
+    #{menuitem @DoctorRoles.list(), fa:'bolt'}&{'doctorRole.list'}#{/menuitem}
+    #{menuitem @Customers.addressTypes(), fa:'building'}&{'Customers.addressTypes'}#{/menuitem}
+    #{menuitem @RecordsHealthChecks.index()}<i class="fa fa-ambulance fa-fw"></i> &{'recordsHealthChecks.index'}#{/menuitem}
+    #{if $data.customerTasks.count > 0}
+      <li class="divider"></li>
+      #{list items:$data.customerTasks.partialList, as:'task'}
+       #{menuitem @Tasks.task(task.id), fa:'bell-o'}</i>
+          ${task.description} - #{timeago task.createdAt /}
+       #{/menuitem}
+      #{/list}
+    #{/if}
+   #{/submenu}
+  #{/secure.check}
+  #{secure.check 'Activities'}
+   #{submenu '<i class="fa fa-briefcase fa-fw"></i> <span class="hidden-sm">'
+     + messages.get('activities') + '</span>' +
+        (($data.activityTasks.count > 0) ?
+  (' <sup>'+ ($data.activityTasks.count)+'</sup>') : '')}
+    #{menuitem @VisitToDoctors.index(), fa:'briefcase'}&{'visitToDoctor.list'}#{/menuitem}
+    #{menuitem @Activities.list(), fa:'tasks'}&{'activity'}#{/menuitem}
+    #{menuitem @InactivityPeriods.list(), fa:'tasks text-warning'}&{'inactivityPeriods'}#{/menuitem}
+    #{menuitem @PromotionalPeriods.list(), fa:'calendar'}&{'PromotionalPeriods.list'}#{/menuitem}
+    #{menuitem @CrmActivities.index(), fa:'headphones'}&{'crmActivity.list'}#{/menuitem}
+    #{menuitem @Operators.calendar(), fa:'calendar'}&{'operator.myCalendar.menu'}#{/menuitem}
+    #{menuitem @Vehicles.list(), fa:'car'}&{'vehicle.mine'}#{/menuitem}
+    #{menuitem @Expenses.mine(), fa:'money'}&{'expenses.mine'}#{/menuitem}
+    #{menuitem @DailyDistances.mine(), fa:'road'}&{'dailyDistances.show'}#{/menuitem}
+    #{menuitem @MealTicketPolicies.index(), fa:'ticket'}&{'mealTicketPolicy.list'}#{/menuitem}
+    #{menuitem @Tasks.list(), fa:'tasks text-danger'}&{'Tasks.list'}#{/menuitem}
+    #{if $data.activityTasks.count > 0}
+      <li class="divider"></li>
+      #{list items:$data.activityTasks.partialList, as:'task'}
+       #{menuitem @Tasks.task(task.id), fa:'bell-o'}</i>
+          ${task.description} - #{timeago task.createdAt /}
+       #{/menuitem}
+      #{/list}
+   #{/if}
+   #{/submenu}
+  #{/secure.check}
+  #{secure.check 'Informants'}
+   #{submenu '<i class="fa fa-users fa-fw"></i> <span class="hidden-sm">' + ('people'.label()) + '</span>'}
+    #{menuitem @Informants.index(), fa:'users'}&{'informant.list'}#{/menuitem}
+    #{menuitem @Informants.disableds(), fa:'user-times'}&{'informant.disableds'}#{/menuitem}
+    #{menuitem @Messages.list(), fa:'envelope'}&{'message.list'}#{/menuitem}
+    #{menuitem @Areas.list(), fa:'globe'}&{'area.list'}#{/menuitem}
+    #{menuitem @Territories.list(), fa:'map'}&{'territory.list'}#{/menuitem}
+    #{menuitem @MicroAreas.list(), fa:'map-marker'}&{'microArea.list'}#{/menuitem}
+    <li role="presentation" class="divider"></li>
+    #{menuitem @Operators.index(), fa:'users text-success'}&{'employee.list'}#{/menuitem}
+    #{menuitem @Expenses.list(), fa:'money'}&{'expenses.list'}#{/menuitem}
+    #{menuitem @Expenses.exports(), fa:'download'}&{'expenses.exports'}#{/menuitem}
+    #{secure.check 'Vehicles.list.all'}
+      #{menuitem @Vehicles.list(), fa:'car'}&{'vehicle.list'}#{/menuitem}
+    #{/secure.check}
+    #{/submenu}
+  #{/secure.check}
+  #{secure.check 'Products'}
+  #{submenu '<i class="fa fa-flask fa-fw"></i> <span class="hidden-sm">' +
+    messages.get('products') + '</span>' +
+         (($data.stockTasks.count > 0) ?
+  (' <sup>'+ ($data.stockTasks.count)+'</sup>') : '') +
+      (($data.salesOrderTasks.count > 0) ?
+      (' <sup>'+ ($data.salesOrderTasks.count)+'</sup>') : '')}
+    #{if session.username && currentOperator?.stock}
+     #{menuitem @Personal.stock(), fa:'archive'}&{'stock.show'}#{/menuitem}
+     #{menuitem @Personal.movements(), fa:'exchange'}&{'stock.movements'}#{/menuitem}
+    #{/if}
+    #{secure.check 'Stocks.shipments'}
+     #{menuitem @Stocks.shipments(), fa:'truck'}&{'stock.shipments'}#{/menuitem}
+     #{menuitem @Stocks.returnsAndDisposals(), fa:'undo'}&{'stock.returnsAndDisposals'}#{/menuitem}
+    #{/secure.check}
+    #{secure.check 'Stocks.allMovements'}
+      #{menuitem @Stocks.movements(), fa:'exchange'}&{'stock.allMovements'}#{/menuitem}
+    #{/secure.check}
+    #{secure.check 'Products.list'}
+     #{menuitem @Products.list(), fa:'flask'}&{'product.list'}#{/menuitem}
+     #{menuitem @Brands.list(), fa:'flag'}&{'brand.list'}#{/menuitem}
+     #{menuitem @TherapeuticAreas.index(), fa:'tags'}&{'therapeuticArea.list'}#{/menuitem}
+    #{/secure.check}
+    #{menuitem @Stocks.stocksQuantities(), fa:'battery-quarter'}&{'stock.quantities'}#{/menuitem}
+   #{if $data.stockTasks.count > 0}
+      <li class="divider"></li>
+       #{list items:$data.stockTasks.partialList, as:'task'}
+       #{menuitem @Tasks.task(task.id), fa:'bell-o'}
+          ${task.description} - #{timeago task.createdAt /}
+       #{/menuitem}
+      #{/list}
+   #{/if}
+   #{secure.check 'SalesOrders.list'}
+    <li role="presentation" class="divider"></li>
+    #{secure.check 'SalesOrders.configure'}
+        #{menuitem @PaymentConditions.list(), fa:'money'}&{'paymentConditions'}#{/menuitem}
+        #{menuitem @PromoRules.list(), fa:'child'}&{'promoRules'}#{/menuitem}
+    #{/secure.check}
+    #{menuitem @SalesOrders.list(), fa:'shopping-cart'}&{'salesOrders.list'}#{/menuitem}
+    #{if $data.salesOrderTasks.count > 0}
+      <li class="divider"></li>
+      #{list items:$data.salesOrderTasks.partialList, as:'task'}
+       #{menuitem @Tasks.task(task.id), fa:'tasks'}
+        ${task.description} - #{timeago task.createdAt /}
+       #{/menuitem}
+      #{/list}
+    #{/if}
+   #{/secure.check}
+  #{/submenu}
+  #{/secure.check}
+  #{secure.check 'Reports.show'}
+   #{submenu '<i class="fa fa-dashboard fa-fw"></i> <span class="hidden-sm">'
+       + messages.get('reports') + '</span>' +
+     (($data.sellingInfoTasks.count > 0) ?
+  (' <sup>'+ ($data.sellingInfoTasks.count)+'</sup>') : '')}
+     #{menuitem @Reports.visitsPerTherapeuticArea(), fa:'dashboard'}&{'reports.visitsPerTherapeuticArea'}#{/menuitem}
+     #{secure.check 'Reports.trend'}
+      #{menuitem @Reports.trend(), 'data-no-pjax':true, fa:'bar-chart-o'}Trend visite/medici #{/menuitem}
+      #{menuitem @Reports.inventories(), fa:'cubes'}Inventario complessivo #{/menuitem}
+     #{/secure.check}
+     #{secure.check 'Vehicles.report'}
+      #{menuitem @Vehicles.report(), fa:'car text-info'}&{'vehicle.report'}#{/menuitem}
+     #{/secure.check}
+     #{menuitem @CrmActivities.report(), fa:'phone'}&{'CrmActivities.report'}#{/menuitem}
+     #{menuitem @Reports.governmentStats(), fa:'pie-chart'}&{'reports.governmentStats'}#{/menuitem}
+     #{menuitem @Reports.monthlyUsage(), fa:'calendar'}&{'Reports.monthlyUsage'}
+     #{/menuitem}
+     <li role="presentation" class="divider"></li>
+     #{menuitem @Reports.therapeuticAreaCounterPerAgentPage(), fa:'bar-chart'}
+      Distribuzione medici per area terapeutica
+     #{/menuitem}
+     #{secure.check 'SellingInfos.report'}
+      <li role="presentation" class="divider"></li>
+      #{menuitem @SellingInfos.report(), fa:'line-chart'}Report dati di vendita
+      #{/menuitem}
+     #{/secure.check}
+     #{menuitem @SellingInfos.list(), fa:'thumbs-o-up'}Informazioni sui dati di vendita
+     #{/menuitem}
+     #{menuitem @Imports.sellingInfo(), fa:'upload'}Importazione dati di vendita
+     #{/menuitem}
+     #{if $data.sellingInfoTasks.count > 0}
+      <li role="presentation" class="divider"></li>
+      #{list items:$data.sellingInfoTasks.partialList, as:'task'}
+       #{menuitem @Tasks.task(task.id), fa:'bell-o text-danger'}
+          ${task.description} - #{timeago task.createdAt /}
+       #{/menuitem}
+      #{/list}
+     #{/if}
+   #{/submenu}
+  #{/secure.check}
+  #{secure.check 'GoogleDrive.show'}
+     #{menuitem @GoogleDrive.show(), fa:'files-o'}<span class="hidden-sm">&{'googledrive.show'}</span>#{/menuitem}
+  #{/secure.check}
+  #{secure.check 'ConfigurationOrExport'}
+     #{submenu '<i class="fa fa-gears"></i> <span class="sr-only">Configurazione</span>'}
+      #{secure.check 'Configuration'}
+        #{menuitem @AddressTypes.index(), fa:'address-book'}&{'addressType.list'}#{/menuitem}
+        #{menuitem @OperatorProfiles.index(), fa:'id-card'}&{'OperatorProfiles.list'}#{/menuitem}
+        #{menuitem @Roles.list(), fa:'shield'}&{'roles.list'}#{/menuitem}
+        #{menuitem @CompanyLines.list(), fa:'random'}&{'companyLine.list'}#{/menuitem}
+        #{menuitem @GoogleDrive.index(), fa:'google'}Google Drive#{/menuitem}
+        #{menuitem @ActivityTypes.list(), fa:'tags'}&{'activityType.list'}#{/menuitem}
+        #{menuitem @ReceptionTimeTableTypes.list(), fa:'clock-o'}&{'receptionTimeTableType.list'}#{/menuitem}
+        #{menuitem @WorkExpensesTypes.list(), fa:'money'}&{'workExpensesType.list'}#{/menuitem}
+        #{menuitem @TaxClasses.list(), fa:'bank'}&{'taxClass.list'}#{/menuitem}
+        #{menuitem @Geometries.panel(), fa:'map'}&{'Geometries.panel'}#{/menuitem}
+        <li role="presentation" class="divider"></li>
+        #{menuitem @Setup.info(), fa:'info-circle'}&{'Setup.info'}#{/menuitem}
+        #{menuitem @Setup.index(), fa:'wrench'}&{'Setup.index'}#{/menuitem}
+        #{menuitem @Setup.synchronizer(), fa:'exchange'}&{'Setup.synchronizer'}#{/menuitem}
+      #{/secure.check}
+      #{menuitem @Exporters.index(), fa:'table'}&{'Exporters.index'}#{/menuitem}
+     #{/submenu}
+  #{/secure.check}
+</ul>
+#{/if}

@@ -1,0 +1,63 @@
+#{form action:@save(), class:'form form-horizontal', autocomplete:'no'}
+
+    #{f.text 'operator.firstname', required:true /}
+    #{f.text 'operator.lastname', required:true /}
+    #{f.text 'operator.email', required:true /}
+
+    #{f.selectEnum 'operator.pageLayout', label:'pageLayout', required:true,
+      values:models.enums.PageLayout.values(), placeholder:'Scegli...' /}
+      
+    #{f.selectModel 'operator.profile', required:true, values:$data.allProfiles /}
+    
+    #{f.checkbox 'operator.enabled' /}
+
+    #{f.edit 'operator.roles'}
+        <select name="${field.name}" id="${field.id}" multiple data-selectize
+            class="form-control"
+            placeholder="&{'operator.roles.choose'}">
+            #{list items:models.enums.Role.values(), as:'role'}
+                <option value="${role.name()}"#{if role in field.value} selected#{/if}>${role.label()}</option>
+            #{/list}
+        </select>
+    #{/f.edit}
+
+    #{secure.check 'Operators.edit.full'}
+      #{f.checkbox 'operator.employee'/}
+    #{/secure.check}
+
+    #{if operator.agent != null}
+     #{f.view 'operator.informant', value:'informant'.label(),
+        link:@Informants.show(operator.informant.id),
+        'data-confirm':'confirm.cancel'.label() /}
+    #{/if}
+
+ #{if operator.persistent}
+    #{f.view 'operator.lastLoginDate', bodyonly:true}
+     #{if operator.lastLoginDate}
+      ${operator.lastLoginDate.format()} (${operator.lastLoginDate.toDate().since()})
+     #{/if} #{else}
+      &{'notAvailable'}
+     #{/else}
+    #{/f.view}
+    #{f.view 'operator.lastLoginAddress' /}
+    #{f.hidden 'operator.id' /}
+ #{/if}
+
+    <div class="row">
+    <div class="col-md-offset-2">
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> &{'crud.save'}
+    </button>
+ #{if operator.persistent}
+    <a href="@{list()}" class="btn btn-danger"
+        data-confirm="&{'confirm.delete'}">
+        <i class="fa fa-trash-o"></i> &{'crud.delete'}
+    </a>
+ #{/if}
+    <a href="@{list()}" class="btn btn-warning"
+        data-confirm="&{'confirm.cancel'}">
+        <i class="fa fa-times"></i> &{'cancel'}
+    </a>
+    </div>
+    </div>
+#{/form}

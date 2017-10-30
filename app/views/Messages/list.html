@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+%{
+  label = messages.get('messages')
+  title = messages.get('message.list')
+}%
+#{set title: title /}
+#{set breadcrumbs:[(label):@Messages.list(), (title):null] /}
+
+#{secure.check 'Messages.blank'}
+<div class="clearfix">
+    <a href="@{blank()}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> ${'message.add'.label()}</a>
+</div>
+#{/secure.check}
+
+<div class="list-group">
+ <div class="list-group-item list-group-item-info">
+#{form action:@Messages.list(), class:'form-inline', method:'GET', autocomplete:'off',
+    'data-reload':'#results'}
+     #{f.text 'dateRange', value:(dateRange?.present ? dateRange.get() : ''),
+       feedback:'calendar', inline:true, placeholder:'date'.label(),
+       'data-date-range':true /}
+#{/form}
+</div>
+
+#{include './_list.html' /}
+</div>

@@ -1,0 +1,19 @@
+*{
+ arg: è il titolo del panello.
+ title: è il titolo del pannello, fornito in modo alternativo così.
+ fa: se presente indica il fontawesome da inserire prima del titolo.
+ class: opzionale, può assumere i seguenti valori: default (predefinito), info, warning, danger, success, primary.
+ body: è il contenuto del panel.
+
+ Qualsiasi altro attributo viene inserito direttamente sul div più esterno.
+}*
+<div class="panel panel-${_panel?:'default'}"
+${helpers.Web.serialize(_attrs, "arg", "title", "class", "fa").raw()}>
+ <div class="panel-heading">
+  #{if _fa}<i class="fa fa-${_fa}"></i>#{/if}
+  ${_title?:_arg}
+ </div>
+ <div class="panel-body">
+  #{doBody/}
+ </div>
+</div>

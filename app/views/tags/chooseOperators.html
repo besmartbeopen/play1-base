@@ -1,0 +1,38 @@
+*{
+  arg: name, default to operators
+  value: default to activity.operators
+  values: default to $data.allEmployees
+}* %{
+  name = _arg == null ? 'operators' : _arg
+  if (_value == null) {
+    value = activity.operators
+  } else {
+    value = _value
+  }
+  if (_values == null) {
+  	items = $data.allEmployees
+  } else {
+    items = _values
+  }
+}%
+#{f.edit name, label:'message.recipients'}
+  <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle"
+            data-toggle="dropdown" aria-expanded="false">Seleziona <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" data-select-filter="#${field.id}" data-filter-type="">Tutti i dipendenti</a></li>
+          #{list items:$data.allProfiles, as:'profile'}
+            <li><a href="#" data-select-filter="#${field.id}" data-filter-type="${profile.name}">Solo ${profile.name}</a></li>
+          #{/list}
+          <li><a href="#" data-select-filter="#${field.id}" data-filter-type="none">Nessuno</a></li>
+        </ul>
+      </div>
+     <select name="${field.name}" id="${field.id}" multiple data-selectize
+            class="form-control" placeholder="(Scegli...)">
+     #{list items:items, as:'item'}
+        <option data-type="${item.profile.name}" value="${item.id}"#{if value.contains(item)} selected#{/if}>${item.fullname}</option>
+     #{/list}
+    </select>
+  </div>
+#{/f.edit}

@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set title:messages.get('geo.municipalsByProvince', province) /}
+#{set breadcrumbs:['geo.provinces':@provinces(),
+   (messages.get('geo.municipalsByProvince', province)):null] /}
+
+<section id="results">
+    <div class="list-group">
+        #{list items:municipals, as:'item'}
+        <div class="list-group-item">
+           <h4 class="list-group-item-heading">${item.name}
+           </h4>
+           <p class="list-group-item-text">
+            <ul>
+                #{list items:item.microAreas, as:'ma'}
+                    <li>${ma.name}</li>
+                #{/list}
+            </ul>
+           </p>
+        </div>
+        #{/list}#{else}
+          <div class="list-group-item">Nessuna &{'municipal'} presente.</div>
+        #{/else}
+    </div>
+</section>

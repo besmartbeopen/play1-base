@@ -1,0 +1,172 @@
+package security;
+
+import common.security.PermissionCheck;
+
+import models.Comment;
+import models.Message;
+import models.MessageDetail;
+import models.Notification;
+import models.Operator;
+import models.Task;
+import models.enums.Role;
+import models.interfaces.Commentable;
+
+global models.Operator currentOperator;
+
+/* gli amministratori possono fare tutto, ad esclusione di poche... */
+rule IsAdministratorTarget
+when
+  $c: PermissionCheck(action not in ("Operators.applyFilters",
+    "Operators.edit", "Operators.blank", "Operators.createStock",
+    "Operators.bulkAction",
+    "Roles.list", "Roles.show", "Roles.save", "Doctors.massive",
+    "Setup.index", "Setup.info", "Setup.synchronizer",
+    "RestApi.customers", "RestApi.informants",
+    "RestApi.remoteCustomers", "RestApi.remoteInformants",
+    "RestApi.importCustomersByInformant",
+    "RestApi.importCustomersBySpecializations",
+    "OperatorProfiles.blank", "OperatorProfiles.edit", "OperatorProfiles.save",
+    "OperatorProfiles.delete"),
+    granted == false)
+  Role(this == Role.administrator)
+then
+  $c.grant();
+end
+
+/* solo i super user possono fare questo */
+rule IsSuperUser
+when
+  $c: PermissionCheck(granted == false)
+  Role(this == Role.super_user)
+then
+  $c.grant();
+end
+
+/* anche gli amministratori non devono poter switchare sul proprio utente */
+rule DontSwitchTo
+when
+   $o: Operator(this == currentOperator)
+   $c: PermissionCheck(action in ("Resecure.switchOperatorTo"), target == $o,
+       granted == false)
+then
+   $c.revoke();
+end
+
+/* gli operatori possono: */
+rule IsOperator
+when
+ $c: PermissionCheck(action in ("Application.index", "Issues.create",
+     "Operators.showThumbnail", "Operators.showPhoto",
+     "Notifications.tasks", "Tasks.task",
+     "Resecure.restoreOperator",
+     "Personal.index", "Personal.editPassword", "Personal.updatePassword",
+     "Personal.updateSettings",
+     "Operators.uploadPhoto", /* abilitata per il metodo, ristretta poi */
+     "Notifications.notifications", "Notifications.read", "Notifications.list",
+     "Notifications.readAndRedirect", "Notifications.archiveds",
+     "Comments.save", "Comments.delete", "Comments.show",
+     ), target == null, granted == false)
+ Operator()
+then
+ $c.grant();
+end
+
+/**
+ * I gestori di magazzino possono compiere resi al magazzino anche per gli
+ * altri operatori.
+ */
+rule CanReturnProductForOthers
+when
+ $o: Operator(this == currentOperator, stock != null)
+ $c: PermissionCheck(action in ("Stocks.newReturn", "Stocks.saveReturn"),
+     target != null, granted == false)
+  Role(this == Role.stockman || this == Role.administrator)
+then
+ $c.grant();
+end
+
+/**
+ * Gli operatori che non sono proprietari del magazzino non possono operarvi
+ */
+rule CantOperateOnOtherStock
+no-loop
+when
+ $o: Operator(this == currentOperator)
+ $s: Stock(this != $o.stock)
+ $c: PermissionCheck(action in ("Stocks.newTransfer", "Stocks.createTransfer",
+   "Stocks.inventory"), target == $s)
+then
+ $c.revoke();
+end;
+
+/* gli operatori possono: */
+rule EditAndViewPersonalData
+when
+ $o: Operator(this == currentOperator)
+ $c: PermissionCheck(action in (
+     "Operators.uploadPhoto", "Operators.deletePhoto",
+     "Personal.index", "Personal.editPassword", "Personal.updatePassword",
+     "Calendars.eventsData", "Operators.calendar", "VisitToDoctors.listJson",
+     "VisitToDoctors.listJsonGrouped", "Activities.listJson"
+     ),	target == $o, granted == false)
+then
+ $c.grant();
+end
+
+/* gli operatori possono leggere soltanto le proprie notifiche */
+rule ReadNotification
+when
+ $n: Notification(destination == currentOperator)
+ $c: PermissionCheck(action in ("Notifications.read", "Notifications.readAndRedirect"),
+   target == $n, granted == false)
+then
+ $c.grant();
+end
+
+/**
+ * gli operatori che sono coinvolti nel task possono vederlo.
+ */
+rule ShowTask
+when
+ $t: Task(candidateAssignees contains currentOperator)
+ $c: PermissionCheck(action in ("Tasks.task"), target == $t,
+    granted == false)
+then
+ $c.grant();
+end
+
+// Soltanto gli operatori coinvolti all'oggetto correlato, possono commentare.
+rule CanCreateComment
+no-loop
+when
+  $o: Operator(this == currentOperator)
+  $v: Commentable(involveds.contains($o))
+  $c: PermissionCheck(action in ("Comments.save", "Comments.show"),
+    target == $v, granted == false)
+then
+  $c.grant();
+end
+
+// I commenti esistenti sono gestiti soltanto dagli autori.
+rule CanEditComment
+no-loop
+when
+  $o: Operator(this == currentOperator)
+  $k: Comment(persistent == true, owner == $o)
+  $c: PermissionCheck(action in ("Comments.save", "Comments.delete"),
+    target == $k, granted == false)
+then
+  $c.grant();
+end
+
+rule CanCreateComment
+no-loop
+when
+  $o: Operator(this == currentOperator)
+  $v: Commentable() // indica che si lavora sul nuovo
+  $c: PermissionCheck(action in ("Comments.save"), target == $v,
+    granted == false)
+  Role(this in (Role.accounting, Role.personnel))
+then
+  $c.grant();
+end

@@ -1,0 +1,255 @@
+plugins {
+  id "de.undercouch.download" version "3.1.2"
+  id "com.moowork.node" version "1.2.0"
+  // id "de.set.ecj" version "1.0.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+  jcenter()
+  flatDir {
+    dirs 'lib'
+  }
+}
+
+ext {
+  playVersion = '1.5.0'
+  fastergtVersion = '1.9.2'
+  lombokVersion = '1.16.18'
+  def homePath = System.properties['user.home']
+  playHome = "${homePath}/java/play-${playVersion}"
+  playId = ''
+  versionFile = "${buildDir}/VERSION.txt"
+}
+
+node {
+  version = '6.11.4'
+  yarnVersion = '1.2.1'
+  download = true
+}
+
+configurations {
+  playModule {
+    description = "Zipped play modules"
+    visible = false
+  }
+}
+
+// configurations.playModule.incoming.beforeResolve {
+//  logger.info("Check if download of play-modules is required.")
+//  def repoDir = file("${projectDir}/lib")
+//  def fastergtFile = file("$repoDir/fastergt-${fastergtVersion}.zip")
+//  if (!fastergtFile.exists()) {
+//    logger.warn("download fastergt modules...")
+//    download {
+//      src "https://repo.codeborne.com/play-fastergt/fastergt-${fastergtVersion}.zip"
+//      dest repoDir
+//    }
+//  } else {
+//    logger.info("Play-modules was already downloaded.")
+//  }
+//}
+
+task linkedModules() {
+  description 'list linked modules'
+
+  outputs.files file('modules').listFiles().collect {
+    if (it.directory) it else file(it.text)
+  }
+}
+
+dependencies {
+//  compile "org.projectlombok:lombok:${lombokVersion}"
+//  compile "com.google.code.maven-play-plugin.org.playframework:play:${playVersion}"
+//  playModule "com.google.code.maven-play-plugin.org.playframework:play:${playVersion}:framework-min@zip"
+//  playModule "com.google.code.maven-play-plugin.org.playframework.modules.secure:play-secure:${playVersion}:module@zip"
+//  playModule "kjetland:fastergt:1.9.2@zip"
+
+//  compile ("org.hibernate:hibernate-entitymanager:4.2.19.Final") {
+//    force = true
+//  }
+  compile fileTree(dir: "${playHome}/framework/lib", include: ['*.jar'])
+  compile fileTree(dir: "${playHome}/framework", include: ['play-*.jar'])
+  compile fileTree(dir: 'lib', include: ['*.jar'])
+  linkedModules.outputs.files.collect {
+    compile fileTree(dir: it, include: ['lib/*.jar'])
+  }
+}
+
+// compileJava.doFirst { tasks.codeGeneratorTaks.execute() }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+  main {
+    java.srcDirs = linkedModules.outputs.files.collect { it.toString() + '/app' } + ['app']
+    resources.srcDirs = ["conf"]
+  }
+  framework {
+    java.srcDirs = ["${playHome}/framework/src"]
+  }
+  test {
+    java.srcDirs = ["test"]
+  }
+}
+
+eclipse {
+  classpath {
+     containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+     containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+  }
+}
+
+task printClasspath() {
+  doLast {
+    configurations.compile.each { println it }
+    // sourceSets.main.allSource.each { println it }
+  }
+}
+
+task deleteQueryDSL(type: Delete, group: 'querydsl') {
+  description 'Delete QueryDSL generated file'
+
+  delete fileTree(dir:'app/models', include:'**/query/*.java')
+  delete fileTree(dir:'app/play/', include:'**/query/*.java')
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'querydsl') {
+  description 'Generates the QueryDSL query types'
+
+  // i Q<model> stanno insieme al codice, ma in un package separato:
+  def generated = sourceSets.main.java.srcDirs.find { it.path == "$projectDir/app" }
+  source = sourceSets.main.java + sourceSets.framework.java
+  // salta i Q<model> generati
+  exclude { it.path.endsWith('query') }
+  classpath = configurations.compile
+  destinationDir = file("build/classes")
+  options.compilerArgs = [
+    "-proc:only",
+    "-Aquerydsl.packageSuffix=.query",
+    "-processor",
+    "com.querydsl.apt.jpa.JPAAnnotationProcessor",
+    "-s",
+    "${generated}"
+  ]
+  outputs.upToDateWhen { false }
+}
+
+generateQueryDSL.dependsOn {
+  deleteQueryDSL
+}
+
+task webpack(type: YarnTask, group:'run') {
+  description 'Run webpack in development mode'
+  args = ['run', 'dev']
+}
+
+webpack.dependsOn {
+  npm_rebuild
+  yarn_install
+}
+
+task webpackBuild(type: YarnTask, group:'build') {
+  description 'Run webpack build for production'
+  args = ['run', 'build']
+}
+
+webpackBuild.dependsOn {
+  npm_rebuild
+  yarn_install
+}
+
+task installPlayModules  {
+
+  configurations.playModule.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+
+    inputs.file artifact.file
+    // il nome del modulo
+    def moduleName = artifact.name.minus('play-') + "-" + artifact.moduleVersion.id.version
+    def output = file("${projectDir}/modules/${moduleName}")
+
+    copy {
+        from zipTree(artifact.file)
+        into output
+    }
+    def moduleApp = file("${output}/app")
+    if (moduleApp.exists()) {
+      logger.info("Add $moduleApp to sources.")
+
+      // add module/app to sources
+      sourceSets.main.java.srcDirs += moduleApp
+    }
+
+    def moduleConf = file("${output}/conf")
+    if (moduleConf.exists()) {
+      logger.info("Add $moduleConf to resources.")
+
+      // add module/conf to resources
+      sourceSets.main.resources.srcDirs += moduleConf
+    }
+  }
+}
+
+task afterEclipseImport {
+  dependsOn installPlayModules
+}
+build {
+  dependsOn installPlayModules
+}
+
+clean {
+  delete += "${projectDir}/modules"
+  delete += "${projectDir}/precompiled"
+}
+
+clean.doLast {
+  file("${projectDir}/modules").mkdirs()
+}
+
+task playClasspath(type: Exec) {
+  commandLine 'play', 'classpath'
+  standardOutput = new ByteArrayOutputStream()
+  doLast {
+    def output = standardOutput.toString() =~ /(?m)^\[.*$/
+    println output[0]
+  }
+}
+
+task playDependencies(type: Exec, group:'build') {
+  description 'Compute dependencies via play'
+  commandLine 'play', 'deps', '--sync'
+}
+
+task playClean(type: Exec) {
+  dependsOn playDependencies
+  commandLine 'play', 'clean'
+}
+
+task playPrecompile(type: Exec, group:'build') {
+  description 'Precompile via play'
+  dependsOn playDependencies, playClean
+  commandLine 'play', 'precompile'
+}
+
+task precompile(group:'build') {
+  description 'Generate webpack and precompile via play'
+  dependsOn webpackBuild, playPrecompile
+}
+
+task dist(type: Zip) {
+  description 'Crea un archivio di distribuzione'
+  dependsOn webpackBuild, playPrecompile
+  into('public/dist') {
+    from 'public/dist'
+  }
+  into('precompiled') {
+    from 'precompiled'
+  }
+// per ora si usa il play deps
+//  into('lib') {
+//    from 'lib'
+//  }
+}

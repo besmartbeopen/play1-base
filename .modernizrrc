@@ -1,0 +1,13 @@
+{
+  "minify": true,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "touchevents",
+    "css/fontface",
+    "css/backgroundsize",
+    "history",
+    "inputtypes"
+  ]
+}

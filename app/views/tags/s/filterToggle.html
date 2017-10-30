@@ -1,0 +1,11 @@
+*{
+ arg: selector for target element, required
+ filters: selector for filters element, required
+ fa: optional, default none
+ condition: optional, default true
+}*
+#{if _attrs.containsKey('condition') ? _condition : true}
+<li><a href="#${_filters}-${_arg}" data-toggle="collapse" data-parent="#${_filters}">
+#{if _fa}<i class="fa fa-${_fa}"></i>#{/if} #{doBody /}
+</a></li>
+#{/if}

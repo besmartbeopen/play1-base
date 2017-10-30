@@ -1,0 +1,47 @@
+      #{if session.username}
+       #{if $data != null}
+        #{submenu ('<i class="fa fa-bell fa-fw"></i>'+
+        (($data.notifications.count > 0) ?
+           ('<sup>'+ ($data.notifications.count)+'</sup>')
+           : ''))}
+          #{secure.check 'Notifications.tasks'}
+           #{menuitem @Notifications.tasks(), fa:'tasks'}&{'Notifications.tasks'}#{/menuitem}
+          #{/secure.check}
+                #{if $data.notifications.count > 0}
+                    <li class="divider"></li>
+                #{/if}
+          #{list items:$data.notifications.partialList, as:'notification'}
+           #{menuitem @Notifications.readAndRedirect(notification.id), fa:'comment'}
+             ${notification.message} - #{timeago notification.createdAt /}
+           #{/menuitem}
+          #{/list}
+                #{if $data.notifications.count > 0}
+                    <li class="divider"></li>
+                #{/if}
+                #{secure.check 'Notifications.list'}
+                 #{menuitem @Notifications.list(), fa:'bell'}&{'notification.list'}#{/menuitem}
+                 #{menuitem @Notifications.archiveds(), fa:'bell-o'}&{'notification.archiveds'}#{/menuitem}
+                #{/secure.check}
+        #{/submenu}
+       #{/if}
+       #{if currentOperator != null}
+        #{submenu ('<i class="fa fa-user fa-fw"></i> <span class="' + (session.contains("___sudo") ? 'hidden-sm hidden-md' : 'sr-only') + '">' + currentOperator.toString() + '</span>')}
+          #{secure.check 'Personal.index'}
+           #{menuitem @Personal.index(), fa:'user'}&{'personal.index'}#{/menuitem}
+          #{/secure.check}
+        #{secure.check 'Operators.messages'}
+           #{menuitem @Operators.messages(), fa:'envelope'}&{'operator.myMessages.menu'}#{/menuitem}
+          #{/secure.check}
+          #{secure.check 'Personal.editPassword'}
+           #{menuitem @Personal.editPassword(), fa:'key'}&{'personal.editPassword'}#{/menuitem}
+          #{/secure.check}
+        #{/submenu}
+       #{/if}
+       #{if session.contains("___sudo")}
+         #{menuitem @Resecure.restoreOperator(), 'data-no-pjax':true, fa:'sign-out'}${'sudo.deactivate'.label()}#{/menuitem}
+       #{/if}#{else}
+         #{menuitem @Secure.logout(), skipSecurity:true, 'data-no-pjax':true}<i class="fa fa-lock fa-fw"></i> <span class="hidden-sm hidden-md">${'doLogout'.label()}</span>#{/menuitem}
+       #{/else}
+      #{/if}*{ <!-- else session.username --> }*#{else}
+        #{menuitem @Secure.login(), skipSecurity:true, 'data-no-pjax':true, fa:'unlock'}${'doLogin'.label()}#{/menuitem}
+      #{/else}

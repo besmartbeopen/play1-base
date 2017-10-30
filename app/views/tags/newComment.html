@@ -1,0 +1,39 @@
+%{
+  parent = _arg
+  comment = _comment
+  selector = "#" + _target
+  parentSelector = "#" + _parentTarget
+}%
+#{form action:@Comments.save(), autocomplete:'off', method:'POST', class:'form',
+    'data-async-error':selector, 'data-async':parentSelector}
+    #{field 'comment.comment'}
+    <div class="form-group#{ifError 'comment.comment'} has-error#{/ifError}">
+     <label for="comment-on-${_target}" class="sr-only">Testo</label>
+     <textarea name="${field.name}" id="comment-on-${_target}" class="form-control"
+     placeholder="Il tuo commento...">${field.value}</textarea>
+     #{ifError 'comment.comment'}<div class="help-block"><strong>#{error 'comment.comment' /}</strong></div>#{/ifError}
+    #{/field}
+     <button class="btn btn-default btn-sm">
+            <i class="fa fa-check"></i> ${comment?.persistent ? 'Ok' : 'Aggiungi'}
+     </button>
+    </div>
+#{if comment && comment?.persistent}
+        #{f.hidden 'comment.id', value:comment.id /}
+#{/if}#{else}
+    #{if _arg instanceof models.Activity}
+        #{f.hidden 'comment.relatedToActivity.id', value:parent.id /}
+    #{/if}
+    #{if _arg instanceof models.StockMovement}
+        #{f.hidden 'comment.relatedToStockMovement.id', value:parent.id /}
+    #{/if}
+    #{if _arg instanceof models.expenses.WorkExpenses}
+        #{f.hidden 'comment.relatedToWorkExpenses.id', value:parent.id /}
+    #{/if}
+    #{if _arg instanceof models.sales.SalesOrder}
+        #{f.hidden 'comment.relatedToSalesOrder.id', value:parent.id /}
+    #{/if}
+    #{if _arg instanceof models.Comment}
+        #{f.hidden 'comment.relatedToComment.id', value:parent.id /}
+    #{/if}
+ #{/else}
+#{/form}

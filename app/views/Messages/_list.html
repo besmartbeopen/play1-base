@@ -1,0 +1,44 @@
+<section id="results">
+	#{paginate msgs}
+		#{list items:msgs.results, as:'m'}
+			<a class="list-group-item"
+			   href="@{Messages.show(m.id)}">
+                    #{secure.check 'Messages.blank'}
+                <div class="pull-right">
+                    #{if m.details.size() == 1}
+                    <p>
+                      #{if m.details.size() == m.detailsReadBy()}
+                            <i class="fa fa-check-square-o"></i>
+                       #{/if}
+                      Destinato a #{list items:m.details, as: 'detail'}
+                        ${detail.operator.fullname}
+                        #{/list}
+                    </p>
+                    #{/if} #{else}
+                      #{if m.details.size() == m.detailsReadBy()}
+                            <i class="fa fa-check-square-o"></i>
+                       #{/if}
+                      &{'messageListDetail', m.details.size(), m.detailsReadBy(), m.details.size() - m.detailsReadBy()}
+                    #{/else}
+                </div>
+                    #{/secure.check}
+				<h4 class="list-group-item-heading">
+
+					<span class="pull-left center" style="width: 50px">
+   	            	#{if m.source.photo.exists()}
+       	            	<img src="@{Operators.showThumbnail(m.source.id, 40)}" />
+           	    	#{/if}#{else}<i class="fa fa-user fa-2x"></i> #{/else}
+           			</span>
+			    	${m.source.fullname}
+				</h4>
+
+				<div class="list-group-item-text">
+                   <div class="pull-right">
+                    <span class="label label-default">#{timeago m.createdAt /}</span>
+                   </div>
+                   &{'message.subject'}: ${m.subject}
+                </div>
+			</a>
+		#{/list}
+	#{/paginate}
+</section>

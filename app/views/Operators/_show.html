@@ -1,0 +1,68 @@
+<fieldset class="form-horizontal">
+  <div class="row">
+     <div class="col-md-3 center">
+        #{if !operator.enabled}
+          <p class="alert alert-warning">
+            <i class="fa fa-trash-o"></i> Questo operatore è disabilitato.
+          </p>
+        #{/if}
+       #{editablePhoto operator /}
+
+         <br>
+         <p><strong>${operator.fullname}</strong>
+         </p>
+         <p>
+         <a href="mailto:${operator.email}">${operator.email}</a>
+         </p>
+     </div>
+    <div class="col-md-9">
+        #{f.view 'operator.roles', bodyonly:true}
+         <ul class="list-inline">
+         #{list items:operator.roles, as:'role'}<li>${role.label()}</li>#{/list}
+         </ul>
+        #{/f.view}
+       #{if operator.agent}
+        #{f.view 'mobile', value:operator.agent.mobile, link:'phone:'+operator.agent.mobile /}
+        #{f.view 'fiscalCode', value:operator.agent.fiscalCode?.toUpperCase() /}
+
+        #{f.view 'birthDate', value:operator.agent?.birthDate?.value() /}
+        #{f.view 'informant.code', value:operator.agent.code /}
+
+        #{f.view 'operator.employee' /}
+        #{ifnot operator.employee}
+        #{f.view 'vat', value:operator.agent.vat, label:'VAT' /}
+        #{f.view 'agent.canVisit', value:operator.agent.canVisit /}
+        #{/ifnot}
+
+        #{include '/Operators/_distanceCost.html' /}
+        #{include '/Operators/_otherData.html' /}
+
+        #{if operator.manager}
+          #{f.view 'operator.manager', label:'informantHead',
+           value:operator.manager,
+           link:@Informants.show(operator.manager.agent.id) /}
+        #{/if}
+        #{f.view 'operator.agent.territory', label:'territory',
+            link:@Territories.show(operator.agent.territory?.id) /}
+        #{f.view 'microAreas', bodyonly:true}
+         <a href="@{MicroAreas.list(territory:operator.agent.territory?.id)}">
+          <i class="fa fa-map"></i> ${operator.agent.territory?.microAreas.summaryLimitedTo(2)}
+         </a>
+        #{/f.view}
+       #{/if}
+      </div>
+  </div>
+  <div class="panel panel-default">
+     <div class="panel-heading"><a href="#last-login" data-toggle="collapse"><i class="fa fa-caret-right"></i> Ultimo accesso</a></div>
+     <div class="panel-body collapse" id="last-login">
+     #{f.view 'operator.lastLoginDate', bodyonly:true, label:'date'}
+         #{if operator.lastLoginDate}
+          ${operator.lastLoginDate.format()} (${operator.lastLoginDate.toDate().since()})
+         #{/if} #{else}
+          &{'notAvailable'}
+         #{/else}
+       #{/f.view}
+         #{f.view 'operator.lastLoginAddress', label:'Indirizzo IP' /}
+     </div>
+  </div>
+</fieldset>

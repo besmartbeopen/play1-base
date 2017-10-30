@@ -1,0 +1,16 @@
+*{
+  arg: action, required
+  fa: fa-icon, required
+  secure: opzionale, indica il target della security
+  skipSecurity: se true, fa ignorare la security.
+  * body: label
+}*%{
+  (_arg) && (_action = _arg)
+  if (_skipSecurity) {
+    checked = true;
+  } else if (_arg instanceof play.mvc.Router.ActionDefinition) {
+    checked = controllers.Resecure.check(_arg.action, _secure)
+  } else {
+    checked = true;
+  }
+}%#{if checked}<li ${request.path == _action.toString() ? 'class="active"'.raw() :''}><a href="${_action}" ${helpers.Web.serialize(_attrs, "arg", "action", "fa", "skipSecurity", "secure").raw()}>#{if _fa}<i class="fa fa-${_fa} fa-fw"></i> #{/if}#{doBody /}</a></li>#{/if}

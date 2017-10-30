@@ -1,0 +1,20 @@
+#{extends './layout.html' /}
+#{set title:'Errore' /}
+        #{if play.mode.name() == 'DEV'}
+            #{500 exception /}
+        #{/if}
+        #{else}
+             <div class="jumbotron">
+                <h2><i class="text text-danger fa fa-warning fa-2x pull-left"></i> &{'serverError.body'}</h2>
+            #{if exception instanceof play.exceptions.PlayException}
+                <p>
+                    Questo errore è stato registrato (id <strong>${exception.id}</strong>).
+                </p>
+            #{/if}
+                <div class="center">
+                	<a href="javascript:window.history.back()" class="btn btn-primary">
+                		<i class="fa fa-undo"></i> Torna indietro
+                	</a>
+                </div>
+            </div>
+        #{/else}

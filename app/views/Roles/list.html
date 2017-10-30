@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:messages.get('roles.list') /}
+#{set breadcrumbs:['roles.list':null] /}
+
+<div class="alert alert-info">
+ I ruoli sono prefissati e qui è possibile decidere a chi assegnarli.
+</div>
+<div class="list-group">
+#{list items:roles, as:'item'}
+	<a href="@{show(item)}" class="list-group-item">
+		<i class="fa fa-shield"></i> ${item.label()}
+	</a>
+#{/list}
+</div>

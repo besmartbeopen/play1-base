@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set title:messages.get('geo.provinces') /}
+#{set breadcrumbs:['geo.provinces':null] /}
+
+<section id="results">
+    <div class="list-group">
+        #{list items:$data.allProvinces, as:'item'}
+        <a class="list-group-item" href="@{municipalsByProvince(item.id)}">
+            <span class="badge">${item.code}</span>
+           <h4 class="list-group-item-heading">
+               ${item.name}
+           </h4>
+           <p class="list-group-item-text">
+            <span class="label label-info">${item.region.name}</span>
+            <span class="pull-right">
+                <span class="badge">${item.municipals.size()} comuni</span>
+            </span>
+           </p>
+        </a>
+        #{/list}#{else}
+          <div class="list-group-item">Nessuna &{'province'} presente.</div>
+        #{/else}
+    </div>
+</section>

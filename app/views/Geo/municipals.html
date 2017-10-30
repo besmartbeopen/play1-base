@@ -1,0 +1,58 @@
+#{extends 'main.html' /}
+#{set title:messages.get('geo.municipals') /}
+#{set breadcrumbs:[(messages.get('geo.municipals')):null] /}
+
+#{form action:@municipals(), class:'form-inline', method:'GET',
+    'data-reload':'#results', autocomplete:'off'}
+   <div class="row">
+    <div class="col-sm-3">
+        #{f.text 'name', placeholder:'municipal'.label(),
+            'data-autochange':true, inline:true /}
+    </div>
+    <div class="col-sm-3">
+	#{f.edit 'province', inline:true}
+		<select name="${field.name}" id="${field.id}" data-selectize
+		  class="form-control">
+			<option value="">&{'province.any'}</option>
+			#{list items:$data.allProvinces, as:'item'}
+				<option value="${item.id}"#{if field.value.present && field.value.get().id == item.id} selected#{/if}>${item.name}</option>
+			#{/list}
+		</select>
+	#{/f.edit}
+    </div>
+    <div class="col-sm-2">
+        #{f.checkbox 'woMicroAreas', inline:true /}
+    </div>
+    <div class="col-sm-2">
+        #{limit /}
+    </div>
+    <div class="col-sm-1">
+        #{b.search /}
+    </div>
+   </div>
+#{/form}
+
+<section id="results">
+#{paginate municipals}
+    <div class="list-group">
+        #{list items:municipals.results, as:'item'}
+        <div class="list-group-item">
+            <span class="pull-right">
+                <span class="label label-default">${item.province.name}</span>
+            </span>
+           <h4 class="list-group-item-heading">${item.name}
+           </h4>
+           <p class="list-group-item-text">
+            <ul>
+                #{list items:item.microAreas, as:'ma'}
+                    <li>${ma.name}</li>
+                #{/list}
+            </ul>
+           </p>
+        </div>
+        #{/list}#{else}
+          <div class="list-group-item">Nessuna &{'municipal'} presente.</div>
+        #{/else}
+    </div>
+#{/paginate}
+</section>

@@ -1,0 +1,1 @@
+<time datetime="${_arg.toString()}">${_arg.formatFull()}</time>

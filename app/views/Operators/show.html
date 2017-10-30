@@ -1,0 +1,123 @@
+#{extends 'main.html' /}
+#{set title:operator.fullname /}
+#{set breadcrumbs:['operator.list':@Operators.list(), (operator.fullname):null] /}
+
+<div class="form-horizontal">
+   <div class="pull-right">
+   #{secure.check 'Operators.calendar', target:operator}
+    <div class="btn-group">
+      #{b.dropdown 'Attività', btn:'primary'}
+       #{menuitem @Operators.calendar(operator.id), fa:'calendar'}&{'operator.goToCalendar'}#{/menuitem}
+       #{if operator.agent}
+        #{menuitem @VisitToDoctors.list(informantid:operator.agent.id), fa:'briefcase'}&{'informant.goToVisits'}#{/menuitem}
+        #{menuitem @Activities.list(informantId:operator.agent.id), fa:'tasks'}&{'informant.goToActivities'}#{/menuitem}
+       #{/if}
+      #{/b.dropdown}
+    </div>
+  #{/secure.check}
+
+  #{if operator.agent}
+  #{secure.check 'AgentFees.show'}
+    <div class="btn-group">
+     #{b.dropdown 'Resoconti', btn:'warning'}
+      #{menuitem @AgentFees.show(operator.agent.id), fa:'percent'}&{'AgentFees.show'}#{/menuitem}
+      #{menuitem @Expenses.list(operator:operator.id), fa:'money'}&{'expenses.list'}#{/menuitem}
+      #{menuitem @Expenses.blank(operator:operator.id), fa:'plus'}Nuovo resoconto#{/menuitem}
+     #{/b.dropdown}
+    </div>
+  #{/secure.check}
+  #{/if}
+
+  #{secure.check 'Stocks.show', target:operator.id}
+    #{if operator.stock != null}
+    <div class="btn-group">
+     #{b.dropdown 'Magazzino', btn:'info', fa:'archive'}
+      #{menuitem @Stocks.show(operator.stock.id), fa:'archive'}&{'operator.goToStock'}#{/menuitem}
+      #{menuitem @Stocks.movements(operator.stock.id), fa:'exchange'}&{'operator.goToStockMovements'}#{/menuitem}
+     #{/b.dropdown}
+    </div>
+    #{/if}
+  #{/secure.check}
+
+    #{if operator.enabled}
+        #{secure.check 'Resecure.switchTo'}
+            <div class="btn-group">
+                #{form action:@Resecure.switchOperatorTo(operator.id)}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-sign-in"></i> ${'sudo.activate'.label()}
+                    </button>
+                #{/form}
+            </div>
+        #{/secure.check}
+     #{/if}
+
+#{secure.check 'Operators.edit'}
+ <div class="btn-group">
+  #{b.dropdown 'Altro', fa:'ellipsis-h'}
+    #{menuitem @edit(operator.id), fa:'edit'}&{'edit'}#{/menuitem}
+    #{if operator.agent == null}
+        #{menuitem @toAgent(operator.id), fa:'briefcase',
+          'data-method':'post',
+          'data-confirm':"L'operazione non è reversibile, procedere comunque?"}
+          Trasforma in agente
+        #{/menuitem}
+    #{/if}
+    #{if operator.stock == null}
+        #{menuitem @createStock(operator.id), fa:'archive',
+           'data-method':'post',
+           'data-confirm':(messages.get('operator.createStock.confirm', operator.fullname))}
+           &{'operator.createStock'}
+        #{/menuitem}
+    #{/if}
+  #{/b.dropdown}
+ </div>
+#{/secure.check}
+
+
+#{if operator.agent}
+#{secure.check 'Informants.history'}
+ <div class="btn-group">
+ #{historyMenu @Informants.revisions(operator.agent.id) /}
+ </div>
+#{/secure.check}
+#{/if}
+  </div>
+
+  <div class="clearfix"></div>
+
+  #{include './_show.html' /}
+  #{if operator.agent}
+   %{ informant = operator.agent }%
+   #{include '/Informants/_show.html' /}
+
+  #{if operator.enabled}
+  #{secure.check 'Informants.stats', target:operator.agent}
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <i class="fa fa-bar-chart-o"></i> Medici per area terapeutica
+    </div>
+    <div class="panel-body" data-load-async="@{Informants.stats(operator.agent.id)} .panel-body">
+      <i class="fa fa-spin fa-spinner fa-2x"></i>
+    </div>
+  </div>
+  #{/secure.check}
+  #{/if}
+
+  #{if informant.isManager()}
+   <section>
+      <h3>&{'informant.list'}</h3>
+
+      <p class="form-control-static">
+        #{if informant.operator.managedOperators.empty}
+          <span class="text-muted">${'notAvailable'.label()}</span>
+        #{/if}
+        #{else}
+          #{list items:informant.operator.managedOperators, as:'item'}
+              <a href="@{Informants.show(item.agent.id)}" class="list-group-item">${item.fullname}</a>
+             #{/list}
+        #{/else}
+      </p>
+   </section>
+  #{/if}
+  #{/if}
+</div>

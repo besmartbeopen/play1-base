@@ -1,0 +1,5 @@
+%{
+  _confirm = _confirm == null ? true : _confirm
+}%<a href="${_arg}" class="btn btn-${_btn?:'default'}" #{if _confirm}data-confirm="&{'confirm.cancel'}#{/if}">
+    <i class="fa fa-times"></i><span class="hidden-xs"> &{'crud.cancel'}</span>
+</a>

@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:'Informazioni' /}
+#{set breadcrumbs:['Informazioni':null] /}
+
+<h2>Versioni a bordo</h2>
+<dl class="dl-horizontal">
+    <dt> Versione base <i class="fa fa-hand-spock-o fa-fw"></i></dt><dd>${appVersion}</dd>
+    <dt> Play <i class="fa fa-play fa-fw"></i></dt><dd>${playVersion}</dd>
+    <dt> Java <i class="fa fa-coffee fa-fw"></i></dt><dd>${javaVersion}</dd>
+    <dt> Uptime <i class="fa fa-clock-o fa-fw"></i></dt><dd>#{timeago startTime /}</dd>
+</dl>

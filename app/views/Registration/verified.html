@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:messages.get('registration.passwordModified') /}
+
+<p class="alert alert-success">
+	<i class="fa fa-thumbs-up"></i> La password è stata modificata con successo.
+	Adesso puoi proseguire facendo l'accesso.
+</p>
+<p>
+  <a class="btn btn-primary" href="@{Application.index()}">
+  <i class="fa fa-chevron-circle-right"></i> &{'registration.continue'}</a>
+</p>

@@ -1,0 +1,27 @@
+<li class="list-group-item" id="task_${task.id}">
+
+  <div class="pull-right">
+     <a href="@{Tasks.task(task.id)}" class="btn btn-primary">
+       <i class="fa fa-arrow-circle-right"></i> <span class="hidden-xs">&{'task.show'}</span>
+     </a>
+
+       <a href="@{Tasks.delete(task.id)}" class="btn btn-default"
+          data-method="DELETE" rel="nofollow"
+          data-confirm="&{'confirm.cancel'}">
+          <i class="fa fa-check-circle"></i> <span class="hidden-xs">&{'task.delete'}</span>
+       </a>
+  </div>
+
+    <h4 class="list-group-item-heading"><i class="fa fa-user"></i>
+       ${task.candidateAssignees*.fullname.join(", ")}
+       <span class="pull-right label label-info" style="margin:0.5em">
+        #{timeago task.createdAt /}
+       </span>
+    </h4>
+
+     <div class="list-group-item-text">
+       ${task.description}
+     </div>
+
+  <span class="clearfix"></span>
+</li>

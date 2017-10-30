@@ -1,0 +1,16 @@
+*{
+ arg (required) field.name attribute
+ value (optional) default to field.value
+ label (optional) default to field.name
+ required (optional) default to false
+ values required, list of enum items
+}*
+#{f.edit _arg, label:_label, value:_value, required:_required}
+ #{list items:_values, as:'item'}
+  <div class="radio">
+   <input type="radio" name="${field.name}" id="${field.id}_${item}"
+    value="${item}" #{if field.value == item}checked#{/if}>
+   <label for="${field.id}_${item}">${item.label()}</label>
+  </div>
+ #{/list}
+#{/f.edit}

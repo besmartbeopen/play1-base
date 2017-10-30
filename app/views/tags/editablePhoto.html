@@ -1,0 +1,41 @@
+%{ operator = _arg; }%
+
+     <div id="photo-container">
+      <div id="current-photo">
+        <img class="img-thumbnail#{if !operator.photo.exists()} hidden#{/if}"
+            alt="${operator.fullname}"
+            src="@{Operators.showThumbnail(operator.id, 140, request.date.time)}"/>
+
+        <i class="fa fa-user fa-4x fa-border#{if operator.photo.exists()} hidden#{/if}"></i>
+      </div>
+    </div>
+#{secure.check 'Operators.uploadPhoto', target:operator}
+
+#{form action:@Operators.uploadPhoto(), enctype:'multipart/form-data',
+    class:'dropzone upload', method:'POST'}
+       <div class="previewTemplate hidden">
+        <div>
+            <span class="preview"><img class="img-thumbnail" data-dz-thumbnail /></span>
+        </div>
+        <div>
+            <p class="name" data-dz-name></p>
+            <strong class="error text-danger" data-dz-errormessage></strong>
+        </div>
+        <div>
+            <p class="size" data-dz-size></p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            </div>
+        </div>
+       </div>
+       #{b.link @Operators.deletePhoto(id:operator.id),
+         method:'delete', fa:'trash', btn:'danger',
+         confirm:'Vuoi eliminare questa foto?',
+        'data-async':'#current-photo', 'data-reload':true /}
+    #{f.hidden 'id', value:operator.id /}
+    <div class="fallback">
+        <input name="photo" type="file" accept="image/*"
+            capture="camera">
+    </div>
+#{/form}
+#{/secure.check}

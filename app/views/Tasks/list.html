@@ -1,0 +1,59 @@
+#{extends 'main.html' /}
+#{set title:messages.get('Tasks.list') /}
+
+
+#{form action:@list(), class:'form', method:'GET', autocomplete:'off',
+  'data-reload':'#results'}
+
+ <div class="row">	
+  <div class="col-sm-4">
+	#{f.edit 'taskType', inline:true}	
+        <select name="taskType" id="taskType" class="form-control"
+            data-selectize placeholder="&{'taskType.any'}">
+            <option></option>
+            #{list items:$data.allTaskTypes, as:'item'}
+            <option value="${item}"#{if taskType.present && taskType.get() == item} selected#{/if}>
+                ${item.label()}</option>
+            #{/list}
+        </select>
+    #{/f.edit}
+  </div>
+  
+  <div class="col-sm-3">
+	  #{f.edit 'operator', value:null, inline:true, required:false}
+	    <input name="${field.name}" id="${field.id}"
+	      data-selectize-url="@{Operators.search()}"
+	      placeholder="&{'fullname'}" class="form-control"
+	      value="${operator.orNull()?.id}"
+	      data-value-label="${operator.orNull()?.fullname}">
+	  #{/f.edit}
+  </div>
+
+  <div class="col-sm-3">
+	#{f.edit 'alreadyStarted', inline:true}
+   		<select name="${field.name}" id="${field.id}" data-selectize
+                class="form-control" placeholder="&{'alreadyStarted.any'}">
+        	<option></option>
+           	<option value="true"#{if field.value == true} selected#{/if}>&{'alreadyStarted.no'}</option>
+            <option value="false"#{if field.value == false} selected#{/if}>&{'alreadyStarted.yes'}</option>
+        </select>
+	#{/f.edit}
+  </div>
+
+  <div class="col-sm-2">
+    <button type="submit"  name="_filter" class="btn btn-primary">
+        <span class="fa fa-search"></span> <span class="sr-only">&{'search'}</span>
+    </button>
+  </div>
+ </div>
+#{/form}
+
+<section id="results">
+	#{paginate tasks, 'data-remote':'#tasks'}
+        <ul class="list-group">
+        #{list items:tasks.results, as:'task'}
+                #{include './task.html' /}
+        #{/list}
+        </ul>
+	#{/paginate}
+</section>

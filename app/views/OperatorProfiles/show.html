@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+#{set title:profile.name /}
+#{set breadcrumbs:['OperatorProfiles.list':@OperatorProfiles.list(), (profile.name):null] /}
+
+<div class="form form-horizontal">
+
+#{f.view 'profile.name'/}
+#{f.view 'profile.description' /}
+#{f.view 'profile.roles', label:'roles', bodyonly:true}
+      <ul class="list-group">
+       #{list items:profile.roles, as:'item'}
+        <li class="list-group-item">${item.label()}</li>
+       #{/list}
+      </ul>
+#{/f.view}
+#{f.view 'profile.operators', bodyonly:true}
+     #{accordionItem 'operators', title:profile.operators.summaryLimitedTo(1)}
+
+      #{b.link @applyRoles('profile.id':profile.id, synchronize:false),
+        'data-method':'post',
+        fa:'plus-square', btn:'success'}
+        Aggiungi ruoli mancanti
+      #{/b.link}
+
+      #{b.link @applyRoles('profile.id':profile.id, synchronize:true),
+        'data-method':'post',
+        'data-confirm':'Vuoi davvero rimuovere i ruoli non presenti in questo profilo dagli operatori elencati?',
+        fa:'refresh', btn:'warning'}
+        Sincronizza i ruoli
+      #{/b.link}
+
+      <div class="list-group">
+       #{list items:profile.operators, as:'item'}
+        <a class="list-group-item#{if !item.enabled} list-group-item-warning#{/if}" #{secure.check 'Operators.show', target:item} href="@{Operators.show(item.id)}" #{/secure.check}">
+          <span class="pull-right">
+          #{list items:(profile.roles - item.roles), as:'role'}
+           <span class="label label-danger"><i class="fa fa-minus"></i> ${role.label()}</span>
+          #{/list}
+          #{list items:(item.roles - profile.roles), as:'role'}
+           <span class="label label-success"><i class="fa fa-plus"></i> ${role.label()}</span>
+          #{/list}
+          </span>
+          ${item.fullname} #{ifnot item.enabled}<i class="fa fa-trash"></i>#{/ifnot}
+        </a>
+       #{/list}
+      </div>
+     #{/accordionItem}
+#{/f.view}
+#{f.view 'profile.employee' /}
+#{f.view 'profile.agent' /}
+#{f.view 'profile.loginUrl' /}
+#{f.view 'profile.disclaimer' /}
+#{f.view 'profile.pageLayout', label:'pageLayout' /}
+#{f.view 'profile.active' /}
+
+</div>
+
+#{b.buttons}
+  #{b.edit @edit(profile.id) /}
+  #{b.delete @delete(profile.id) /}
+  #{b.cancel @index(), confirm:false /}
+ #{/b.buttons}

@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:messages.get('roles.show') /}
+#{set breadcrumbs:['roles.list':@list(), 'roles.show':@show(role)] /}
+
+#{form action:@save(), class:'form-horizontal', method:'POST', autocomplete:'off'}
+	#{f.hidden 'role' /}
+	#{f.view 'role' /}
+
+	#{chooseOperators 'operators', value:operators, values:allOperators /}
+
+	#{b.buttons}
+		#{b.save /}
+		#{b.cancel @list() /}
+	#{/b.buttons}
+#{/form}

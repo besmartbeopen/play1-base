@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:messages.get('registration.verify.name') /}
+
+#{form action:@changePassword(), class:'form-horizontal', autocomplete:'off'}
+
+#{f.password 'password', required:true /}
+#{f.password 'confirmPassword', required:true /}
+#{field 'code'}
+  <input type="hidden" name="${field.name}" id="${field.id}" value="${field.value}"/>
+#{/field}
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-10">
+  <button type="submit" class="btn btn-primary" name="_confirm">
+    <i class="fa fa-check-square-o"></i> &{'confirm'}
+  </button>
+  </div>
+</div>
+
+#{/form}

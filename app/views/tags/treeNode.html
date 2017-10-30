@@ -1,0 +1,25 @@
+*{
+Andrebbe generalizzato maggiormente.....
+arg: (required) nodo dal quale iniziale l'eplorazione dell'albero
+fa: (optional) font awesome icon
+}*
+%{
+faClose = _fa ?: 'caret-right'
+faOpen = 'caret-down'
+}%
+<li>#{if !_arg.children.empty}<a href="#node_${_arg.file.id}" data-toggle="collapse">
+  <i class="fa-li fa fa-${faClose}"></i></a>#{/if}
+  <a href="@{files('parent':_arg.file.id)}" rel="nofollow" data-async="#files"
+     style="text-decoration: none;"
+     data-collapse-show="#node_${_arg.file.id}">
+    <img class="hidden-sm" src="${_arg.file.iconLink}" alt="${_arg.file.name.escape()}">
+    ${_arg.file.name}
+  </a>
+  #{if !_arg.children.empty}
+  <ul class="tree-node fa-ul collapse" id="node_${_arg.file.id}" data-toggler-open="fa-${faOpen}" data-toggler-close="fa-${faClose}">
+    #{list _arg.children, as:'child'}
+      #{treeNode child /}
+    #{/list}
+  </ul>
+  #{/if}
+</li>

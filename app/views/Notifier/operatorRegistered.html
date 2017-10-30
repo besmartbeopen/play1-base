@@ -1,0 +1,21 @@
+<html>
+<body>
+<p>
+Benvenuta/o <strong>${operator}</strong>, il tuo account è stato creato.
+</p>
+
+<p>Per attivare l'account devi confermare l'iscrizione e scegliere la tua password <a href="@@{Registration.verify(code)}">all'indirizzo di conferma</a>
+</p>
+<p>
+<strong>NOTA:</strong> l'indirizzo è valido per <strong>${recoveryRequestExpire}</strong>.
+Una volta scaduto questo periodo, potrai usare il collegamento
+<a href="@@{Registration.lostPassword(operator.email)}">Hai dimenticato la tua password?</a> per generarne un altro.
+</p>
+
+<p>
+Cordiali saluti,<br>
+<em>&{'site.staff'}</em>
+</p>
+</body>
+</html>
+

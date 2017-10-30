@@ -1,0 +1,6 @@
+%{
+  checked = controllers.Resecure.check(_arg.action, _secure)
+}%#{ifnot checked}<span data-toggle="tooltip" data-placement="bottom" title="&{'secure.denied'}">#{/ifnot}<a #{if checked}href="${_arg}" #{/if}class="#{if !_nobutton}btn btn-danger${_btn ? ' btn-'+_btn : ''}#{/if} ${_class}#{if !checked}disabled#{/if}" data-confirm="&{'confirm.delete'}"
+  data-method="DELETE" #{if _disabled}disabled#{/if}>
+    <i class="fa fa-trash"></i><span class="hidden-xs"> &{'crud.delete'}</span>
+</a>#{ifnot checked}</span>#{/ifnot}

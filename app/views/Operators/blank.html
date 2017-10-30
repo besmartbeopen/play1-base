@@ -1,0 +1,9 @@
+#{extends 'main.html' /}
+#{set title:'operator.new'.label() /}
+#{set breadcrumbs:['operator.list':@Operators.list(), 'operator.new':null] /}
+
+<p class="alert alert-warning">
+    Attenzione: da qui non si creano informatori.
+</p>
+
+#{include './_form.html' /}

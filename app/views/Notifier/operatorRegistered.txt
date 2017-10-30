@@ -1,0 +1,8 @@
+Benvenuta/o ${operator}, il tuo account è stato creato.
+
+Per attivare l'account devi confermare l'iscrizione e scegliere la tua password all'indirizzo @@{Registration.verify(code)}
+NOTA: l'indirizzo è valido per ${recoveryRequestExpire}. Una volta scaduto, potrai usare il collegamento seguente per generarne un altro:
+"Hai dimenticato la tua password?" @@{Registration.lostPassword(operator.email)}
+
+Cordiali saluti,
+&{'site.staff'}

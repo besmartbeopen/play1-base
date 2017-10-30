@@ -1,0 +1,155 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> secure
+    - play-modules -> play-fastergt 1.9.4
+    - com.google.guava -> guava 23.0
+    - com.google.inject -> guice 4.1.0:
+       exclude:
+        - org.ow2.asm -> asm *
+    - com.google.inject.extensions -> guice-multibindings 4.1.0
+    - org.mockito -> mockito-core 2.10.0
+    - com.querydsl -> querydsl-jpa 4.1.4:
+       exclude:
+        - org.mongodb.morphia -> morphia *
+        - org.mongodb -> mongo-java-driver *
+        - javax.jdo -> jdo2-api *
+        - org.eclipse.persistence -> eclipselink *
+        - org.springframework.roo -> org.springframework.roo.annotations *
+        - org.hibernate.javax.persistence -> hibernate-jpa-2.0-api *
+    - com.querydsl -> querydsl-apt 4.1.4:
+       exclude:
+        - org.mongodb.morphia -> morphia *
+        - org.mongodb -> mongo-java-driver *
+        - javax.jdo -> jdo2-api *
+        - org.eclipse.persistence -> eclipselink *
+        - org.springframework.roo -> org.springframework.roo.annotations *
+        - org.hibernate.javax.persistence -> hibernate-jpa-2.0-api *
+    - com.querydsl -> querydsl-spatial 4.1.4:
+       exclude:
+        - org.mongodb.morphia -> morphia *
+        - org.mongodb -> mongo-java-driver *
+        - javax.jdo -> jdo2-api *
+        - org.eclipse.persistence -> eclipselink *
+        - org.springframework.roo -> org.springframework.roo.annotations *
+        - com.vividsolutions -> jts *
+    - org.xhtmlrenderer -> flying-saucer-pdf-itext5 9.1.4
+    - org.jadira.usertype -> usertype.core 6.0.1.GA
+    - org.hibernate -> hibernate-envers 5.2.10.Final:
+       transitive: false
+    - org.hibernate -> hibernate-spatial 5.2.10.Final
+    - com.bedatadriven -> jackson-datatype-jts 2.4:
+       exclude:
+         - com.vividsolutions -> jts *
+    - com.fasterxml.jackson.core -> jackson-core 2.9.2
+    - com.fasterxml.jackson.core -> jackson-databind 2.9.2
+    - com.fasterxml.jackson.module ->  jackson-modules-java8 2.9.2
+    - com.fasterxml.jackson.datatype -> jackson-datatype-joda 2.9.2
+    - com.fasterxml.jackson.datatype -> jackson-datatype-guava 2.9.2
+    - com.fasterxml.jackson.datatype -> jackson-datatype-hibernate5 2.9.2
+    - com.fasterxml.jackson.module -> jackson-module-afterburner 2.9.2
+    - com.fasterxml.jackson.dataformat -> jackson-dataformat-csv 2.9.2
+    - com.vividsolutions -> jts-core 1.14.0
+    - org.geotools -> gt-api 18.0:
+       exclude:
+         - javax.media -> jai_core *
+    - org.geotools -> gt-epsg-wkt 18.0:
+       exclude:
+         - javax.media -> jai_core *
+    - org.geotools -> gt-brewer 18.0:
+       exclude:
+         - javax.media -> jai_core *
+    - org.drools -> drools-core 5.5.0.Final
+    - org.drools -> drools-compiler 5.5.0.Final
+    - net.coobird -> thumbnailator 0.4.8
+    - com.twelvemonkeys.common -> common-lang 3.3.2
+    - com.twelvemonkeys.imageio -> imageio-core 3.3.2
+    - com.twelvemonkeys.imageio -> imageio-jpeg 3.3.2
+    - org.apache.odftoolkit -> simple-odf 0.8.1-incubating
+    - org.dbunit -> dbunit 2.5.3
+    - org.assertj -> assertj-core 3.8.0
+    - org.assertj -> assertj-guava 3.1.0
+    - de.jollyday -> jollyday 0.4.9
+    - org.projectlombok -> lombok 1.16.18
+    - play-modules -> play-lombok 1.2.6
+    - org.apache.poi -> poi 3.15
+    - net.sourceforge.cssparser -> cssparser 0.9.23
+    - org.jsoup -> jsoup 1.10.3
+#    - com.reubenpeeris org.eclipse.jdt.core.compiler.ecj -> 4.7-201706120950
+    - org.eclipse.jdt.core.compiler -> ecj 4.6.1
+#    - it.besmartbeopen -> hibernate-compatibility 0.1
+    - io.jsonwebtoken -> jjwt 0.7.0:
+       exclude:
+        - com.google.android -> android
+    - org.postgresql ->  postgresql 9.4.1207:
+       force: true
+       exclude:
+        - org.osgi -> org.osgi.core
+        - org.osgi -> org.osgi.enterprise
+    - com.google.api-client -> google-api-client 1.22.0:
+       exclude:
+        - com.google.guava -> guava-jdk5 17.0
+    - com.google.oauth-client -> google-oauth-client-jetty 1.22.0:
+       exclude:
+        - org.mortbay.jetty -> jetty
+    - com.google.apis -> google-api-services-drive v3-rev26-1.22.0
+    - org.iban4j -> iban4j 3.2.1
+    - io.github.openfeign -> feign-core 9.5.0
+    - io.github.openfeign -> feign-jackson 9.5.0
+    - io.github.openfeign -> feign-okhttp 9.5.0
+    - io.github.openfeign -> feign-slf4j 9.5.0
+    - io.github.openfeign -> feign-hystrix 9.5.0
+    - io.github.openfeign.form -> feign-form 2.1.0
+    - com.squareup.okhttp3 -> logging-interceptor 3.8.1
+    - com.j2html -> j2html 1.2.0
+
+repositories:
+    - hibernatespatial:
+        type: iBiblio
+        # was: http://www.hibernatespatial.org/repository
+        root: "https://www.aht-group.com/nexus/content/repositories/hibernatespatial.org/"
+        contains:
+            - org.hibernate -> hibernate-spatial 4.0
+            - org.postgis -> postgis-jdbc 1.5.2
+    - geotools:
+        type: iBiblio
+        root: "http://download.osgeo.org/webdav/geotools/"
+        contains:
+            - org.geotools -> *
+            - jgridshift -> jgridshift
+    - bsbo_play_modules:
+        type: http
+        artifact: https://dl.bintray.com/besmartbeopen/play-modules/[module]-[revision].zip
+        contains:
+            - play-modules -> *
+    - asufana_zip_repo:
+        type: http
+        artifact: https://github.com/asufana/[module]/raw/master/dist/[module]-[revision].zip
+        contains:
+            - asufana -> play-lombok
+    - kjetland:
+        type: http
+        artifact: "http://mbknor.github.com/play-modules/[module]-[revision].zip"
+        contains:
+            - kjetland -> *
+    - apacheSnapshots:
+        type: iBiblio
+        root: "http://repository.apache.org/snapshots/"
+        contains:
+            - org.apache.commons -> commons-imaging 1.0-SNAPSHOT
+    - springsource-external:
+        type: iBiblio
+        root: "http://repository.springsource.com/maven/bundles/external/"
+        contains:
+            - javax.media.jai -> *
+    - compatibility:
+        type: local
+        artifact: ${application.path}/[module].jar
+        contains:
+            - it.besmartbeopen -> hibernate-compatibility
+    - localModules:
+        type:       local
+        artifact:   ${application.path}/../[module]
+        contains:
+            - webtest -> webtest

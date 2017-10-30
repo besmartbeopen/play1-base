@@ -1,0 +1,1660 @@
+# Italiano
+# I messaggi custom dell'applicazione sono in ordine alfabetico per la
+# chiave del messaggio (più o meno :)
+# Alla fine del file ci sono i messaggi standard del play in italiano
+
+accountInfo =Informazioni utente
+all=Tutti
+
+activity.createdMoreThanOnce =La tua attività è stato suddivisa in %d attività create con successo.
+activity.notCreated =Attività non creata, per favore verifica di non aver inserito un assenza solo nei giorni festivi
+
+activity.updatedMoreThanOnce =La tua attività è stato suddivisa in %d attività modificate con successo.
+activity.notUpdated =Attività non aggiornata, per favore verifica di non aver inserito un assenza solo nei giorni festivi
+
+activity.approve =Approva
+activity.approved =Attività di tipo "%s" di %s impostata ad "approvata".
+activity.approvalDate =Data di approvazione
+activity.interval =Date
+activity.interval.description =L'intervallo comprende la data finale.
+activity.state.changed =Attività di tipo "%s" impostata a "%s".
+activity.transfer =Trasferta
+activity.overnightTransfer =con pernottamento
+activity.startTime = Ora inizio
+activity.endTime = Ora fine
+activity.parent =Resoconto di
+
+activities =Attività
+activityState =Stato
+activityState.any =Qualsiasi stato
+activityState.changeTo.confirmed =Conferma
+activityState.changeTo.pending =Accetta, ma da confermare.
+
+ActivityState.pending =da confermare
+ActivityState.to_be_approved =in attesa di approvazione
+ActivityState.completed =Completata
+
+ActivitySuperType.work =Lavoro
+ActivitySuperType.absence =Assenza
+
+ActivityGranularity.HALF_DAY = Una sola mezza giornata
+ActivityGranularity.FULL_DAY = Un solo giorno
+ActivityGranularity.MULTIPLE_DAYS =Uno o più giorni
+
+activityType =Tipo di attività
+activityType.any =Qualsiasi tipologia
+
+activityType.list =Tipi di attività
+activityType.add =Nuovo
+activityType.edit =Modifica tipo dell'attività
+activityType.name =Nome dell'attività
+activityType.code =Codice
+activityType.color =Colore
+activityType.enabled =Abilitato
+activityType.granularity =Granularità
+activityType.type =Tipologia
+activityType.systemType =Attività di sistema
+activityType.approvalRequired =Richiesta approvazione del responsabile
+activityType.onlyOnWorkingDays =Solo nei giorni lavorativi
+
+ActivityType.illness =malattia
+ActivityType.congress =congresso
+ActivityType.holiday =ferie
+ActivityType.coaching =affiancamento
+
+address =Indirizzo
+address.edit =Modifica indirizzo
+address.disabled =Indirizzo disabilitato e non cancellato perché associato a delle visite.
+address.list =Indirizzario
+address.new =Nuovo indirizzo
+address.selectForMerge =Unione indirizzi
+address.show =Visualizza indirizzo
+address.merge =Unisci altro indirizzo
+
+address.cap = CAP
+address.email = Email
+address.extended =Indirizzo struttura %s
+address.fax =Fax. ufficio
+address.microArea =Microarea
+address.municipal =Comune
+address.name =Nome
+address.name.extended =Nome struttura
+address.search = Cerca nome struttura o via già presenti
+address.phone =Tel. ufficio
+address.street =Via/Piazza/Civico
+address.shared =Indirizzo condiviso
+address.type =Tipo
+
+addresses =Indirizzi
+
+addressType =Tipo di indirizzo
+addressType.edit =Modifica %s
+addressType.list =Tipi di indirizzo
+addressType.add =Nuovo tipo di indirizzo
+addressType.name =Nome del tipo
+addressType.shared =In questo tipo ci possono essere più medici.
+addressType.hospital =Ospedaliero
+addressType.color =colore
+
+AddressUsage.SHIPPING_AND_BILLING =Per la spedizione e la fatturazione
+AddressUsage.SHIPPING_ONLY =Solo per la spedizione
+AddressUsage.BILLING_ONLY =Solo per la fatturazione
+addressUsage =Usare questo indirizzo per
+
+addItem =Aggiungi %s
+
+administrator =amministratore
+
+agent =Agente
+agent.any =Sia agenti che non
+agent.true =solo agenti
+agent.false =solo i non agenti
+
+agent.canVisit =Può effettuare visite
+
+AgentFees.show =Provvigioni
+AgentFee =Provvigioni per %s/&{%s}
+agentBrandFee =Provvigioni per brand
+agentProductFee =Provvigioni per prodotto
+
+alreadyStarted.any =Sia attuali che future
+alreadyStarted.yes =solo attuali
+alreadyStarted.no =solo future
+
+alsoDisabled =anche i disattivati
+alsoInformant =anche gli informatori
+alsoNotEmployee =anche gli operatori
+alsoNotManaged =anche i non propri
+
+ApprovalStatus.PENDING =Da confermare
+ApprovalStatus.TO_BE_APPROVED =Da approvare
+ApprovalStatus.COMPLETE =Completato
+
+approved.any =Approvate o meno
+approved.true =Approvate
+approved.false =Non approvate
+
+area = Area
+area.any =Qualsiasi area
+area.list =Aree
+area.new = Nuova
+area.add =Nuova area
+area.show =Visualizza area
+area.edit =Modifica %s
+area.addTerritory =Nuovo territorio
+
+areas =Aree
+
+area.name = Nome
+area.territories = Territori correlati
+area.informant = Capoarea
+area.agent = Capoarea
+area.companyLine =Linea aziendale
+area.agent.any =Qualsiasi agente/informatore
+area.companyLine.any =Qualsiasi linea aziendale
+assignedVehicle =Veicolo
+
+bgColor.mealTicket =Buono pasto
+bgColor.incompleteDay =Dati incompleti
+
+companyLine =Linea aziendale
+companyLine.add =Nuova linea aziendale
+companyLine.new =Nuova
+companyLine.edit =Modifica linea aziendale
+companyLine.list =Linee aziendali
+companyLine.show =Linea aziendale
+companyLine.name =Nome
+companyLine.description =Descrizione
+companyLine.active =Attiva
+companyLine.areas =Aree
+companyLine.products =Prodotti correlati
+companyLine.territories =Territori
+companyLine.addArea =Nuova area
+companyLine.token.account= Google Drive
+companyLine.token= Google Drive
+
+companyLineApplied.alert =<strong>Attenzione:</strong> stai vedendo i soli dati della linea aziendale corrente: <strong>%s</strong>.
+
+customerAddress =Indirizzo del medico
+customerAddress.active =Abilitato
+customerAddress.note =Note
+customerAddress.customer =Medico/Cliente
+customerAddress.phone =Telefono
+customerAddress.phone.description =per questo indirizzo
+customerAddress.type =Reparto/sezione
+customerAddress.receptionTimetable =Orario ricevimento
+
+customerAddress.uniqueWarning =È già presente a questo indirizzo.
+customerAddress.unique =È già presente a questo indirizzo/reparto.
+
+batchProduct =Lotto
+batchProduct.code =Codice
+batchProduct.expire =Data scadenza
+batchProduct.packagedProduct =Confezione
+batchProduct.distributionTitle =Distribuzione lotto %s di %s
+batchProduct.distribution =Distribuzione del lotto
+batchProduct.movementsFor =Movimenti del lotto %s per %s
+
+batchProduct.check =spedizioni incomplete
+
+brand =Brand
+brands =Brand
+brand.list =Elenco brand
+brand.add =Nuovo brand
+brand.edit =Modifica brand %s
+brand.active =Attivo
+brand.active.description=Se disattivato non sarà visibile normalmente.
+brand.managed =Proprio
+brand.managed.description =Se disattivato non sarà utilizzabile nelle visite o negli ordini.
+brand.name = Nome
+brand.description =Descrizione
+brand.products =Prodotti
+brand.therapeuticAreas =Aree terapeutiche
+
+autocompleted =Con autocompletamento
+birthDate =Data di nascita
+cancel =Annulla
+confirmPassword =Conferma password
+color =Colore
+create =crea
+edit =Modifica
+editItem= Modifica &{%s}
+
+Calendars.blank =Cosa vuoi aggiungere al %s?
+
+confirm =Conferma
+confirm.cancel =Se confermi perderei le modifiche in corso.
+confirm.delete =Vuoi davvero eliminare questo elemento?
+confirm.massiveOperation= Vuoi davvero procedere con questa operazione su tutti gli elementi indicati?
+confirm.merge =Vuoi unire questi elementi? L'operazione non sarà più reversibile.
+confirm.confirmInPlaceOf=Vuoi davvero confermare in sostituzione di %s?
+confirm.confirmState =Sei sicuro di voler confermare?
+confirm.restore =Sei sicuro di voler riabilitare questo elemento?
+confirm.operatorRestore =Sei sicuro di voler riabilitare questo operatore?
+confirm.rejectState =Sei sicuro di voler rifiutare?
+confirm.doctorRole.reassign=Sei sicuro di voler riassegnare %d medici al nuovo ruolo?
+confirm.payrollRecord =Sei sicuro di voler registrare il pagamento?
+confirm.payrollDiscard =Sei sicuro di voler rimuovere la registrazione del pagamento?
+
+choose.option =Scegli...
+choose.options =Scegli...
+choose.remote.option=Digitare almeno un carattere per scegliere...
+choose.option.partOfTheDay =Selezionare una parte del giorno (mattina/pomeriggio)
+
+configuration.geoMaster =Master per i dati geografici.
+configuration.generalFrom =Sorgente email
+configuration.generalFrom.description =Casella email da cui sono originate le comunicazioni di InPhase
+configuration.generalFrom.placeholder =info@inphase.it
+configuration.maximumNumberOfMonthsForSampleLeft =Numero di mesi massimo per i rilasci di saggi
+configuration.numberOfMonthsForMonthFeeAdvance =Numero di mesi antecedenti come riferimento per anticipo provvigioni
+configuration.nightlyExporterEnabled =Attivare l'esportazione notturna su CSV.
+configuration.salesOrderTo =Email destinatarie per gli ordini
+configuration.salesOrderTo.description=Si possono indicare più caselle separandole con una virgola
+configuration.salesOrderTo.placeholder =ordini@inphase.it
+configuration.costPerKm =Costo per auto aziendali ad uso privato €/km
+configuration.costPerKm.description =Valore del costo chilometrico in euro
+configuration.refundPerKm =Rimborso per auto del dipendente ad lavorativo €/km
+configuration.refundPerKm.description =Valore del rimborso chilometrico in euro
+
+inConfiguration =Configurazione generale di InPhase
+
+confirm.removeFromCustomers=Sei sicuro di voler procedere alla rimozione? Sarà comunque disponibile nell'elenco generale.
+
+comment.comment =Testo
+comment.owner =Autore
+comment.updated =Modificato il commento di %s per %s
+comment.created =Nuovo commento di %s per %s
+
+connectedTo= Connesso a
+
+crmActivity =Informazione telefonica
+crmActivity.customer =Medico
+crmActivity.edit =Modifica l'informazione telefonica
+crmActivity.list =Elenco telefonate
+crmActivity.new =Nuova informazione telefonica
+crmActivity.show =Dettagli sull'informazione telefonica
+crmActivity.agent =Operatore
+crmActivity.agent.any =Qualsiasi operatore
+crmActivity.date =Data
+crmActivity.describedBrands =Brand descritti
+crmActivity.note =Note
+crmActivity.outcome =Esito
+crmActivity.outcome.any =Qualsiasi esito
+crmActivity.phone =Telefono
+crmActivity.phone.placeholder =numero di telefono
+
+CrmActivities.report =Statistiche telefoniche
+
+CrmActivityOutcome.SUCCESS =Positivo
+CrmActivityOutcome.DONT_RECALL =Non richiamare
+CrmActivityOutcome.RECALL_LATER =Richiamare in seguito
+
+customer =Cliente
+customer.addAddress =Nuovo indirizzo
+customer.added =%s è stato aggiunto al proprio schedario.
+customer.list =Clienti
+customer.name =Nome o Ragione sociale
+customer.note =Note
+customer.lastVisit =Ultima visita
+customer.removed =%s è stato rimosso dal proprio schedario.
+customer.search =Cognome, nome o ragione sociale
+customer.show =Cliente
+customer.type =Tipologia
+CustomerType.any =qualsiasi tipologia
+CustomerType.doctor =Dottore
+CustomerType.wholesaler =Grossista
+CustomerType.patient =Paziente
+CustomerType.pharmacist =Farmacista
+CustomerType.nurse =Infermiere
+CustomerType.company =Società/Associazione
+
+Customers.addressTypes =Reparti/Sezioni degli indirizzi
+Customers.addressType =Reparto/Sezione
+
+customer.add =Aggiungi cliente
+customer.edit =Modifica cliente
+denomination =Cognome e nome o Ragione sociale
+
+customer.firstname = Nome
+customer.lastname = Cognome
+customer.birthDate = Data di nascita
+customer.birthPlace =Comune di nascita
+customer.bornInItaly =Nato/a in Italia
+customer.personType =Persona fisica/giuridica
+customer.privacyAccepted =Privacy accettata
+customer.mobile =Telefono
+customer.mobile.placeholder=Tel. mobile di lavoro
+customer.mobile.description=N.B. Il telefono fisso non viene inserito qui ma nell'indirizzo
+customer.personalMobile =Telefono personale
+customer.email =Email
+customer.fiscalCode =Codice fiscale
+customer.note =Note
+customer.vat =Partita IVA
+
+dailyDistances.show =km percorsi giornalieri
+dailyDistances.show.short=km giornalieri
+dailyDistances.expenses.notPending =Impossibile modificare i km percorsi per il mese già confermato.
+dailyTraveledDistance.distance =km percorsi
+dailyTraveledDistance.vehicle =con l'auto
+dailyTraveledDistance.date =data
+dailyTraveledDistance.manage =Aggiungi/Modifica km percorsi
+
+date =Data
+
+dateTimeRangeFormat =gg/mm/aaaa hh:mm - gg/mm/aaaa hh:mm
+dateRangeFormat =gg/mm/aaaa - gg/mm/aaaa
+
+days.title =Riepilogo giorni lavorati
+days.workingDays =Giorni lavorativi
+days.workingDaysWorked =Giorni feriali lavorati
+days.nonWorkingDaysWorked =Giorni festivi lavorati
+days.absences =Assenze
+days.incompletes =Giorni incongruenti o incompleti
+
+
+MONDAY= Lunedì
+TUESDAY= Martedì
+WEDNESDAY= Mercoledì
+THURSDAY= Giovedì
+FRIDAY= Venerdì
+SATURDAY= Sabato
+SUNDAY= Domenica
+
+DayOfWeek.MONDAY= Lunedì
+DayOfWeek.TUESDAY= Martedì
+DayOfWeek.WEDNESDAY= Mercoledì
+DayOfWeek.THURSDAY= Giovedì
+DayOfWeek.FRIDAY= Venerdì
+DayOfWeek.SATURDAY= Sabato
+DayOfWeek.SUNDAY= Domenica
+
+desiredDoctors =Medici desiderati nello schedario
+desiredDoctors.short =Desiderati
+
+detail.payedByCompany =Pagato con carta di credito aziendale
+detail.invoicedToCompany =Con fattura intestata all'azienda
+detail.type =Tipo
+detail.amount =Spesa in €
+detail.description =Descrizione
+detail.date =Data
+
+disable =Disabilita
+disabled =non attivo
+enable =Abilita
+enabled =attivo
+
+customer.addToCustomers=Aggiungi al tuo schedario
+customer.removeFromCustomers=Rimuovi dal tuo schedario
+
+doctor =Medico
+doctors =Schedario
+doctor.add =Aggiungi medico
+doctor.add.short =Nuovo medico
+doctor.edit =Modifica medico
+doctor.visits = Visite
+doctor.visitsTitle = Visite a %s
+doctor.crmActivities = Informazione telefonica
+doctor.crmActivitiesTitle = Informazione telefonica a %s
+doctor.products = Campioni forniti
+doctor.productsTitle =Campioni forniti a %s
+doctor.list =Medici
+doctor.listWithoutPrivacy =Medici con privacy non accettata
+doctor.listWithPrivacy =Medici con privacy accettata
+doctor.microArea=Microarea
+doctor.show =Medico
+doctor.search =Cognome o nome
+doctor.selectDoctor =Selezionare un medico dall'elenco oppure crearne uno nuovo.
+doctor.toBeVisited =Medici per visite
+
+doctor.birthPlace =Comune di nascita
+doctor.bornInItaly =Nato/a in Italia
+doctor.address = Indirizzo del medico %s
+
+doctor.doctorRegisterProvince =Albo dei medici della provincia di
+doctor.doctorRegisterProvince.choose =Inserisci una provincia
+doctor.doctorRegisterNumber =Iscrizione numero provinciale
+doctor.doctorRegisterNumber.choose =Inserisci il numero di iscrizione all'albo provinciale
+
+doctor.doctorRegisterRegion =Albo dei medici della regione
+doctor.doctorRegisterRegion.choose =Inserisci una regione
+doctor.doctorRegionalRegisterNumber =Iscrizione numero regionale
+doctor.doctorRegionalRegisterNumber.choose =Inserisci il numero di iscrizione all'albo regionale
+
+doctor.fullname = Cognome e nome
+doctor.firstSpecialization =Prima specializzazione
+doctor.secondSpecialization =Altra specializzazione
+doctor.role =Incarico
+doctor.title =Titolo
+doctor.customer.note =Note
+doctor.customer.privacyAccepted =Privacy accettata
+# doctor.birthPlace = Luogo di nascita
+doctor.daysNotVisited =non visitato da
+doctor.daysNotVisited.any =non visitato da
+doctor.daysNotVisited.1week =1 settimana
+doctor.daysNotVisited.2week =2 settimane
+doctor.daysNotVisited.30days =30 giorni
+doctor.daysNotVisited.60days =60 giorni
+doctor.therapeuticArea =Area terapeutica
+
+doctor.isInCustomers =%s è ancora nello schedario di altri informatori.
+doctor.disabled =Il dottore %s è stato disabilitato
+
+doctor.import =Importazione medici
+
+DoctorFilter.ONLY_MY_INDEX =Solo del mio schedario
+DoctorFilter.ONLY_MY_AREA =Solo del mio territorio
+DoctorFilter.ONLY_OCCASIONAL =Occasionali del mio territorio
+DoctorFilter.ONLY_MY_MACROAREA =Nell'area del capoarea
+
+doctorRole =Incarico
+doctorRole.hospital = Ospedaliero
+doctorRole.any =Scegli l'incarico
+doctorRole.list =Incarichi dei medici
+doctorRole.add =Nuovo incarico
+doctorRole.edit =Modifica incarico
+doctorRole.no =Incarico non impostato
+doctorRole.yes =Incarico impostato
+doctorRole.reassigned =Il ruolo %s è stato impostato a %d medici.
+doctorRole.reassign=Riassegnamento incarico
+doctorRole.destination =Nuovo incarico
+
+doLogin =Accedi
+doLogout =Esci
+
+documentation =Guida
+documentation.edit =Modifica guida
+documentation.list =Guide
+
+documentation.routeAction =Riferimento interno
+documentation.title =Titolo
+documentation.body =Testo
+documentation.relatedsTo =Argomenti correlati
+documentation.relatedsFrom =Correlazioni
+
+DriveFiles.export= Esporta Google Doc
+
+DriveMimeTypes.PDF= pdf
+DriveMimeTypes.DOCX= docx
+DriveMimeTypes.DOC= doc
+DriveMimeTypes.OPENOFFICE_DOC= odt
+DriveMimeTypes.XLSX= xlsx
+DriveMimeTypes.XLS= xls
+DriveMimeTypes.OPENOFFICE_SHEET= ods
+DriveMimeTypes.PPTX= pptx
+DriveMimeTypes.PPT= ppt
+DriveMimeTypes.CSV= csv
+DriveMimeTypes.JPEG= jpg
+DriveMimeTypes.PNG= png
+DriveMimeTypes.RICH_TEXT= rtf
+DriveMimeTypes.HTML= html
+DriveMimeTypes.TXT= txt
+
+enabled.any =Abilitati e non
+enabled.true =solo gli abilitati
+enabled.false =solo i disabilitati
+
+emailAddress =Email
+
+employee =Dipendente
+employees =Dipendenti
+employee.list =Elenco dipendenti
+
+employee.any =Sia dipendenti che non
+employee.true =solo i dipendenti
+employee.false =Solo i non dipendenti
+
+expenses.blank =Nuovo riepilogo mensile
+expenses.list =Riepiloghi mensili
+expenses.mine =I miei riepiloghi mensili
+expenses.mine.short =Riepiloghi
+expenses.show =Riepilogo mensile
+expenses.detailsBy =Spese del %s
+expenses.exports =Scarica rapporto mensile
+
+expenses.fee =Provvigioni mensili
+
+exportType= Formato file
+
+Exporters.index = Esportazione
+Exporters.download =Scarica
+Exporters.doExport =Genera file csv
+Exporters.notAvailableYet =Non ancora disponibile.
+Exporters.doctorAddresses =Indirizzi di visita dei medici (csv)
+Exporters.doctorShipmentAddresses =Indirizzi di spedizione dei medici (csv)
+Exporters.doctors =Medici (csv)
+
+feedback.subject =InPHASE feedback
+
+firstnameOrSurname =Nome e/o cognome
+firstname =Nome
+fiscalCode =Codice fiscale
+fullname =Cognome Nome
+
+forbidden.title =Accesso negato
+forbidden.body =Non hai i permessi sufficienti per effettuare l'operazione richiesta.
+
+FeeType.BASIC = minimo tra il mese e lo stesso mese dell'anno precedente
+FeeType.INCREMENTAL = incremento mensile dall'anno precedente
+
+fee.agent = Agente
+fee.product = Prodotto
+fee.brand = Brand
+fee.type = Tipologia
+fee.value = Ammontare
+
+geoInconsistedOnly =Solo gli indirizzi con comune e microarea non coerenti
+
+notFound.title =Non trovato
+notFound.body =La risorsa che stai cercando non esiste.
+serverError.title =Errore
+serverError.body =Si è verificato un errore.
+
+formatDate =gg/mm/aaaa
+generalInfo =Informazioni generali
+
+Geometries.panel =Gestione dati geografici
+
+goToSearch =vai alla ricerca
+
+google.account= Credenziali Google
+googledrive.connected= Connesso con Google Drive
+googledrive.grantAccess= Aggiungi connessione a Google Drive
+googledrive.notConnected= Nessuna connessione a Google Drive
+googledrive.previousFolder= Livello Superiore
+googledrive.token= Access token
+googledrive.revokeAccess= Rimuovi Google Access Token
+googledrive.rootFolder= Torna alla radice
+googledrive.search= Ricerca per nome
+googledrive.selectType= Seleziona estensione
+googledrive.show= Documentazione
+
+inactivityPeriods =Periodi di inattività
+
+inactivityPeriod =Periodo di inattività aziendale
+inactivityPeriod.add =Aggiungi periodo di inattività
+inactivityPeriod.description =descrizione
+inactivityPeriod.startDate =data di inizio
+inactivityPeriod.endDate =data di fine
+inactivityPeriod.list =Elenco periodi di inattività aziendale
+inactivityPeriod.overlaping.error =Ci sono già dei periodi di inattivita che comprendo il periodo indicato: %s
+inactivityPeriod.edit =Modifica periodo di inattività aziendale
+inactivityPeriod.year.choose =seleziona un anno
+inactivityPeriod.year.select =ferie anno %s
+
+activity =Altre attività
+activity.partOfTheDay =Quando
+activity.state =Stato
+activity.type = Tipologia
+activity.operators =Operatori
+activity.operator =Operatore
+
+activity.add =Aggiungi attività
+activity.date =Data
+activity.description =Descrizione
+activity.edit =Modifica attività
+activity.informant =Informatore
+activity.list =Lista attività
+activity.show =Attività
+
+iban =IBAN
+
+imports =Importazioni dati
+imports.sellingInfo =Importazione dati di vendita
+import.file =File da importare
+import.doctorsDescription =Importazione di medici in anagrafica in formato CSV.<br /> \
+Eseguire l'upload di un file in formato CSV contenente come prima riga le intestazioni delle colonne con i dati da importare.<br /> \
+<strong>Per ogni medico è obbligatorio indicare codice informatore, cognome e nome, area terapeutica, specializzazione medica, incarico, codice univoco medico.</strong>
+
+importer.doctorNotImported =Medico %s non importato (riga %3$s)
+importer.doctorSuccess =%s medici importati correttamente: %s
+importer.yearMonth =mese/anno
+
+informant =Informatore
+informants =Informatori
+informant.addresses =Indirizzi
+informant.address.street = Indirizzo
+informant.address.street.placeholder = Via / Piazza, civico, località
+informant.list =Elenco informatori
+informant.add =Aggiungi informatore
+informant.edit =Modifica informatore
+informant.editAddress =Modifica indirizzo
+informant.code =Codice
+informant.head =Capo area
+informant.birthDate =Data di nascita
+informant.onlyHeads = Solo capoarea
+informant.microAreas =Microaree
+informant.search =Cognome o nome
+informant.inRegisterOf =Nello schedario di
+
+informant.busy =Non è possibile procedere, perché %s è capoarea di altri informatori.
+informant.disabled =L'informatore %s è stato disabilitato con successo.
+informant.disableds =Informatori disabilitati
+informant.restored =L'informatore è stato riabilitato.
+
+informant.isInformantHead =è un capo area
+informant.promoteToHead =Promuovi a capo area
+informant.promoteToHead.confirm =Sei sicuro di volere promuovere %s a capo area?
+informant.promotedToHead =Informatore %s promosso a capo area
+informant.unableToPromoteToHead =L'informatore %s è già capo area.
+informant.goToActivities =Attività di questo informatore
+informant.goToVisits =Visite di questo informatore
+
+informant.alsoWithoutCompanyLine =Includi non correlati a linee aziendali
+informant.any =Qualsiasi informatore
+
+informant_head =capo area
+informantHead =Capo area
+informantHead.list =Capi area
+informantHead.add =Aggiungi capo area
+informantHead.edit =Modifica capo area
+
+informantHead.downgradeToInformant =Rimuovi da capo area
+informantHead.downgradeToInformant.confirm =Sei sicuro di volere declassare %s a semplice informatore?
+informantHead.downgradedToInformant =Informatore %s declassato a semplice informatore
+informantHead.unableToDowngradeToInformant.alreadyInformant =L'informatore %s non è un capo area, è già un semplice informatore.
+informantHead.unableToDowngradeToInformant.relatedInformant =Il capo area %s ha associato %d informatore/i, prima di rimuoverlo da capo area è necessario associare i suoi informatori ad un altro capo area.
+
+AgentAddressType.samples = Indirizzo per la consegna campioni
+AgentAddressType.mail = Indirizzo per la corrispondenza
+
+instance.name =Nome
+instance.active =Abilitato
+instance.therapeuticArea =Area Terapeutica
+
+receptionTimeTable.dayOfWeek= Giorno della Settimana
+receptionTimeTable.timeTableType= Tipologia Orario
+receptionTimeTable.startAt= Dalle
+receptionTimeTable.endTo= Alle
+
+invalidUsernameOrPassword =Email o password non validi
+
+issues =Segnalazioni risolte / totali
+
+lastname =Cognome
+leaveItEmptyToDoNotChangeCurrentPassword =lasciare vuoto per non alterare quella salvata.
+loading =Caricamento ...
+
+mealTicketPolicy =Variazione buono pasto
+mealTicketPolicy.month =Calendario variazioni buoni pasto
+mealTicketPolicy.list =Variazioni buoni pasto
+mealTicketPolicy.edit =Variazione buono pasto
+
+mealTicketPolicy.date =Data
+mealTicketPolicy.note =Descrittiva
+mealTicketPolicy.sign =Forza il buono
+
+medicalSpecialization.any =Qualsiasi specializzazione
+medicalSpecialization.add =Nuova specializzazione
+medicalSpecialization.list =Specializzazioni
+medicalSpecialization.edit =Modifica specializzazione
+medicalSpecialization.show =Dettagli su specializzazione
+medicalSpecialization.statusUpdated =La specializzazione %s è stata resa &{%s}.
+
+message.add =Nuovo messaggio
+message.add.attachment =Aggiungi allegato
+message.attachments =Allegati
+message.body =Testo
+message.edit =Modifica messaggio
+message.list =Elenco messaggi
+message.newMessage =Nuovo Messaggio
+message.searchSubject =Cerca nell'oggetto
+message.show =Messaggio
+
+message.createdAt =Data
+message.source =Mittente
+message.recipients =Destinatari
+message.subject =Oggetto
+models.Message.subject =Oggetto
+message.source =Mittente
+message.tags =Tags
+
+messages =Messaggi
+
+messageListDetail =%2$s letto, %3$s da leggere
+
+microArea = Microarea
+microArea.absorption =Assorbimento
+
+microArea.any =Qualsiasi microarea
+microArea.code =Codice
+microArea.deny =Fuori area
+microArea.name =Nome
+microArea.description =Descrizione
+microArea.territory =Territorio
+microArea.territories =Territori
+microArea.province =Provincia
+microArea.municipals=Comuni
+
+microArea.edit=Modifica %s
+microArea.list =Microaree
+microArea.listUnassigned = Microaree non assegnate
+microArea.search =Nome...
+microArea.show =Mostra microarea
+
+microAreas =Microaree
+microAreas.id =Microaree
+microAreas.description =Digitare almeno un carattere per selezionare la microarea.
+
+MicroAreaSelection.CURRENT_EMPTY = Stessa provincia, senza microarea
+MicroAreaSelection.CURRENT_SELECTED = Stessa provincia, questa microarea
+MicroAreaSelection.CURRENT_BUSY = Stessa provincia, altre microaree.
+MicroAreaSelection.CURRENT_SHARED = Stessa provincia, questa e altre microaree.
+MicroAreaSelection.OTHER_EMPTY = Altra provincia, senza microarea.
+MicroAreaSelection.OTHER_SELECTED = Altra provincia, questa microarea.
+MicroAreaSelection.OTHER_SHARED = Altra provincia, questa e altre microaree.
+MicroAreaSelection.OTHER_BUSY = Altra provincia, altre microaree.
+
+MicroAreaStatus.INCOMPLETE = Da completare
+MicroAreaStatus.MUNICIPALS_COMPLETE = Completata sui comuni
+MicroAreaStatus.GEOMETRY_COMPLETE = Completata
+
+mobile =Tel. mobile
+
+MonthFee = Provvigioni mensili
+MonthFeeDetails =Dettagli delle provvigioni mensili
+monthFee.advanceAmount =Anticipo
+monthFee.advancePercentage =Anticipo %%
+monthFee.agent =Agente
+monthFee.edit =Modifica provvigioni mensili
+monthFee.fixedAmount =Contributo fisso temporaneo €
+monthFee.freeAmount =Importo libero €
+monthFee.grandTotal =Totale complessivo
+monthFee.date =Periodo di riferimento
+monthFee.list =Lista provvigioni mensili
+monthFee.pharmacy =Fatturato farmacie %%
+monthFee.sellingInfoMonthStart =Dati vendita iniziali di
+monthFee.sellingInfoMonthEnd =Dati vendita finali di
+monthFee.settledAt =Mensili che salda questo resoconto
+monthFee.settledTotal =Totale saldo mesi precedenti €
+monthFee.show =Mostra provvigioni mese
+monthFee.uniqueAgentAndYearMonth =Questo resoconto provvigioni è già presente per l'agente.
+monthFee.totalRevenues =Totale provvigioni percentuali
+
+municipal =Comune
+
+geo.municipals=Comuni
+geo.municipalsByProvince =Comuni della provincia di %s
+geo.provinces =Province
+
+name =Nome
+new =Nuovo
+
+next =Successivo
+previous =Precedente
+
+notAvailable =&dash;
+noResultFound =Nessuna corrispondenza trovata.
+
+notification.list =Nuove notifiche
+notification.listFor =Notifiche
+notification.listFor.confirm =Sei sicuro di voler procedere per tutte le notifiche?
+notification.listForOperator =Notifiche per %s
+notification.archiveds =Notifiche archiviate
+notification.show =Consulta
+notification.archive =Archivia
+Notifications.tasks =Compiti in attesa
+
+notify.activityConfirmed ="%s" del %s impostata "confermata".
+notify.activityToBeApproved ="%s" di %s da approvare.
+notify.activityApproved ="%s" del %s approvata.
+notify.activityStateChanged ="%s" del %s impostato a %s.
+
+notify.messageCreated =C'è un nuovo messaggio da %s.
+
+notify.salesOrderStateChanged ="%s" impostato a %s.
+
+notify.sellingInfoApproved =Dati di vendita %s approvata.
+
+notify.stockMovementConfirmed =%s è stato confermato.
+notify.stockMovementRejected =%s è stato rifiutato: %s.
+
+notify.workExpenses.documentsReceived =La documentazione per la nota spese di %s è stata ricevuta il %s.
+notify.workExpenses.documentsUnReceived =La data di ricezione della documentazione della nota spese di %s è stata rimossa.
+notify.workExpenses.sampleLeftBlockReceived =Il blocchetto scarico campioni per la nota spese di %s è stata ricevuta il %s.
+notify.workExpenses.sampleLeftBlockUnReceived =La data di ricezione del blocchetto di scarico campioni della nota spese di %s è stata rimossa.
+
+notify.workExpensesStateChanged ="%s" impostato a %s.
+notify.workExpensesPending =C'è un riepilogo mensile del mese %s ancora pendente
+notify.missingWorkExpenses =Il riepilogo mensile del mese %s non è presente
+
+notify.success =Successo
+notify.error =Errore
+notify.warning =Attenzione
+notify.modal =Attenzione
+
+notify.whitespaces.username =Ci sono spazi bianchi nello username
+notify.whitespaces.password =Ci sono spazi bianchi nella password
+
+NumberOfVisits.ZERO = Nessuna visita
+NumberOfVisits.ONE = Una sola visita
+NumberOfVisits.TWO_OR_MORE =Due visite o più
+
+odometerValue = Km attuali
+
+onCardIndex=Aggiungi allo schedario
+
+onlyMyArea=solo della mia area
+onlyMy =Solo i miei
+onlyMyF =Solo le mie
+
+onlyOperator = Solo gli operatori
+onlyEnabledOperator = Solo gli operatori attivi
+
+operator.any = Qualsiasi operatore
+operator.createStock =Crea magazzino
+operator.createStock.confirm =Sei sicuro di voler creare un nuovo magazzino per %s?
+operator.myCalendar =Il mio calendario
+operator.goToCalendar =Calendario delle attività
+operator.calendarOf = Calendario %s
+operator.myCalendar = Calendario Personale
+operator.myCalendar.menu = Il mio calendario
+
+operator.myMessages.menu =I miei messaggi
+
+operator.inventory =Inventario %s
+operator.goToStock = Magazzino
+operator.goToStockMovements =Movimento di magazzino
+operator.list =Elenco operatori
+
+operator.new =Nuovo operatore
+operator.edit =Modifica operatore
+operator.firstname =Nome
+operator.lastname =Cognome
+operator.email =Email
+operator.employee =Dipendente
+operator.roles = Ruoli
+operator.roles.choose =Scegli i ruoli...
+operator.profile =Profilo
+operator.enabled =Abilitato
+operator.informant =Dati informatore
+operator.costPerKm =Costo per l'auto ad uso personale (€/km)
+operator.refundPerKm =Rimborso per l'auto personale (€/km)
+operator.lastLoginDate =Data ultimo accesso
+operator.lastLoginAddress =Indirizzo IP ultimo accesso
+
+operatorProfile =Profilo
+OperatorProfiles.edit =Modifica profilo
+OperatorProfiles.list =Elenco profili
+OperatorProfiles.blank =Nuovo profilo
+
+operationCancelled =Operazione annullata.
+order =Ordinamento dei risultati
+order.ascending =Ascendenti
+order.descending =Discendenti
+otherInfo =Altre informazioni
+
+pageLayout =Layout pagine web
+pagedResults =Sono state trovate <strong>%d</strong> corrispondenze, mostrate dalla %d alla %d.
+
+PageLayout.DEFAULT =Predefinito
+PageLayout.DEFAULT_WIDE =Predefinito Wide
+PageLayout.AGENT =Agenti
+
+partOfTheDay =Quando
+PartOfTheDay.morning =mattino
+PartOfTheDay.afternoon =pomeriggio
+PartOfTheDay.other =altro
+PartOfTheDay.fullday =tutto il giorno
+PartOfTheDay.multipledays =più giorni
+
+password =Password
+
+PackagedProduct =Confezione
+packagedProduct =Confezione
+packagedProduct.addSalable =Nuova confezione di vendita
+packagedProduct.addSample =Nuova confezione campione
+packagedProduct.edit =Modifica confezione
+packagedProduct.choose =Scegli la confezione
+packagedProduct.show =Informazioni sulla confezione
+
+packagedProduct.disabled =Confezione disabilitata con successo.
+
+packagedProduct.any =Qualsiasi prodotto
+packagedProduct.name =Nome
+packagedProduct.code =Codice
+packagedProduct.description =Descrizione
+packagedProduct.product =Prodotto
+packagedProduct.batchRequiredFrom =n° lotto richiesto (dal)
+packagedProduct.active =Attivo
+packagedProduct.batches=Lotti
+packagedProduct.addBatch =Nuovo lotto
+
+salablePackagedProduct =Dati di vendita
+salablePackagedProduct.edit =Modifica dati per la vendita
+salablePackagedProduct.sellingName =Nome per dati di vendita
+salablePackagedProduct.price =Prezzo di vendita (€) IVA esclusa
+salablePackagedProduct.taxClass =Classe IVA
+salablePackagedProduct.salableTo =Vendibile a
+
+people =Persone
+
+perPage =Elementi per pagina predefiniti
+
+PersonType.PHYSICAL_PERSON = Persona fisica
+PersonType.LEGAL_ENTITY =Persona giuridica (Società/...)
+
+paymentCondition =Condizione di pagamento
+paymentConditions =Condizioni di pagamento
+paymentCondition.name = Nome
+paymentCondition.description =Descrizione
+paymentCondition.enabled =Abilitato
+paymentCondition.list =Elenco condizioni di pagamento
+paymentCondition.add =Nuova condizione di pagamento
+paymentCondition.edit =Modifica condizione di pagamento %s
+
+period.name =Nome periodo
+period.startAt =Data inizio
+period.endTo =Data fine
+PromotionalPeriods.list =Periodi promozionali
+PromotionalPeriods.edit =Modifica periodi promozionali
+
+predefined =predefinito
+preferred=preferito
+promoRule =Promozione
+promoRules =Promozioni
+promoRule.name = Nome
+promoRule.customerTypes= Tipologie cliente
+promoRule.salablePackagedProducts=Confezioni
+promoRule.discount = Sconto (%%)
+promoRule.maxDiscount =Massimo sconto (%%)
+promoRule.maxDiscount.validation =Deve essere maggiore o uguale allo sconto
+promoRule.description =Descrizione
+promoRule.enabled =Abilitata
+promoRule.list =Elenco promozioni
+promoRule.add =Nuova promozione
+promoRule.edit =Modifica promozione %s
+
+personal.index = Dati personali
+personal.photo =Una tua fotografia
+personal.editPassword =Modifica password
+
+privacyAccepted.any =Accettazione privacy
+privacyAccepted.yes =Con privacy accettata
+privacyAccepted.no  =Senza privacy accettata
+
+product.add =Nuovo prodotto
+product.list =Elenco prodotti
+product.search =Nome...
+product.show =Visualizza prodotto
+products =Prodotti
+
+product.active =Attivo
+product.brand =Brand
+product.name =Nome
+product.category =Categoria
+product.code =Codice
+product.companyLines =Linee aziendali
+product.description =Descrizione
+product.edit =Modifica prodotto
+product.launchingDate =Data di lancio
+product.packagedProducts =Confezioni
+product.therapeuticAreas =Aree terapeutiche
+product.therapeuticAreas[] =Aree terapeutiche
+product.type =Tipo
+
+productCategoryProductAssignemt.edit =Modifica assegnazione categoria del prodotto
+productCategoryAssignment = Assegnazione categoria del prodotto
+productCategoryAssignment.product =Prodotto
+productCategoryAssignment.assignedFrom =Assegnato dal
+productCategoryAssignment.assignedTo =Fino al
+productCategoryAssignment.category =Categoria
+productCategoryAssignment.assignedFrom.warning = Attenzione: la modifica di questa data può modificare i limiti sulla consegna saggi.
+
+ProductCategory.A = A
+ProductCategory.C = C
+ProductCategory.C_SOP = C-SOP
+ProductCategory.C_OTC = C-OTC
+ProductCategory.Integratore = Integratore
+ProductCategory.Dispositivo = Dispositivo
+
+profile.name =Nome
+profile.description =Descrizione
+profile.loginUrl =Indirizzo di accesso
+profile.loginUrl.placeholder =http://www.mio.blah
+profile.loginUrl.description =Immettere soltanto l'indirizzo base, senza / finali.
+profile.disclaimer =Un testo opzionale di avvertenza in fase di accesso
+profile.employee =Dipendente
+profile.agent =Agente
+profile.operators =Utenti corrispondenti
+profile.active =Abilitato
+
+promotionalPeriod =Periodo promozionale
+
+province.any =Qualsiasi provincia
+
+quantity =Quantità
+
+reassign= Riassegna
+
+receptionTimeTableType= Tipo di Ricevimento
+receptionTimeTableType.list= Tipi di Ricevimento
+receptionTimeTableType.add= Nuovo
+receptionTimeTableType.name= Nome
+receptionTimeTableType.edit= Modifica tipo di Ricevimento
+receptionTimeTableType.color= Colore nel Calendario
+recipient =Destinatario
+recipients =Destinatari
+
+recordsHealthChecks.index=Controlli anagrafiche
+recordsHealthChecks.duplicatedCustomerNames=Controllo clienti duplicati
+recordsHealthChecks.customersPotentialyToDelete=Clienti da cancellare
+recordsHealthChecks.duplicatedAddresses=Controllo indirizzi duplicati
+
+reject =Rifiuta
+
+registration.continue =Continua
+registration.lostPassword =Hai dimenticato la tua password?
+registration.passwordResetRequest =Richiesta di reimpostazione password
+registration.passwordModified =Password modificata
+registration.codeRequired=Per poter attivare questa procedura occorre il codice.
+registration.codeExpiredOrInvalid=Il codice fornito (%s) è scaduto oppure non è valido.
+registration.verifyRequired =Benvenuto/a %s, è necessario impostare una nuova password.
+registration.verify =Benvenuto/a %s, qui puoi impostare una nuova password.
+registration.verify.name =Nuova password
+registration.verify.fail =Richiesta scaduta o non valida
+# da eliminare... forse
+registration.confirm =Conferma i dati inseriti
+registration.success =Operazione completata.
+
+required = Richiesto
+
+reports =Report
+reports.visitsPerTherapeuticArea =Visite per area terapeutica
+reports.governmentStats =Statistiche Informatori per AIFA
+Reports.monthlyUsage = Rapporto mensile di utilizzo
+
+resultFound =Sono state trovate <strong>%d</strong> corrispondenze.
+
+restore =Riabilita
+restored =riabilitato
+
+history =Storia
+historyTitle =Revisione del %s
+RevisionType.DEL =Rimozione
+RevisionType.ADD =Creazione
+RevisionType.MOD =Modifica
+
+role =Ruolo
+roles =ruoli
+roles.list =Gestione ruoli
+roles.show =Gestione ruolo
+
+Role.informant =Informatore
+Role.informant_head =Capoarea
+Role.administrator =Amministratore
+Role.statistic =Statistiche
+Role.super_user =Super-utente
+Role.supervisor =Supervisore
+Role.accounting =Contabilità-Amministrazione
+Role.stockman =Magazziniere
+Role.personnel =Ufficio del personale
+Role.salesman=Venditore
+Role.sales_manager=Responsabile vendite
+Role.lead_agent =Informatore telefonico
+Role.customer_manager=Gestore anagrafica clienti
+Role.exporter=Esportatore dati
+
+Sign.plus =presente
+Sign.minus =assente
+
+save =Salva
+select.chooseOne =Selezionane una
+site.title =InPhase
+site.staff =Lo staff di InPhase
+
+successfullyLoggedIn =Accesso avvenuto con successo.
+successfullyDeleted =Cancellazione avvenuta con successo.
+
+showDetailsOnClick =Mostra dettagli
+
+salesOrder=Ordine
+salesOrder.createdAt =Creato il
+salesOrder.fullPrice =Totale
+salesOrder.totalPrice =Subtotale
+salesOrder.taxAmount = IVA
+salesOrder.add=Nuovo Ordine
+salesOrder.bankPaymentData = IBAN per le Ri.Ba.
+salesOrder.edit=Ordine
+salesOrder.note=Note
+salesOrder.note.description=(visibili nell'ordine)
+salesOrder.microArea =Microarea
+salesOrder.billingAddress=Indirizzo di fatturazione
+salesOrder.label =Ordine del %s effettuato da %s per il cliente %s
+salesOrder.paymentCondition =Condizioni di pagamento
+salesOrder.paymentData =Informazioni sul pagamento
+salesOrder.paymentData.add =Aggiungi le informazioni sul pagamento
+salesOrder.sameAddresses=Indirizzo per la fatturazione separato
+salesOrder.shippingAddress=Indirizzo di spedizione
+salesOrder.addNote=Inserisci Note
+salesOrder.details =Dettagli dell'ordine
+salesOrder.owner =Responsabile dell'ordine
+
+salesOrder.approve =Approva
+salesOrder.approved =Ordine del cliente "%s" impostato ad "approvato".
+salesOrder.state.changed =Ordine del cliente "%s" impostato a "%s".
+
+salesOrder.shippingAddress.microArea =Microarea nell'indirizzo di spedizione
+salesOrder.billingAddress.microArea =Microarea nell'indirizzo di fatturazione
+
+salesOrder.notification.subject=Nuovo ordine da InPhase
+
+salesOrders=Ordini
+salesOrders.list=Elenco Ordini
+salesOrders.clone =Ripeti
+salesOrders.clone.success =Ordine ripetuto con successo.
+salesOrders.download =Scarica
+salesOrder.state=Stato dell'ordine
+salesOrderAddress =Indirizzo per ordini
+salesOrderAddress.name =Contatto o c/o
+salesOrderAddress.predefined =Indirizzo utilizzabile in altri ordini
+salesOrderAddress.active= Indirizzo attivo
+salesOrderAddress.recursiveChange =Modifica per tutti gli ordini non confermati correlati
+salesOrderAddress.recursiveChange.description =Se disattivato, verrà creato un clone dell'indirizzo originale, con le modifiche indicate
+salesOrderAddresses.edit =Modifica indirizzo
+
+salesOrderDetail= Dettaglio ordine
+salesOrderDetail.discount =Sconto (%%)
+salesOrderDetail.discount.short =Sc. (%%)
+salesOrderDetail.quantity= Quantità
+salesOrderDetail.quantity.short= Q.tà
+salesOrderDetail.originalPricePerUnit=Prezzo di listino
+salesOrderDetail.pricePerUnit=Prezzo scontato
+salesOrderDetail.product = Confezione
+salesOrderDetail.totalPrice =Subtotale
+salesOrderDetail.totalPrice.short =Subtot.
+salesOrderDetail.taxRate =IVA %%
+salesOrderDetail.fullPrice =Subtotale con IVA
+salesOrderDetail.fullPrice.short =Subtot. con IVA
+
+SamplesLeft.PENDING =Da confermare
+SamplesLeft.CONFIRMED =Confermato
+SamplesLeft.REJECTED =Annullato
+
+samplesLeft =Rilascio saggi
+samplesLeft.add =Nuovo rilascio saggi
+samplesLeft.edit =Modifica rilascio saggi
+samplesLeft.list =Rilasci saggi
+samplesLeft.dateTooOld = La data non può essere antecedente di oltre %2$s mese/i.
+
+sellingInfos.show = Visibilità dei dati di vendita
+sellingInfos.list =Mesi con dati di vendita
+sellingInfoApproval.deny =Negata la visibilità
+sellingInfoApproval.grant =Consentita
+
+SellingInfoGroup.label = Raggruppa per
+SellingInfoGroup.MICRO_AREA = Microaree
+SellingInfoGroup.AREA = Area
+SellingInfoGroup.TERRITORY = Territorio
+SellingInfoGroup.BRAND = Brand
+SellingInfoGroup.PRODUCT = Prodotti
+
+SellingInfoType.PHARMACY =Farmacie
+SellingInfoType.WHOLESALER =Grossisti
+SellingInfoType.ANY =Entrambi
+
+Setup.info =Informazioni...
+Setup.index =Configurazione...
+Setup.synchronizer =Sincronizzazione...
+
+stock =Magazzino
+stock.hq =sede centrale
+stock.any =Tutti i magazzini
+
+super_user =super user
+stock.lastMovement =Ultimo movimento
+stock.movements =Movimenti magazzino
+stock.movementsFor =Movimenti di magazzino per %s
+stock.allMovements =Tutti movimenti magazzino
+stock.noMovements =<strong>Attenzione:</strong> nessun movimento di magazzino presente
+stock.noMomementsFor =<strong>Attenzione:</strong> nessun movimento di magazzino registrato per %s
+stock.noProducts =<strong>Attenzione:</strong> nessun prodotto in magazzino
+stock.noStock =<strong>Attenzione:</strong> nessun magazzino per l'utente corrente
+stock.newShipment =Nuova spedizione
+stock.newReturn   =Nuovo reso alla sede centrale
+stock.newReturn.started =Reso iniziato con successo.
+stock.newDisposal =Nuovo smaltimento scaduti o danneggiati
+stock.newDisposal.started =Smaltimento richiesto con successo.
+stock.editStockTransfer =Modifica trasferimento prodotti
+stock.newStockTransfer =Nuovo trasferimento prodotti
+stock.newTransfer =Nuovo trasferimento
+stock.newTransfer.started =Trasferimento iniziato con successo.
+stock.movement.confirmed =Trasferimento confermato.
+stock.movement.rejected =Trasferimento rifiutato.
+stock.movement.reject =Rifiuta
+stock.movement.reject.message =Messaggio di rifiuto
+stock.movement.reject.confirm =Sei sicuro di voler rifiutare il trasferimento?
+stock.quantities =Sottoscorte di magazzino
+stock.returnsAndDisposals =Resi e smaltimenti
+minQuantity =Soglia minima
+
+shipment =Spedizione
+shipment.date =Data
+shipment.description =Descrizione
+shipment.details =Dettagli
+
+statistic =statistiche
+
+stock.show =Magazzino
+stock.showFor =Magazzino di %s
+stock.showShipment =Spedizione
+stock.editShipment =Modifica descrizione della spedizione
+stock.shipments =Spedizioni
+stock.shipment.searchDescription =che contiene nella descrizione
+stock.shipment.description =Descrizione
+stock.shipment.movementsListDetail =%2$s confermato, %3$s da confermare
+stock.shipment.movementsRejected =, %s rifiutato
+
+stockMovement.insufficientSourceQuantities = Quantità insufficienti per completare l'operazione. Mancano %s
+
+stockMovement =Movimento di magazzino
+stockMovement.date =Data
+stockMovement.description =Descrizione
+stockMovement.destination=Destinatario
+stockMovement.note =Note
+stockMovement.source =Sorgente
+stockMovement.state =Stato
+stockMovement.type =Tipologia
+
+stockMovement.expired = scaduto in automatico dopo %s
+
+stock.showMovement =Movimento di magazzino
+stockMovement.details =Prodotti e quantità
+stockMovement.add.detail =Aggiungi
+stockMovementState.any =Qualsiasi stato
+stockMovementType.any =Qualsiasi tipo
+
+StockMovementType.SAMPLE_LEFT =Saggi lasciati
+StockMovementType.INFORMANTS_TRANSFER =Trasferimento tra informatori
+StockMovementType.HQ_TRANSFER =Invio dalla sede centrale
+StockMovementType.RETURN_TO_HQ =Reso alla sede centrale
+StockMovementType.DISPOSAL =Smaltimento scaduti o danneggiati
+
+# usati nelle notifiche:
+stockMovement.forSource.SAMPLE_LEFT =Saggi lasciati a %2$s
+stockMovement.forAll.SAMPLE_LEFT =Saggi lasciati da %1$s a %2$s
+stockMovement.forSource.INFORMANTS_TRANSFER =Trasferimento per %2$s
+stockMovement.forAll.INFORMANTS_TRANSFER =Trasferimento da %1$s per %2$s
+stockMovement.forSource.HQ_TRANSFER =Invio dalla sede centrale a %2$s
+stockMovement.forAll.HQ_TRANSFER =Invio dalla sede centrale a %2$s
+stockMovement.forSource.RETURN_TO_HQ =Reso alla sede centrale
+stockMovement.forAll.RETURN_TO_HQ =Reso alla sede centrale da %1$s
+stockMovement.forSource.DISPOSAL =Smaltimento scaduti o danneggiati
+stockMovement.forAll.DISPOSAL =Smaltimento scaduti o danneggiati da %1$s
+
+StockMovementState.PENDING =In attesa di conferma dal destinatario
+StockMovementState.CONFIRMED =Confermato dal destinatario
+StockMovementState.REJECTED =Rifiutato dal destinatario
+
+SummaryExpenseType.FOOD_AND_ACCOMODATION = Vitto e alloggio
+SummaryExpenseType.TRAVEL = Viaggio
+SummaryExpenseType.FUEL = Carburante
+SummaryExpenseType.OTHER = Altro
+
+sudo.activate =Assumi questa identità
+sudo.deactivate =Lascia questa identità
+sudo.switched =Hai assunto l'identità di %s
+sudo.restored =Sei tornato all'identità iniziale.
+sudo.alreadySwitched =Per assumere altre identità occorre prima lasciare questa.
+
+summaryEmpty =(nessuno)
+summaryLimited =%s e altri %d elementi.
+
+synchronizer.defaultDoctorRole=Incarico predefinito (in caso di incarico non presente)
+task.activity.to_be_approved =Richiesta l'approvazione di %s dal %s per %s.
+task.activity.pending =Manca la conferma per %s (%s) per %s.
+task.suggestCustomer =Hai un nuovo suggerimento per lo schedario: %s.
+task.samplesLeft.PENDING =Manca la conferma per il rilascio saggi a %s del %s.
+task.stockMovement.PENDING =C'è un trasferimento di prodotti da %s del %s da confermare.
+
+task.salesOrder.pending =Manca la conferma dell'Ordine del %s per il cliente %s.
+task.salesOrder.to_be_approved =Richiesta l'approvazione del Ordine del %s per il cliente %s.
+
+task.sellingInfoApproval =Richiesta di approvazione dei dati di vendita %s
+
+task.show =Consulta
+task.delete =Elimina
+
+task.workExpenses.to_be_approved =Richiesta l'approvazione del "%s".
+task.workExpenses.to_be_checked =Richiesta la verifica del %s.
+task.workExpenses.pending =Occorre completare il "%s".
+
+taxClass =Classe IVA
+taxClass.list =Classi IVA
+taxClass.add =Nuova classe IVA
+taxClass.edit =Modifica classe IVA
+taxClass.show =Classe IVA
+
+taxClass.name =Denominazione
+taxClass.values =Valori
+
+taxClassValue =Valore della classe IVA
+taxClassValue.edit =Modifica valore della classe IVA
+
+taxClassValue.amount =Valore in percentuale
+taxClassValue.validFrom =Valido dalla data
+taxClassValue.validTo =Valido fino alla data
+taxClassValue.valid.description = Lasciare vuoto per qualsiasi data
+
+Tasks.list =Elenco compiti
+
+taskType.any =Qualsiasi tipo
+
+TaskType.ACTIVITY =Altra attività
+TaskType.CUSTOMER =Suggerimenti medici o clienti
+TaskType.SALES_ORDER =Ordini
+TaskType.SELLING_INFO_APPROVAL =Approvazione dati di vendita
+TaskType.STOCK_MOVEMENT =Movimento di magazzino
+TaskType.VISIT_TO_DOCTOR =Visita a medico
+TaskType.WORK_EXPENSES =Rimborsi Spese
+
+territory = Territorio
+
+territory.any =Qualsiasi territorio
+territory.name =Nome
+territory.area =Area
+territory.informant =Informatore
+territory.agent =Agente
+territory.microAreas=Microaree
+territory.unassigned =Non assegnato
+
+territory.edit=Modifica %s
+territory.list =Territori
+territory.new=Nuovo territorio
+territory.search =Nome...
+territory.show =Mostra territorio
+
+territories =Territori
+
+therapeuticArea =Area terapeutica
+therapeuticArea.any =Qualsiasi area terapeutica
+therapeuticArea.list =Aree terapeutiche
+therapeuticArea.add =Nuova area terapeutica
+
+toggleMenu.label = attiva/disattiva menu a tendina
+
+toRemove.yes = Rimuovi
+toRemove.no = Aggiungi
+
+ReceptionTimeTables.timetable =Orario ricevimento
+TimeIntervals.timetable.small =Orari
+TimeIntervals.timetable.full =Orario ricevimento %1$s
+
+transfer = Trasferta
+transfer.overnight =Con pernottamento
+transfer.interval =Periodo
+transfer.description =Descrizione
+
+traveledDistance =Distanza percorsa
+
+Title.dott =Dott.
+Title.dott_ssa =Dott.ssa
+Title.prof =Prof.
+Title.prof_ssa =Prof.ssa
+
+upload =Carica
+username =Email
+
+user.login =Login
+user.email =Email
+user.home =Area personale
+user.edit =Modifica impostazioni personali
+user.show =Modifica dati utente
+user.blank =Nuovo utente
+user.sameUserWarning =Attenzione: stai per modificare l'utente col quale sei collegato.
+user.sameUserSuggest =Procedi nella tua sezione utente per modificare i tuoi parametri.
+
+user.filter.adminOnly =Mostra amministratori
+user.filter.publisherOnly =Mostra publisher
+user.filter.all =Mostra tutti
+
+VAT = P.IVA
+
+validation.activity.type.mustNotBeNull =Il tipo di atitività è obbligatorio per determinare i vincoli sull'orario.
+
+validation.activityInterval.mustBeOneDay =Deve essere un solo giorno.
+validation.activityInterval.mustBeAtLeastOneWorkingDay =Ci deve essere almeno un giorno lavorativo.
+validation.activityInterval.mustStartOnMorning =Questo tipo di attività prevede almeno un giorno: è necessaria anche la mattina.
+validation.activityInterval.mustEndOnAfternoon =Questo tipo di attività prevede almeno un giorno: è necessario anche il pomeriggio.
+validation.inMonthReport.mustBePending =Impossibile continuare, il resoconto di questo mese è già chiuso.
+
+validation.doctorSameRegister =Questo numero di registro in questa provincia è già del medico <a href="%2$s">%1$s</a>
+validation.doctorSameRegionalRegister =Questo numero di registro in questa regione è già del medico <a href="%2$s">%1$s</a>
+
+validation.duplicated =Ci sono elementi duplicati
+validation.cap =Ci possono essere 4 o 5 cifre
+validation.codiceFiscale.length =Ci devono essere esattamente 16 caratteri.
+validation.codiceFiscale.char =C'è un carattere non valido.
+validation.codiceFiscale.check =Il codice di controllo indica che c'è un errore.
+validation.hasErrors =Occorre correggere alcuni errori: %s
+validation.fairlyRecent =La data inserita è troppo vecchia o troppo in avanti nel tempo.
+validation.greaterThan =Il valore deve essere maggiore.
+validation.startDate.afterEndDate =La data di inizio deve essere minore della data di fine.
+
+validation.interval.notValid= L'inizio dev'essere successivo alla fine
+validation.interval.overlap= L'intervallo si sovrappone con un altro gia' presente: %2$s
+
+validation.iban.italy.length =L'IBAN italiano deve essere di 27 cifre.
+validation.iban.format =Formato IBAN non valido.
+validation.iban.country =Nazione non supportata dal controllo IBAN.
+validation.iban.checkDigit =Il codice di controllo del IBAN non corrisponde.
+
+validation.promotionalPeriod.overlap =Comprende date già presenti in altri periodi.
+
+validation.piva.length =La partita IVA deve essere di 11 cifre.
+validation.piva.number =La partita IVA può contenere solo cifre.
+validation.piva.check =Il codice di controllo della partita IVA non corrisponde.
+
+validation.invoiceIsMandatory =La fattura è richiesta per questa tipologia di spesa.
+validation.taxClassValue.contained =C'è una sovrapposizione con le date %s
+validation.taxClassValue.validFromRequired =La data iniziale è richiesta.
+validation.taxClassValue.firstMustBeEmpty =La data iniziale non deve essere presente.
+validation.taxClassValue.mustBeGreater =La data deve essere successiva a %s
+
+validation.collectionSize.min =Troppo pochi elementi
+validation.collectionSize.max =Troppi elementi
+
+validation.duplicatedFullname =Questo nome/cognome è già presente.
+
+validation.vehicleAssignmentConflict =Conflitto di assegnazione per %s assegnato a %s [%s:%s]
+
+validation.visit.duplicated =C'è già una visita allo stesso medico/cliente nello stesso mattino/pomeriggio.
+
+vehicle.add =Nuovo veicolo
+vehicle.list =Elenco veicoli
+vehicle.edit =Modifica veicolo
+vehicle.mine =I miei veicoli
+vehicle.name =Nome
+vehicle.plate =Targa
+vehicle.report =Report auto aziendali
+vehicle.ownedByCompany =Della società
+vehicle.assignedFrom =Assegnato a partire dal
+vehicle.assignedTo =Assegnato fino al
+vehicle.traveledKm =km all'inizio del mese nella prima nota spesa
+vehicle.distanceAtStartOfMonth =km a inizio mese
+vehicle.distanceAtEndOfMonth =km a fine mese
+vehicle.distanceMonthly =km totali del mese
+
+view =Visualizza
+
+VisitState.pending =Da confermare
+VisitState.confirmed =Confermata
+
+visitToDoctor =Visita a medico
+visitToDoctor.activityState =Stato
+visitToDoctor.add =Aggiungi visita a medico
+visitToDoctor.addHere =Visita qui
+visitToDoctor.add.sampleLeft =Altro campione
+visitToDoctor.address =Medico (indirizzo)
+visitToDoctor.byDate =Visite del %s
+visitToDoctor.date =Data
+visitToDoctor.describedBrands = Brand descritti
+visitToDoctor.edit =Modifica visita a medico
+visitToDoctor.informant =Informatore
+visitToDoctor.annualLimitsExceeded =Limiti annuali ecceduti di %d per %s
+visitToDoctor.visitLimitsExceeded =Limiti per visita ecceduti di %d per %s
+visitToDoctor.list =Visite ai medici
+visitToDoctor.list.short=Visite medici
+visitToDoctor.note =Note
+visitToDoctor.occasional =Occasionale
+visitToDoctor.partOfTheDay =Quando
+visitToDoctor.parent = Resoconto di
+visitToDoctor.samplesLeft =Campioni lasciati
+visitToDoctor.samplesLeft[0] =Campioni lasciati
+visitToDoctor.samplesLeft.choose.option =Seleziona un prodotto
+visitToDoctor.samplesLeft.number =Numero campioni lasciati
+visitToDoctor.show =Visita
+
+visitToDoctor.state.changed =Visita del giorno %s a "%s" impostata a %s
+warning=Attenzione
+
+withStockMovement =Presenza scarico saggi
+withStockMovement.yes =Con scarico saggi
+withStockMovement.no =Senza scarico saggi
+
+woMicroAreas =Senza microaree
+
+workExpenses =Riepilogo mensile
+workExpenses.approve =Approva
+workExpenses.approvalDate =Data di approvazione
+workExpenses.date =Periodo di riferimento
+workExpenses.state =Stato
+workExpenses.companyTotal =Costo per l'azienda
+workExpenses.employeeTotal =Dovuto al dipendente
+workExpenses.employeeTraveledValue =Addebito KM/Rimborso auto propria
+workExpenses.label =Riepilogo del mese di %s di %s
+workExpenses.workTraveledDistanceTotal =Distanza complessiva percorsa per lavoro
+workExpenses.traveledDistanceTotal =Totale per viaggi
+workExpenses.transfersWithoutOvernight =Giorni di trasferta senza pernottamento
+workExpenses.transfersWithOvernight =Giorni di trasferta con pernottamento
+workExpenses.mealTicketToAssigned =Buoni pranzo spettanti
+workExpenses.uniqueOperatorAndYearMonth =Questo riepilogo mensile è già presente per il dipendente.
+workExpenses.existing =Selezionato il riepilogo mensile già presente.
+workExpenses.refundPerKm=Tariffa di rimborso al dipendente per l'auto personale
+workExpenses.costPerKm=Tarifa di rimborso all'azienda per l'auto aziendale
+workExpenses.documentsReceived =Documentazione ricevuta il
+workExpenses.totalNotPayedByCompany =Totale spese (con e senza fattura)
+workExpenses.totalPayedByCompany =Spese pagate con carta di credito
+workExpenses.adminRecorded =Contabilizzato il
+workExpenses.payrollRecorded =Busta paga registrata il
+workExpenses.sampleLeftBlockReceived =Blocchetto scarico campioni ricevuto il
+
+workExpenses.payrollRecord =Registra la busta paga
+workExpenses.payrollDiscard =Rimuovi la registrazione della busta paga
+
+workExpenses.pendingActivities =Impossibile procedere: ci sono delle attività da confermare in questo mese (%d).
+workExpenses.pendingVisits =Impossibile procedere: ci sono delle visite da confermare in questo mese (%d).
+workExpenses.workingDaysNotCompleted =Per poter procedere non ci devono essere giornate incomplete o incongruenti.
+workExpenses.traveledDistancesNotCompleted = Per poter procedere occorre impostare i km mensili.
+workExpenses.traveledDistancesNotCompleted.alert = Occorre impostare i km percorsi complessivamente nel mese.
+workExpenses.traveledDistancesOverflow =Occorre che i km mensili siano maggiori della somma dei km giornalieri percorsi.
+workExpenses.documentsReceived.delete =Cancella data
+workExpenses.documentsReceived.updated =Data di ricezione impostata. Inoltre è stata inviata una notifica per informare il dipendente.
+workExpenses.documentsReceived.deleted =La data di ricezione è stata rimossa. Inoltre è stata inviata una notifica per informare il dipendente.
+workExpenses.documentsReceived.update.confirm =Vuoi davvero registrare la data di ricezione?
+workExpenses.documentsReceived.delete.confirm =Vuoi davvero cancellare la data di ricezione?
+workExpenses.sampleLeftBlockReceived.updated =Data di ricezione del blocchetto scarico campioni impostata. Inoltre è stata inviata una notifica per informare il dipendente.
+workExpenses.sampleLeftBlockReceived.deleted =La data di ricezione del blocchetto scarico campioni è stata rimossa. Inoltre è stata inviata una notifica per informare il dipendente.
+workExpenses.sampleLeftBlockReceived.update.confirm =Vuoi davvero registrare la data di ricezione del bloccheto?
+workExpenses.sampleLeftBlockReceived.delete.confirm =Vuoi davvero cancellare la data di ricezione del blocchetto?
+workExpenses.confirm =Chiudi il mese
+workExpenses.check =Ok, Verificato
+
+workExpenses.approved =%s approvato.
+workExpenses.confirmed =%s completato.
+workExpenses.checked =%s controllato.
+workExpenses.rejected =%s da completare.
+
+workExpenses.mustBeEmpty =Non è possibile procedere con la cancellazione: occorre prima eliminare prima le distanze mensili/giornaliere percorse, i dettagli di spesa e le trasferte del mese.
+
+workExpensesDetail =Dettaglio di spesa
+workExpensesDetail.byDate =%s di spese
+workExpensesDetail.mustBeInMonth =Deve essere compresa nel mese indicato.
+workExpensesType =Tipo di spesa
+workExpensesType.add =Nuovo
+workExpensesType.list =Tipi di spesa
+workExpensesType.name =Nome
+workExpensesType.type =Tipologia
+workExpensesType.mandatoryInvoice =Fattura/ricevuta obbligatoria
+
+WorkExpensesState.pending =Da confermare
+WorkExpensesState.to_be_approved =Da approvare
+WorkExpensesState.to_be_checked =Da verificare
+WorkExpensesState.completed =Completato
+
+WorkExpensesSuperType.food =Vitto
+WorkExpensesSuperType.lunch =Pranzo
+WorkExpensesSuperType.accomodation =Alloggio
+WorkExpensesSuperType.fuel =Carburante
+WorkExpensesSuperType.travel =Viaggio
+WorkExpensesSuperType.other =Altro
+
+#############################
+# play 1.x standard messages:
+#############################
+
+since.seconds =%d secondi fa
+since.minutes =%d minuti fa
+since.hours =%d ore fa
+since.days =%d giorni fa
+since.months =%d mesi fa
+since.years =%d anni fa
+
+validation.required=Obbligatorio
+validation.minSize=Lunghezza minima %2$d
+validation.maxSize=Lunghezza massima %2$d
+validation.email=Indirizzo email non valido
+validation.range=Non può essere minore di %2$d o maggiore di %3$d
+validation.min=Non può essere minore di %2$d
+validation.max=Non può essere maggiore di %2$d
+validation.match=Deve corrispondere a %2$s
+validation.isTrue=Deve essere impostato
+validation.equals=Deve essere uguale &{%2$s}
+validation.invalid=Valore non valido
+validation.future=Deve essere futura
+validation.after=Deve essere successiva a %2$s
+validation.past=Deve essere passata
+validation.before=Deve essere precedente a %2$s
+validation.object=Validazione fallita
+validation.notFound=Oggetto non trovato per l'id %2$s
+validation.url=Non è un URL valido
+validation.phone=Non è un numero di telefono valido
+validation.unique =Deve essere unico
+#validation.ipv4=Not a valid IP address
+#validation.ipv6=Not a valid IP v6 address
+validation.lenght=Il valore non è tra %3$d e %2$d caratteri
+
+crud.index.title=Scegli l'elemento da modificare
+crud.index.objectType=Tipo
+crud.save =Salva
+crud.cancel =Annulla
+crud.delete =Elimina
+crud.saveAndContinue=Salva e continua
+crud.show.title =Modifica &{%s}
+crud.index.add=Aggiungi
+crud.add=Aggiungi &{%s}
+crud.search=Cerca
+crud.saveAndAddAnother=Salva e aggiungi ancora
+
+crud.hasErrors =Occorre correggere gli errori riportati.
+crud.created=&{%s} creato con successo
+crud.saved=&{%s} salvato con successo
+crud.deleted=&{%s} cancellato con successo
+crud.modified=&{%s} modificato con successo
+crud.cancelled=Operazione annullata.
+
+secure.denied =Operazione non consentita.
+
+secure.title=Accedi
+secure.username=Utente
+secure.password=Password
+secure.remember=Ricordami
+secure.signin=Entra
+secure.error=Errore: utente o password sconosciuti.
+secure.logout=Adesso sei uscito.
+
+secure.loggedIn=Benvenuto/a %s.
+
+
+###################################
+# end of play 1.x standard messages
+################@@@@@@#############

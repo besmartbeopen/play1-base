@@ -1,0 +1,34 @@
+#{extends '/main.html' /}
+#{set modal:true /}
+#{set title:messages.get('secure.title') /}
+
+<div class="row">
+#{form @Secure.authenticate(), class:'form col-sm-6 col-sm-offset-3 panel panel-default', 'data-no-pjax':true}
+
+      <div class="panel-body">
+        <div class="panel-header">
+        	<h1>${'secure.title'.label()}</h1>
+        </div>
+       #{f.text 'username', label:'secure.username',
+       		placeholder:messages.get('username'),
+       		value:flash.username, inline:true, tabindex:1, feedback:'envelope' /}
+       #{f.password 'password', label:'secure.password',
+       		placeholder:messages.get('password'),
+       		value:flash.password, inline:true, tabindex:2, feedback:'lock' /}
+       </div>
+       <div class="row panel-footer">
+      	<div class="col-sm-3">
+       		<button class="btn btn-primary" type="submit" tabindex="3"><i class="fa fa-unlock"></i> &{'secure.signin'}</button>
+        </div>
+      	<div class="col-sm-3">
+            #{f.checkbox 'remember', label:'secure.remember', value:(flash.remember ?: true), inline:true, tabindex:4 /}
+        </div>
+      	<div class="col-sm-6">
+          <a href="@{Registration.lostPassword()}">
+             &{'registration.lostPassword'}
+          </a>
+        </div>
+     </div>
+#{/form}
+</div>
+

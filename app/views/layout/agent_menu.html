@@ -1,0 +1,24 @@
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse"
+    data-target="#bs-sidebar-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span> <span
+      class="icon-bar"></span> <span class="icon-bar"></span> <span
+      class="icon-bar"></span>
+  </button>
+</div>
+<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a data-no-pjax href="@{Application.index()}"
+           id="logo"><span class="sr-only">${play.configuration['site.customer']}</span></a>
+        </li>
+      </ul>
+      <!-- functional menu -->
+      #{include './functional_menu.html' /}
+      <!-- end of functional menu -->
+
+      <!--  personal menu -->
+      <ul class="nav navbar-nav">
+        #{include './personal_menu_items.html' /}
+      </ul>
+</div>

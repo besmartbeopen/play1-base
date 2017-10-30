@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:messages.get('personal.index') /}
+#{set breadcrumbs:[(currentOperator.fullname):null] /}
+
+#{if informant == null}
+<div class="panel panel-default">
+ <div class="panel-body center">
+  #{editablePhoto currentOperator /}
+ </div>
+ <div class="panel-footer">&{'personal.photo'}</div>
+</div>
+#{/if}#{else}
+ #{include '/Informants/_show.html' /}
+#{/else}
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        Impostazioni personali
+      </h4>
+    </div>
+    <div class="panel-body">
+#{form action:@updateSettings(), method:'post', autocomplete:'off', class:'form-horizontal'}
+  #{f.edit 'perPage', required:true}
+   <select name="perPage" id="perPage" class="form-control" data-selectize>
+    #{list items:[10, 20, 30, 40, 50, 100], as:'item'}
+      <option value="${item}"#{if field.value == item} selected#{/if}>${item}</option>
+    #{/list}
+   </select>
+  #{/f.edit}
+
+  #{b.buttons}
+    #{b.submit 'Ok' /}
+  #{/b.buttons}
+#{/form}
+
+  </div>
+</div>

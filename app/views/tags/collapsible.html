@@ -1,0 +1,15 @@
+*{
+  id o arg: l'id di questo collassabile
+  open o opened: indica se a riposo è aperto, predefinito false
+  label o title: indica il nome di questo collasabile
+  * body: contiene il corpo del collassabile
+}*
+%{
+ id = _id?:_arg
+ opened = _opened?:_open?:false
+ label = _label?:_title
+}%
+<div class="collapsible"><a href="#${id}" data-toggle="collapse"><i class="fa fa-chevron-right"></i> ${label}</a></div>
+<div id="${id}" class="collapse#{if opened} in#{/if}" data-toggler-close="fa-chevron-right">
+#{doBody /}
+</div>

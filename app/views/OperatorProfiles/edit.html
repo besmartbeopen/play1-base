@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'OperatorProfiles.edit'.label() /}
+#{set breadcrumbs:['OperatorProfiles.list':@OperatorProfiles.list(), 'OperatorProfiles.edit':null] /}
+
+#{form action:@save(), autocomplete:'no', class:'form form-horizontal'}
+
+ #{if profile.persistent}
+  #{f.hidden 'profile.id' /}
+ #{/if}
+  
+  #{f.text 'profile.name', required:true /}
+  #{f.textarea 'profile.description', required:false /}
+
+  #{f.selectEnums 'profile.roles', label:'roles', required:true,
+    values:models.enums.Role.values(), placeholder:'Scegli...' /}
+
+  #{f.checkbox 'profile.employee' /}
+  #{f.checkbox 'profile.agent' /}
+
+  #{f.text 'profile.loginUrl', required:false,
+    placeholder:messages.get('profile.loginUrl.placeholder'),
+    description:messages.get('profile.loginUrl.description') /}
+  #{f.textarea 'profile.disclaimer', required:false /}
+  #{f.selectEnum 'profile.pageLayout', label:'pageLayout', required:true,
+    values:models.enums.PageLayout.values(), placeholder:'Scegli...' /}
+
+  #{f.checkbox 'profile.active' /}
+  
+  #{b.buttons}
+    #{b.save /}
+    #{b.cancel @index() /}
+  #{/b.buttons}
+#{/form} 

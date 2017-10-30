@@ -1,0 +1,177 @@
+#{extends 'main.html' /}
+#{set title:'Benvenuto' /}
+
+<div class="homepage-quick-menu">
+  <div class="panel panel-info">
+    <div class="panel-heading">Menu scelta rapida</div>
+    <div class="panel-body text-center">
+      <div class="row">
+       <div class="col-lg-12">
+         #{secure.check 'Doctors.list'}
+          <a href="@{Doctors.list()}" class="btn btn-default">
+             <i class="fa fa-4x fa-user-md fa-fw"></i>
+            <br><small>&{'doctor.list'}</small>
+          </a>
+         #{/secure.check}
+         #{secure.check 'Doctors.blank'}
+          <a href="@{Doctors.searchByName()}" class="btn btn-default">
+            <i class="fa fa-4x fa-user-plus fa-fw"></i>
+            <br><small>&{'doctor.add.short'}</small>
+          </a>
+         #{/secure.check}
+         #{secure.check 'VisitToDoctors.list'}
+          <a href="@{VisitToDoctors.index()}" class="btn btn-default">
+            <i class="fa fa-4x fa-briefcase fa-fw"></i>
+            <br><small>&{'visitToDoctor.list.short'}</small>
+          </a>
+         #{/secure.check}
+         #{secure.check 'Activities.list'}
+          <a href="@{Activities.list()}" class="btn btn-default">
+            <i class="fa fa-4x fa-tasks fa-fw"></i>
+            <br><small>&{'activity'}</small>
+          </a>
+         #{/secure.check}
+         #{secure.check 'Expenses.mine'}
+          <a href="@{Expenses.mine()}" class="btn btn-default">
+            <i class="fa fa-4x fa-money fa-fw"></i>
+            <br><small>&{'expenses.mine.short'}</small>
+          </a>
+         #{/secure.check}
+         #{secure.check 'DailyDistances.mine'}
+          <a href="@{DailyDistances.mine()}" class="btn btn-default">
+            <i class="fa fa-4x fa-calendar fa-fw"></i>
+            <br><small>&{'dailyDistances.show.short'}</small>
+          </a>
+         #{/secure.check}
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="homeChecks" data-load-async="@{homeChecks()}"></section>
+
+#{secure.check 'Informants.coordinates'}
+<div class="panel panel-default">
+ <div class="panel-heading">
+  Carta del territorio
+  <!--  {currentOperator.agent.areas or territory.name} -->
+ </div>
+<div class="panel-body" id="territory" style="height:500px">
+<map data-max-zoom="20" data-min-zoom="6">
+#{if currentOperator.agent != null}
+ #{list items:currentOperator.agent.areas, as:'area'}
+  #{if area.companyLine == $data.current.companyLine}
+   #{list items:area.territories.findAll { it.agent != null}, as:t}
+    <layer unbound=true color="#404000" geojson-ref="@Informants.coordinates(t.agent.id)"></layer>
+   #{/list}
+   <layer color="#8e508e" fill-opacity=0.4 weight=0.3 highlight-opacity=0 geojson-ref="@{Areas.map(area.id)}"></layer>
+  #{/if}
+ #{/list}
+ <layer unbound=true color="#404000" geojson-ref="@{Informants.coordinates(currentOperator.agent.id)}"></layer>
+ #{if currentOperator.agent.territory != null}
+ <layer color="#3f8fff" fill-opacity=0.3 weight=3 highlight-opacity=0 geojson-ref="@{Territories.map(currentOperator.agent.territory.id)}"></layer>
+ #{/if}
+#{/if}#{else}
+ <layer unbound=true color="#404000" geojson-ref="@{Informants.coordinatesAll()}"></layer>
+ <layer color="#8e508e" fill-opacity=0.4 weight=0.3 highlight-opacity=0 geojson-ref="@{Areas.mapAll()}"></layer>
+#{/else}
+</map>
+</div>
+</div>
+#{/secure.check}
+
+<div class="row">
+<div class="col-md-6">
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <i class="fa fa-tasks"></i> &{'Notifications.tasks'} <span class="badge">${tasks}</span>
+        </div>
+        <div class="panel-body" data-load-async="@{Notifications.tasks()} #taskList">
+         <i class="fa fa-spin fa-spinner fa-2x"></i>
+         Caricamento dei compiti da completare in corso...
+        </div>
+    </div>
+    <div class="panel panel-info" id="notifications" data-load-async="@{Notifications.notifications()}">
+        <div class="panel-heading">
+        <i class="fa fa-spin fa-spinner fa-2x"></i> Caricamento notifiche in corso...
+        </div>
+    </div>
+#{secure.check 'Application.issues'}
+    <div class="panel panel-default" id="issues" data-load-async="@{issues()}">
+        <div class="panel-heading">
+        <i class="fa fa-spin fa-spinner fa-2x"></i> Caricamento in corso...
+        </div>
+    </div>
+#{/secure.check}
+</div>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-bar-chart-o"></i> Numero medici per area terapeutica
+       #{if currentOperator.agent != null} nelle tue microaree #{/if}
+            <span class="badge">${doctorCount}</span>
+    </div>
+    <div class="panel-body">
+       <div id="areaCountersChart" data-donutchart="${areaCountersData.toJson().escape()}"></div>
+       <div class="list-group">
+      #{list items:areaCounters, as:'item'}
+                 <a class="list-group-item"
+                   #{if item.key}href="@{Doctors.list(therapeuticArea:item.key.id)}"#{/if}>
+                   ${item.key?:'<span class="text-muted">(nessuna)</span>'.raw()}
+                   <div class="pull-right badge" style="background-color: ${item.key ? item.key.color : '#888888'}">
+            ${item.value}
+                #{if currentOperator.agent != null && item.key && item.key.desiredDoctors > 0}
+          su ${item.key.desiredDoctors}
+          </div>
+          <div class="progress" style="height: 12px; margin-bottom: 4px">
+              <div class="progress-bar progress-bar-success" role="progressbar"
+                style="background-color: ${item.key.color ?: '#888888'}; width: ${item.key.desiredDoctors < item.value ? 100 :
+                  (item.value * 100 / item.key.desiredDoctors).formatForCode('#.##')}%">
+              </div>
+          </div>
+          #{/if}#{else}
+            </div>
+          #{/else}
+          </a>
+      #{/list}
+             <div class="list-group-item list-group-item-info">
+              <strong>Totali</strong>
+
+              <strong class="pull-right badge">${doctorCount}</strong>
+             </div>
+      </div>
+    </div>
+  </div>
+#{secure.check 'MicroAreas.unassigned'}
+  <div class="panel panel-default" data-load-async="@{unassignedMicroAreas()}">
+        <div class="panel-heading">
+        <i class="fa fa-spin fa-spinner fa-2x"></i> Caricamento informazioni sulle microaree...
+        </div>
+  </div>
+#{/secure.check}
+
+</div>
+</div>
+
+<div class="row">
+
+#{secure.check 'Products.list'}
+#{if !productIncompletes.empty}
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">&{'products'}</div>
+    <div class="panel-body">
+      <p class="alert alert-danger"><i class="fa fa-alert"></i> Prodotto con data di lancio richiesta, ma mancante.</p>
+      <div class="list-group">
+      #{list items:productIncompletes, as:'item'}
+       <a class="list-group-item" href="@{Products.edit(item.id)}">${item.name}</a>
+      #{/list}
+      </div>
+    </div>
+  </div>
+</div>
+#{/if}
+#{/secure.check}
+</div>

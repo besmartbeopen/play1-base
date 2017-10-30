@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'OperatorProfiles.list'.label() /}
+#{set breadcrumbs:['OperatorProfiles.list':null] /}
+
+#{secure.check 'OperatorProfiles.blank'}
+#{b.actions}
+  #{b.link @OperatorProfiles.blank(), btn:'primary', fa:'plus'}
+    ${'new'.label()}
+  #{/b.link}
+#{/b.actions}
+#{/secure.check}
+
+<section id="results">
+#{paginate profiles}
+   <ul class="list-group">
+        #{list items:profiles.results, as:'item'}
+        <li class="list-group-item">
+           <div class="pull-right btn-group">
+              #{b.link @OperatorProfiles.show(item.id), secure:item, class:'success'}&{'view'}#{/b.link}
+              #{b.link @OperatorProfiles.edit(item.id), secure:item, fa:'edit'}&{'edit'}#{/b.link}
+           </div>
+           <h4 class="list-group-item-heading"><i class="fa fa-id-card"></i> ${item.name}</h4>
+
+           <div class="list-group-item-detail">
+            #{if !item.active}<span class="label label-danger">Disabilitato</span>#{/if}
+            #{if item.employee}<span class="label label-info">Dipendenti</span>#{/if}
+            #{if item.agent}<span class="label label-success">Agenti</span>#{/if}
+
+            #{list items:item.operators, as:'operator'}${operator}#{if !operator_isLast}, #{/if}#{/list}
+           </div>
+         </li>
+        #{/list}
+    </ul>
+#{/paginate}
+</section>

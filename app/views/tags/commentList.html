@@ -1,0 +1,57 @@
+%{
+  value = _arg
+  selector = "${value.class.simpleName}-${value.id}"
+  valueId = "comments-" + selector
+  collapsed = !!_collapsed
+  comment = _comment
+}%
+<ul class="media-list comments" id="${valueId}">
+  #{secure.check 'Comments.save', target:value}
+	<li class="media#{if collapsed} collapse#{/if}" id="${selector}">
+		<div class="media-left">
+			<i class="fa fa-comment fa-fw fa-lg"></i>
+		</div>
+		<div class="media-body">#{newComment value, comment:comment, target:selector, parentTarget:valueId /}</div>
+	</li>
+  #{/secure.check}
+	#{list items:value.comments, as:'item'}
+    <li class="media" id="comment_${item.id}">
+       <div class="media-left">
+        <i class="fa fa-fw fa-lg fa-${item.owner ? 'user-circle-o' : 'bell-o'}"></i>
+       </div>
+       <div class="media-body">
+        <div class="small text-muted">
+        #{if item.owner}${item.owner.fullname}#{/if}
+        ha commentato #{timeago item.createdAt /}
+        #{if item.createdAt != item.updatedAt}
+        (<span class="label label-warning">Modificato</span>
+            #{timeago item.updatedAt /})
+        #{/if}
+        </div>
+        #{if item.active}
+         <div>
+         ${item.comment}
+         </div>
+         <div class="btn-group">
+        #{secure.check 'Comments.save', target:item}
+            <a class="btn btn-default btn-xs" data-toggle="collapse"
+                href="#${item.class.simpleName}-${item.id}">
+                <i class="fa fa-reply"></i> Rispondi
+            </a>
+        #{/secure.check}
+        #{secure.check 'Comments.delete', target:item}
+            <a href="@{Comments.delete(item.id)}" class="btn btn-danger btn-xs"
+                data-confirm="&{'confirm.delete'}" data-async="#${valueId}"
+                data-method="DELETE" rel="nofollow">
+                <i class="fa fa-trash-o"></i><span class="hidden-xs">
+                    Elimina</span></a>
+        #{/secure.check}
+        </div>
+        #{/if}#{else}
+         <del class="text-muted">${item.comment}</del>
+        #{/else}
+        #{commentList item, comment:comment, collapsed:true /}
+       </div>
+    </li>
+	#{/list}
+</ul>

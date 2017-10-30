@@ -1,0 +1,15 @@
+*{
+ arg (required) field.name attribute
+ value (optional) default to field.value
+ label (optional) default to field.name
+ required (optional) default to false
+}*
+#{f.edit _arg, label:_label, value:_value, required:_required}
+ #{list items:[false, true], as:'item'}
+  <div class="radio">
+   <input type="radio" name="${field.name}" id="${field.id}_${item}"
+    value="${item}" #{if field.value == item}checked#{/if}>
+   <label for="${field.id}_${item}">&{field.name + '.' + (item ? 'yes' : 'no')}</label>
+  </div>
+ #{/list}
+#{/f.edit}

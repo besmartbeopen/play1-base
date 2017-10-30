@@ -1,0 +1,177 @@
+#{extends 'main.html' /}
+#{set title:'Setup' /}
+#{set breadcrumbs:['setup':null] /}
+
+<div class="panel panel-info">
+  <div class="panel-heading"><i class="fa fa-gears"></i>
+    &{'inConfiguration'}</div>
+  <div class="panel-body">
+#{form action:@configurationUpdate(), class:'form-horizontal',
+  autocomplete:'off', method:'POST'}
+
+  #{f.text 'configuration.generalFrom', required:true,
+    placeholder:'configuration.generalFrom.placeholder'.label(),
+    description:'configuration.generalFrom.description' /}
+  #{f.text 'configuration.salesOrderTo', required:true,
+    description:'configuration.salesOrderTo.description',
+    placeholder:'configuration.salesOrderTo.placeholder'.label(),
+    value:configuration.salesOrderTo.join(', ') /}
+
+  #{f.text 'configuration.costPerKm', required:true,
+    description:'configuration.costPerKm.description',
+    value:configuration.costPerKm?.format('0.00') /}
+  #{f.text 'configuration.refundPerKm', required:true,
+    description:'configuration.refundPerKm.description',
+    value:configuration.refundPerKm?.format('0.00') /}
+
+  #{f.checkbox 'configuration.geoMaster' /}
+  
+  #{f.text 'configuration.maximumNumberOfMonthsForSampleLeft',
+    type:'number', min:'0', step:'1', required:true /}
+  
+  #{f.text 'configuration.numberOfMonthsForMonthFeeAdvance',
+    type:'number', min:'0', step:'1', required:true /}
+    
+  #{f.checkbox 'configuration.nightlyExporterEnabled'/}
+
+  #{b.buttons}
+    #{b.save /}
+  #{/b.buttons}
+#{/form}
+  </div>
+</div>
+
+#{if withoutCostOrRefundPerKm > 0}
+  <p class="alert alert-info">
+        <i class="fa fa-info"></i> Attenzione ci sono <strong>${withoutCostOrRefundPerKm}</strong>
+        rimborsi spese che non hanno impostato il costo o il rimborso per km.
+    </p>
+    <p>
+      <a href="@{Setup.fixWorkExpensesWithoutCostRefundPerKm()}" class="btn btn-warning" data-method="POST"
+        data-confirm="Sei sicuro di voler impostare il costo o rimborso km per tutti i rimborsi spese che hanno questi valori null?">
+        Imposta il costo ed il rimborso</a>
+    </p>
+#{/if}
+
+<div class="panel panel-default">
+ <div class="panel-heading">Allineamento responsabili</div>
+ <div class="panel-body">
+  <p class="alert alert-warning">
+    Da qui puoi attivare la correzzione automatica
+    dei responsabili degli agenti determinati dalla struttura territoriale.
+
+    #{b.link @Setup.fixOperatorManagers(), 'data-method':'post',
+     fa:'life-ring'}
+     Effettua allineamento
+    #{/b.link}
+   </p>
+ </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading"><i class="fa fa-map-marker"></i>
+    Associazione microaree-comuni</div>
+  <div class="panel-body">
+#{form action:@importMicroAreaMunicipals(), class:'form-horizontal',
+    autocomplete:'off', method:'POST', enctype:'multipart/form-data'}
+
+    <p class="alert alert-info">
+        <i class="fa fa-info"></i> Importazione di file CSV per l'associazione
+        di microaree con i comuni. Il file CSV separato da <strong>,</strong>
+        e protetto da <strong>"</strong> deve avere tre colonne:
+        <ul>
+            <li>Comuni</li>
+            <li>Brick</li>
+            <li>NOME MICROAREA</li>
+        </ul>
+    </p>
+    #{f.edit 'file', required:true}
+        <input type="file" name="file" id="file">
+    #{/f.edit}
+
+    <p class="alert alert-warning">
+        <i class="fa fa-warning"></i> <strong>Attenzione:</strong> eventuali
+        associazioni già presenti saranno cancellate.
+    </p>
+
+  <div class="row">
+    <p class="col-sm-offset-2 col-sm-10">
+         <button type="submit" name="_save" class="btn btn-primary">
+             <i class="fa fa-upload"></i> Carica e salva</button>
+    </p>
+  </div>
+#{/form}
+</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading"><i class="fa fa-money"></i>
+    Importazione assorbimenti microaree</div>
+  <div class="panel-body">
+#{form action:@importMicroAreaAbsorptions(), class:'form-horizontal',
+    autocomplete:'off', method:'POST', enctype:'multipart/form-data'}
+
+    <p class="alert alert-info">
+        <i class="fa fa-info"></i> Importazione di file CSV per l'attribuzione
+        dell'assorbimento delle microaree. Il file CSV separato da <strong>,</strong>
+        e protetto da <strong>"</strong> deve avere due colonne:
+        <ul>
+            <li>microarea</li>
+            <li>assorbimento</li>
+        </ul>
+    </p>
+    #{f.edit 'file', required:true}
+        <input type="file" name="file" id="file">
+    #{/f.edit}
+
+    <p class="alert alert-warning">
+        <i class="fa fa-warning"></i> <strong>Attenzione:</strong> eventuali
+        assorbimenti già presenti saranno sovrascritti.
+    </p>
+
+  <div class="row">
+    <p class="col-sm-offset-2 col-sm-10">
+         <button type="submit" name="_save" class="btn btn-primary">
+             <i class="fa fa-upload"></i> Carica e salva</button>
+    </p>
+  </div>
+#{/form}
+</div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading"><i class="fa fa-map"></i>
+        Variazioni comuni annuali</div>
+    <div class="panel-body">
+        <div class="alert alert-info">
+            Le variazioni comunali sono accettate in formato CSV
+            <strong>separato da virgole e senza intestazioni</strong>
+            con le seguenti colonne:
+            <ul>
+                <li>anno della variazione, es: 2014</li>
+                <li>tipo della variazione, es: AQ, ES, ...</li>
+                <li>codice istat regione (non usato)</li>
+                <li>codice istat comune</li>
+                <li>nome del comune</li>
+                <li>altro codice comune</li>
+                <li>altro nome comune (non usato)</li>
+                <li>provvedimento e documento (non usato)</li>
+                <li>contenuto del provvedimento (non usato)</li>
+                <li>data di decorrenza (non usato)</li>
+            </ul>
+        </div>
+      #{form action:@importMunicipalVariations(), class:'form-horizontal',
+        autocomplete:'off', method:'POST', enctype:'multipart/form-data'}
+
+        #{f.edit 'file', required:true}
+            <input type="file" name="file" id="file">
+        #{/f.edit}
+
+        #{b.buttons}
+            #{b.submit 'Carica e salva', fa:'upload' /}
+        #{/b.buttons}
+      #{/form}
+    </div>
+</div>
+

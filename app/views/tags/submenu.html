@@ -1,0 +1,8 @@
+*{
+  arg: label required
+}*%{ (_arg) && (_label = _arg); }%<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">${_label.raw()} <b class="caret"></b></a>
+<ul class="dropdown-menu">
+#{doBody /}
+</ul>
+</li>

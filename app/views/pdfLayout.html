@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>${play.configuration['site.customer']} - #{get 'title' /}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content="Informatore Scientifico"></meta>
+    <meta name="author" content="InPHASE"></meta>
+    <link href="@@{'/public/stylesheets/print.css'}" rel="stylesheet"></link>
+  </head>
+
+    <body>
+      <div style="float: right">
+        <img src="@@{'/public/images/logo.png'}" alt="InPHASE logo" />
+      </div>
+      <h1>#{get 'title' /}</h1>
+      #{doLayout /}
+
+    <footer id="footer">
+       <div class="container">
+        <p class="text-center text-muted">© ${play.configuration['site.copyright']}</p>
+      </div>
+    </footer>
+  </body>
+</html>

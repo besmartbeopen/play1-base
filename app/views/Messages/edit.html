@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:messages.get('message.edit') /}
+#{set breadcrumbs:['message.list':@Messages.list(), 'message.edit':null] /}
+
+#{form action:@update(), class:'form-horizontal', autocomplete:'off', enctype:'multipart/form-data'}
+
+    #{f.hidden 'message.id' /}
+	#{include './_form.html' /}
+
+	<div class="row">
+		<p class="col-sm-offset-2 col-sm-10">
+	    	<button type="submit" name="_save" class="btn btn-primary">
+	    		<i class="fa fa-save"></i> ${'save'.label()}</button>
+
+	   		#{secure.check 'Messages.delete', target:message}
+    			<button type="submit" name="_delete" data-confirm="&{'confirm.delete'}" class="btn btn-danger">
+    				<i class="fa fa-trash-o"></i> ${'crud.delete'.label()}
+    			</button>
+       		#{/secure.check}
+       	    	
+	    	<a class="btn btn-warning" data-confirm="&{'confirm.cancel'}"
+	    		href="@{index()}"><i class="fa fa-times"></i> &{'cancel'}</a>
+		</p>
+	</div>
+#{/form}

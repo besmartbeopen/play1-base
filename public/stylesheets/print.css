@@ -1,0 +1,50 @@
+body {
+  color: rgb(51, 51, 51);
+  display: block;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 180%;
+  font-weight: 500;
+}
+
+#footer, .text-center {
+  text-align: center;
+}
+
+#footer {
+  font-size: 0.7em;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-muted {
+  color: #a0a0a0;
+}
+
+table, th, td {
+   border: 1px solid #a0a0a0;
+}
+
+th, td {
+  padding: 0.2em 0.5em;
+}
+
+table {
+    width: 97%;
+  border-collapse: collapse;
+}
+
+.signature {
+   display:block;
+   text-align: center;
+   width: 20em;
+   border-bottom: 1px solid #000000;
+   padding-bottom: 2em;
+   margin-left: auto;
+   margin-right: 0;
+}
+

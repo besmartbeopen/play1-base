@@ -1,0 +1,39 @@
+*{
+ arg (required) field attribute
+ label (optional) default to arg.name
+ description (optional) default to null
+ required (optional) default to false
+ checkbox (optional) default to false
+ inline (optional) default to false
+ feedback (optional) default to null, a string indicating the fontawesome icon
+ after (optional) default to empty, raw html to add after label
+}*
+#{field _arg}%{
+  if (_label == null) {
+  	_label = field.name
+  }
+  if (_body) {
+    _body.setProperty('field', field)
+  }
+  if (noLabel == null) {
+    noLabel = _inline;
+  }
+}%<div class="form-group#{if field.error} has-error#{/if}#{if _feedback} has-feedback#{/if}" data-role="fieldcontain">
+  #{if _checkbox?:false}#{if !noLabel}<div class="col-sm-offset-2 col-sm-10">#{/if}<div class="checkbox">
+#{doBody /}
+<label for="${field.id}">${_label.label()}#{if _required?:false}#{required/}#{/if}</label>
+#{if _description}<span class="help-block">${_description.label()}</span>#{/if}
+#{ifError field.name}<span class="help-block">${field.error}</span>#{/ifError}
+#{if _after}${_after.raw()}#{/if}
+</div>#{if !noLabel}</div>#{/if}
+  #{/if}#{else}
+   <label for="${field.id}" class="#{if noLabel}sr-only#{/if}#{else}control-label col-sm-2#{/else}">${_label.label()}#{if _required?:false}#{required/}#{/if}</label>
+   #{if !noLabel}<div class="col-sm-10">#{/if}#{doBody /}
+     #{if _feedback}<span class="form-control-feedback"><i class="fa fa-${_feedback}"></i></span>#{/if}
+     #{if _description}<span class="help-block">${_description.label()}</span>#{/if}
+     #{ifError field.name}<span class="help-block"><strong>${field.error.raw()}</strong></span>#{/ifError}
+   #{if !noLabel}</div>#{/if}
+   #{if _after}${_after.raw()}#{/if}
+  #{/else}
+</div>
+#{/field}

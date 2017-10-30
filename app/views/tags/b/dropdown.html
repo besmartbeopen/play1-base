@@ -1,0 +1,15 @@
+*{
+utile per creare dropdown menu:
+arg: non richiesto, aggiunge una etichetta
+btn: non richiesto in stile bootstrap
+fa: opzionale, font-awesome
+da usare con una sequenza di menuitem come body
+}*
+<button type="button" class="btn btn-${_btn?:'default'} dropdown-toggle" data-toggle="dropdown">
+ #{if _fa}<i class="fa fa-${_fa}"></i> #{/if}#{if _arg}${_arg.label()}#{/if}
+ <span class="caret"></span>
+ <span class="sr-only">attiva/disattiva menu a tendina</span>
+</button>
+<ul class="dropdown-menu" role="menu">
+#{doBody /}
+</ul>

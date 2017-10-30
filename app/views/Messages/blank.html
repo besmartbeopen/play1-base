@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+%{ label = messages.get('message.newMessage') }%
+#{set title: label /}
+#{set breadcrumbs:[(label):null] /}
+
+#{form action:@create(), class:'form form-horizontal', autocomplete:'off', enctype:'multipart/form-data'}
+
+	#{include './_form.html' /}
+
+    <div class="row">
+        <p class="col-sm-offset-2 col-sm-10">
+            <button type="submit" name="_create" class="btn btn-primary"><i class="fa fa-save"></i> ${'crud.save'.label()}</button>
+        </p>
+    </div>
+        
+#{/form}

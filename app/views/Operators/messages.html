@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:messages.get('message.list') /}
+#{set breadcrumbs:['message.list':null] /}
+
+<div class="list-group">
+    <div class="list-group-item list-group-item-info">
+#{form action:@Operators.messages(), class:'form-inline', autocomplete:'off',
+    'data-reload':'#results'}
+    #{f.text 'subject', 'data-autochange':true, inline:true,
+        placeholder:'message.searchSubject'.label(),
+        value:(subject.isPresent() ? subject.get() : '') /}
+
+    #{f.text 'dateRange', value:(dateRange?.isPresent() ? dateRange.get() : ''),
+        placeholder:'date'.label(), inline:true, 'data-date-range':true,
+        feedback:'calendar' /}
+    #{limit /}
+
+    #{b.submit 'Esporta', name:'_export', fa:'download' /}
+#{/form}
+</div>
+
+#{include '/Messages/_list.html' /}
+</div>

@@ -1,0 +1,10 @@
+*{
+  arg: azione per il caricamento del menu revisioni
+  show: opzionale, azione per lo show dell'oggetto attuale
+}*
+#{if _show}<a href="${_show}" class="btn btn-default">Torna all'attuale</a>#{/if}
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+ <i class="fa fa-history"></i> <span class="hidden-xs">&{'history'} <span class="caret"></span></span>
+</button>
+<ul class="dropdown-menu dropdown-menu-right" role="menu" id="historyList" data-load-async="${_arg}">
+</ul>

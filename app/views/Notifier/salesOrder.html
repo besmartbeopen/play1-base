@@ -1,0 +1,193 @@
+#{if email}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">#{/if}#{else}<!DOCTYPE html>
+<html>#{/else}
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Nuovo ordine da InPhase</title>
+<link rel="stylesheet" href="@@{'/public/stylesheets/email.css'}" media="all" type="text/css" />
+</head>
+
+<body#{if email} itemscope itemtype="http://schema.org/EmailMessage"#{/if}>
+
+<table class="body-wrap">
+  <tr>
+    <td></td>
+    <td class="container" width="600">
+      <div class="content">
+        <table class="main" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="content-wrap aligncenter">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="content-block">
+                    <h1 class="aligncenter">
+                      Ordine n° ${salesOrder.id}
+                      del ${salesOrder.createdAt.toDate().format('dd MMMM yyyy')}
+                      </h1>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block">
+                    <h2 class="aligncenter">#{if !salesOrder.state.completed}
+                    ${salesOrder.state.label()}#{/if}</h2>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block aligncenter">
+                    <table class="invoice" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <th colspan="5">Spedire #{if salesOrder.sameAddresses}e fatturare#{/if} a:</th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">
+                          ${salesOrder.shippingAddress.name}<br/>
+                          #{if salesOrder.shippingAddress.street}
+                            ${salesOrder.shippingAddress.street}<br/>
+                          #{/if}
+                          #{if salesOrder.shippingAddress.cap}
+                            ${salesOrder.shippingAddress.cap} -
+                          #{/if} ${salesOrder.shippingAddress.municipal}
+                          (${salesOrder.shippingAddress.municipal.province.code})
+                          <br/>
+                          #{if salesOrder.shippingAddress.phone}
+                            Tel.: ${salesOrder.shippingAddress.phone}
+                          #{/if}
+                          #{if salesOrder.shippingAddress.email}
+                              e-mail: ${salesOrder.shippingAddress.email}
+                          #{/if}
+                        </td>
+                      </tr>
+                      #{if !salesOrder.sameAddresses}
+                      <tr>
+                        <th colspan="5">Fatturare a:</th>
+                      </tr>
+                      <tr>
+                        <td colspan="5">
+                          ${salesOrder.billingAddress.name}<br/>
+                          #{if salesOrder.billingAddress.street}
+                            ${salesOrder.billingAddress.street}<br/>
+                          #{/if}
+
+                          #{if salesOrder.billingAddress.cap}
+                            ${salesOrder.billingAddress.cap} -
+                          #{/if} ${salesOrder.billingAddress.municipal}
+                          (${salesOrder.billingAddress.municipal.province.code})
+                          <br/>
+                          #{if salesOrder.billingAddress.phone}
+                            Tel.: ${salesOrder.billingAddress.phone}
+                          #{/if}
+                          #{if salesOrder.billingAddress.email}
+                              e-mail: ${salesOrder.billingAddress.email}
+                          #{/if}
+                        </td>
+                      </tr>
+                      #{/if}
+
+                      #{if salesOrder.customer.mobile}
+                        <tr>
+                          <td colspan="5">
+                            &{'mobile'} cliente: ${salesOrder.customer.mobile}
+                          </td>
+                        </tr>
+                      #{/if}
+
+                      #{if salesOrder.customer.vat}
+                        <tr>
+                          <td colspan="5">
+                            partita IVA: ${salesOrder.customer.vat}
+                          </td>
+                        </tr>
+                      #{/if}
+                      #{if salesOrder.customer.fiscalCode}
+                        <tr>
+                          <td colspan="5">
+                            codice fiscale: ${salesOrder.customer.fiscalCode?.toUpperCase()}
+                          </td>
+                        </tr>
+                      #{/if}
+                      <tr>
+                        <td colspan="5">
+                          <strong>&{'salesOrder.paymentCondition'}:</strong>
+                          ${salesOrder.paymentCondition}
+                          #{if salesOrder.bankPaymentData}
+                            <br/>
+                            &{'salesOrder.bankPaymentData'}: ${salesOrder.bankPaymentData}
+                          #{/if}
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="5">
+                          <strong>&{'salesOrder.microArea'}:</strong>
+                          ${salesOrder.microArea.name}
+                        </td>
+                      </tr>
+                      #{if salesOrder.note}
+                        <td colspan="5">
+                          <strong>&{'salesOrder.note'}:</strong>
+                          ${salesOrder.note}
+                        </td>
+                      #{/if}
+                      <tr>
+                        <td>
+                          <table class="invoice-items" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <th>&{'salesOrderDetail.product'}</th>
+                              <th>&{'packagedProduct.code'}</th>
+                              <th class="alignright">&{'salesOrderDetail.quantity.short'}</th>
+                              <th class="alignright">&{'salesOrderDetail.discount.short'}</th>
+                              <th class="alignright">&{'salesOrderDetail.totalPrice.short'}</th>
+                            </tr>
+                           #{list items:salesOrder.details, as:'detail'}
+                            <tr class="invoice-details">
+                              <td>${detail.product.name}</td>
+                              <td>${detail.product.packagedProduct.code}</td>
+                              <td class="alignright">${detail.quantity}</td>
+                              <td class="alignright">${detail.discount.format('0.00')}</td>
+                              <td class="alignright fullprice">${detail.totalPrice.format('0.00')} €</td>
+                            </tr>
+                           #{/list}
+                            <tr class="total">
+                              <td class="alignright" colspan="4">&{'salesOrder.totalPrice'}</td>
+                              <td class="alignright">${salesOrder.totalPrice.format('0.00')} €</td>
+                            </tr>
+                            <tr class="total">
+                              <td class="alignright" colspan="4">&{'salesOrder.taxAmount'}</td>
+                              <td class="alignright">${salesOrder.taxAmount.format('0.00')} €</td>
+                            </tr>
+                            <tr class="total">
+                              <td class="alignright" colspan="4">&{'salesOrder.fullPrice'}</td>
+                              <td class="alignright"> ${salesOrder.fullPrice.format('0.00')} €</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content-block aligncenter">
+                    InPhase
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <div class="footer">
+          <table width="100%">
+            <tr>
+              <td class="content-block aligncenter">
+                <a href="@@{SalesOrders.show(salesOrder.id)}">Visualizza nel browser</a>
+              </td>
+            </tr>
+          </table>
+        </div></div>
+    </td>
+    <td></td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" data-no-pjax href="@{Application.index()}"
+       id="logo"><span class="sr-only">${play.configuration['site.customer']}</span></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <!-- functional menu -->
+      #{include './functional_menu.html' /}
+      <!-- end of functional menu -->
+      
+      <!--  personal menu -->
+      <ul class="nav navbar-nav navbar-right">
+        #{include './personal_menu_items.html' /}
+      </ul>
+      <!-- end of personal menu -->
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

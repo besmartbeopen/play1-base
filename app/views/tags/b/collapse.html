@@ -1,0 +1,9 @@
+*{
+ arg: il selettore css che individua il target
+ fa: l'eventuale nome font-awesome
+ btn:l'eventuale bootstrap btn ma senza btn-
+ * body: il testo
+}*
+<button type="button" class="btn btn-${_btn?:'default'}" data-toggle="collapse" data-target="${_arg}">
+  <i class="fa fa-${_fa?:'chevron-right'}"></i><span class="hidden-xs"> #{doBody /}</span>
+</button>

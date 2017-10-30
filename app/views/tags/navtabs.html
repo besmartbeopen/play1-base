@@ -1,0 +1,18 @@
+*{
+  arg: map of title and action
+}*
+<ul class="nav nav-tabs">
+  #{list items:_arg, as:'item'}
+   %{
+     enabled = (item.value instanceof play.mvc.Router.ActionDefinition) ? controllers.Resecure.check(item.value.action, null) : true;
+   }%
+  <li class="#{if request.path == item.value.toString()}active#{/if}#{if !enabled} disabled#{/if}">
+   #{if enabled}
+    <a href="${item.value}">${item.key.label()}</a>
+   #{/if}#{else}
+    <a>${item.key.label()}</a>
+   #{/else}
+  </li>
+  #{/list}
+  #{doBody /}
+</ul>

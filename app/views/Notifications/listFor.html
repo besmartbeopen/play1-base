@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:messages.get('notification.listForOperator', operator) /}
+#{set breadcrumbs:['operator.list':@Operators.list(), 'notification.listFor':null] /}
+
+#{form action:@listFor(operator.id), method:'get', class:'form',
+    autocomplete:'off', 'data-reload':'#results'}
+    <div class="row">
+        <div class="col-sm-2">
+        #{limit /}
+        </div>
+    </div>
+#{/form}
+
+#{form action:@readFor(), method:'post', autocomplete:'off', id:'results'}
+    #{f.hidden 'operator.id', value: operator.id /}
+
+#{paginate notifications}
+
+    <ul class="list-group">
+     #{list items:notifications.results, as:'notification'}
+       <li class="list-group-item">
+        <span class="pull-right label label-default">#{timeago notification.createdAt /}</span>
+        #{f.checkbox 'notifications', value:true, label:notification.message,
+            inline:true, content:notification.id /}
+       </li>
+      #{/list}
+    </ul>
+
+    #{b.buttons}
+        #{b.submit 'Marca i selezionati come letti' /}
+        #{b.link @readFor('operator.id':operator.id, all:true), class:'danger', fa:'list',
+            'data-confirm':'notification.listFor.confirm'.label(),
+            'data-method':'POST'}
+            Marca tutti come letti
+        #{/b.link}
+    #{/b.buttons}
+#{/paginate}
+
+#{/form}

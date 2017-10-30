@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title:messages.get('Notifications.tasks') /}
+
+<section id="taskList">
+#{paginate tasks}
+<div class="list-group">
+   #{list items:tasks.results, as:'task'}
+    <a class="list-group-item" href="@{Tasks.task(task.id)}">
+        <span class="pull-right">
+            <span class="label label-default">
+                #{timeago task.createdAt /}
+            </span>
+        </span>
+        <i class="fa fa-mail-forward"></i> ${task.description}
+    </a>
+   #{/list}
+</div>
+#{/paginate}
+</section>

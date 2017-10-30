@@ -1,0 +1,110 @@
+#{extends 'main.html' /}
+#{set title:'employee.list'.label() /}
+#{set breadcrumbs:['employee.list':null] /}
+
+<div class="clearfix">
+    #{secure.check 'Operators.blank'}
+<div class="pull-right">
+    <a href="@{Operators.blank()}" class="btn btn-primary">
+        <i class="fa fa-plus"></i> ${'operator.new'.label()}
+    </a>
+</div>
+  #{/secure.check}
+</div>
+
+<div class="list-group">
+ <div class="list-group-item list-group-item-info">
+ #{form action:@Operators.list(), class:'form-inline', method:'GET',
+    'data-reload':'#results', autocomplete:'off'}
+
+        #{f.text 'name', 'data-autochange':true, feedback:'user',
+            value:name?.present ? name.get() : '', placeholder:'product.search'.label(), inline:true /}
+       #{f.edit 'enabled', inline:true}
+           <select name="${field.name}" id="${field.id}" data-selectize
+              class="form-control" placeholder="&{'enabled.any'}">
+              <option></option>
+              <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'enabled.true'}</option>
+              <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'enabled.false'}</option>
+           </select>
+       #{/f.edit}
+    #{secure.check 'Operators.applyFilters'}
+         #{f.edit 'agent', inline:true}
+             <select name="${field.name}" id="${field.id}" data-selectize
+                class="form-control" placeholder="&{'agent.any'}">
+                <option></option>
+                <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'agent.true'}</option>
+                <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'agent.false'}</option>
+             </select>
+         #{/f.edit}
+      #{f.edit 'employee', inline:true}
+          <select name="${field.name}" id="${field.id}" data-selectize
+            class="form-control" placeholder="&{'employee.any'}">
+              <option></option>
+              <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'employee.true'}</option>
+              <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'employee.false'}</option>
+           </select>
+      #{/f.edit}
+    #{/secure.check}
+   <div class="pull-right">
+    #{secure.check 'Operators.bulkAction'}
+     #{b.collapse '#bulk-action', fa:'edit', btn:'default btn-sm'}Modifica ruoli#{/b.collapse}
+    #{/secure.check}
+    #{limit /}
+   </div>
+#{/form}
+ </div>
+
+#{form action:@bulkAction(), class:'form-inline', method:'POST',
+  autocomplete:'off', 'data-update':'.list-group'}
+ #{secure.check 'Operators.bulkAction'}
+ <div class="collapse" id="bulk-action">
+  <div class="list-group-item list-group-item-warning">
+    #{checkall /}
+    #{f.radioBoolean 'toRemove', inline:true, value:toRemove?:false /}
+    #{f.selectEnum 'role', required:true, inline:true,
+                placeholder:'Seleziona ruolo...',
+                values:models.enums.Role.values() /}
+
+    #{b.submit 'Procedi', fa:'check', btn:'success' /}
+  </div>
+ </div>
+ #{/secure.check}
+
+<section id="results">
+#{paginate results}
+        #{list items:results.results, as:'item'}
+        <div class="list-group-item clearfix">
+           <div class="pull-right btn-group">
+              #{b.link @Operators.show(item.id), secure:item, class:'success'}&{'view'}#{/b.link}
+              #{b.link @Operators.edit(item.id), secure:item, fa:'edit'}&{'edit'}#{/b.link}
+  #{secure.check 'Resecure.switchOperatorTo'}
+    #{b.link @Notifications.listFor(item.id), secure:item, fa:'envelope-o'}&{'notification.listFor'}#{/b.link}
+    #{b.link @Resecure.switchOperatorTo(item.id), secure:item, class:'danger', fa:'sign-in', rol:'nofollow', 'data-method':'post'}
+       &{'sudo.activate'}
+    #{/b.link}
+  #{/secure.check}
+
+           </div>
+           <span class="pull-left">
+        #{secure.check 'Operators.bulkAction'}
+            #{f.checkbox 'operators', content:item.id, id:('operators_'+item.id),
+              value:false, 'data-check':true, label:'', inline:true /}
+        #{/secure.check}
+           </span>
+           <span class="pull-left center" style="width: 50px">
+                #{if item.photo.exists()}
+                    <img src="@{Operators.showThumbnail(item.id, 40)}" />
+                #{/if}#{else}<i class="fa fa-user fa-2x"></i> #{/else}
+           </span>
+           <h4 class="list-group-item-heading">${item.fullname}</h4>
+
+           <div class="list-group-item-detail">
+            #{if item.agent != null}<span class="label label-info">&{'informant'}</span>#{/if}
+            &{'roles'}: #{list items:item.roles, as:'role'}${role.label()}#{if !role_isLast}, #{/if}#{/list}
+           </div>
+         </div>
+        #{/list}
+#{/paginate}
+</section>
+#{/form}
+</div>

@@ -1,0 +1,56 @@
+#{f.edit 'recipients', label:'message.recipients'}
+    <select name="${field.name}" id="${field.id}" multiple data-selectize
+        class="form-control" placeholder="Tutti gli informatori"
+		#{if message.persistent} disabled#{/if}>
+        #{list items:$data.allInformants, as:'item'}
+            <option value="${item.id}"#{if recipients!= null &&recipients.contains(item)} selected#{/if}>
+            ${item.fullname}</option>
+        #{/list}
+    </select>
+#{/f.edit}
+
+#{f.hidden 'message.source.id', value:controllers.Security.getCurrentUser().get().id /}
+#{f.text 'message.subject', required:true, label:'message.subject' /}
+#{f.textarea 'message.body', required:false, label:'message.body', class:'wysiwyg' /}
+
+<script id="attachmentsTemplate" type="text/html">
+ <div class="row" data-duplicated="attachments">
+  <div class="col-sm-5">
+	<input id="photo" type="file" name="message.attachments[{{index}}]">
+  </div>
+  <div class="col-sm-2">
+     <button type="button" class="btn btn-danger" data-remove="&{'confirm.delete'}">
+        <i class="fa fa-trash-o"></i> &{'crud.delete'}
+     </button>
+  </div>
+ </div>
+</script>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">&{'message.attachments'}</label>
+
+  <div class="col-sm-offset-0 col-sm-7">
+
+    #{list items:message.attachments, as:'item'}
+      <div class="row" data-duplicated="attachments">
+        <div class="col-sm-5">
+        	<input id="photo" type="file" name="message.attachments[${item_index}]">
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-danger" data-remove="&{'confirm.delete'}">
+              <i class="fa fa-trash-o"></i> &{'crud.delete'}
+          </button>
+        </div>
+      </div>
+    #{/list}
+
+  <div class="row">
+    <div class="col-sm-offset-1">
+      <button class="btn btn-default" data-duplicate="attachments" data-template="#attachmentsTemplate" type="button">
+        <i class="fa fa-plus"></i> &{'message.add.attachment'}
+      </button>
+      #{ifError 'attachments'}<span class="has-error"><span class="help-block">#{error 'attachments' /}</span></span>#{/ifError}
+    </div>
+  </div>
+ </div>
+</div>

@@ -1,0 +1,10 @@
+%{
+  limit = request.params.get('limit')
+}%
+#{f.edit 'limit', inline:true}
+<select name="${field.name}" id="${field.id}" class="form-control input-sm" data-selectize>
+   #{list items:['20', '50', '100', '250', '500'], as:'item'}
+     <option value="${item}"#{if item == limit} selected#{/if}>${item} alla volta</option>
+   #{/list}
+</select>
+#{/f.edit}

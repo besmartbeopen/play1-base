@@ -1,0 +1,16 @@
+*{ arg: (href) required
+   class: optional default to 'default'
+   fa: optional fontawesome code
+   secure: optional target default to null
+   (others...)
+}*
+%{
+  if (_arg instanceof play.mvc.Router.ActionDefinition) {
+    checked = controllers.Resecure.check(_arg.action, _secure)
+  } else {
+    checked = true;
+  }
+  btn = (_btn == null ? _class : _btn)?:'default'
+}%#{ifnot checked}<span data-toggle="tooltip" data-placement="bottom" title="&{'secure.denied'}">#{/ifnot}<a #{if checked}href="${_arg}" #{/if}#{if !_nobutton}class="btn btn-${btn}#{if !checked} disabled#{/if}"#{/if} ${helpers.Web.serialize(_attrs, "arg", "btn", "class", "fa", "secure", "nobutton").raw()}>
+    #{if _fa}<i class="fa fa-${_fa}"></i><span class="hidden-xs"> #{/if}#{else}#{if !checked}<i class="fa fa-ban"></i> #{/if}#{/else}#{doBody/}#{if _fa}</span>#{/if}
+</a>#{ifnot checked}</span>#{/ifnot}

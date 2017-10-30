@@ -1,0 +1,35 @@
+<section id="issues">
+      <div class="panel-heading"><i class="fa fa-bullseye"></i> &{'issues'} <span class="badge">${closed} / ${results.total}</span></div>
+      <div class="panel-body">
+        #{paginate results, 'data-async':'#issues'}
+        <ul class="list-group">
+        #{list items:results.results, as:'item'}
+            <li class="list-group-item">
+              <p class="list-group-item-heading">
+                <div class="pull-right">
+                #{if item.state.toString() == 'closed'}
+                    <span class="label label-success">
+                    <i class="fa fa-check"></i>
+                        <span class="hidden-xs">#{timeago item.updatedAt /}</span>
+                    </span>
+                #{/if}
+                </div>
+                <span class="text-muted">#${item.iid}</span>
+                ${item.title}
+              </p>
+              <p class="list-group-item-text">
+                #{list items:item.labels, as:'label'}
+                 #{if label != 'public'}
+                    <span class="label ${[bug:'label-danger',
+                        feature:'label-success', done:'hidden'].get(label) ?: 'label-info'}">
+                        <i class="fa fa-tag"></i> ${label}
+                    </span>
+                 #{/if}
+                #{/list}
+              </p>
+            </li>
+        #{/list}
+        </ul>
+        #{/paginate}
+      </div>
+</section>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="no-js" lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>${play.configuration['site.name']} - #{get 'title' /}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="${play.configuration['site.name']}">
+    <meta name="author" content="${play.configuration['site.customer']}">
+    <meta name="x-pjax-version" content="${appVersionData}"/>
+
+   #{if !via_pjax}
+<link rel="shortcut icon" href="/favicon.ico">
+<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="/icon-192x192.png" rel="icon" sizes="192x192">
+<link href="/icon-128x128.png" rel="icon" sizes="128x128">
+
+${webpack.WebpackLoader.head().raw()}
+
+    #{if controllers.Security.getCurrentUser().isPresent() && models.enums.PageLayout.AGENT == controllers.Security.getCurrentUser().get().pageLayout}
+      #{stylesheet 'agent.css' /}
+    #{/if}
+    #{get 'moreStyles' /}
+   #{/if}
+  </head>
+  <body>
+  <!--[if lt IE 8]>
+     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+   #{if session.username && currentOperator.pageLayout.agent}
+    <div id="wrap">
+     <nav class="navbar navbar-default sidebar">
+       <div class="container-fluid">
+         #{if !via_pjax}
+           #{include './layout/agent_menu.html' /}
+         #{/if}
+       </div>
+     </nav>
+     <div class="main">
+       <div class="fluid-container">
+         <div class="content">
+            #{if !modal}
+              #{include './layout/companyline_switcher.html' /}
+              <div class="page-header hidden-xs hidden-sm">
+                <h1>#{get 'title' /}</h1>
+              </div>
+            #{/if}
+
+            #{if breadcrumbs}#{breadcrumbs breadcrumbs /}#{/if}
+            #{notify /}
+            #{doLayout /}
+           </div>
+        </div>
+      #{include './footer.html' /}
+      </div>
+    </div>
+    #{/if} #{else}
+   <div id="wrap">
+      #{if !via_pjax}
+        #{include './layout/default_header.html' /}
+      #{/if}
+
+      <div class="container#{if session.username && currentOperator.pageLayout.defaultWide}-fluid#{/if}">
+        <div class="content">
+          #{if !modal}
+            #{include './layout/companyline_switcher.html' /}
+            <div class="page-header hidden-xs hidden-sm">
+              <h1>#{get 'title' /}</h1>
+            </div>
+          #{/if}
+
+          #{if breadcrumbs}#{breadcrumbs breadcrumbs /}#{/if}
+          #{notify /}
+          #{doLayout /}
+          </div>
+      </div>
+   </div>
+    #{if !modal}
+      #{include 'footer.html' /}
+    #{/if}
+
+    #{/else}
+
+${webpack.WebpackLoader.body().raw()}
+<script src="@{Application.script}"></script>
+    #{get 'moreScripts' /}
+</body>
+</html>
