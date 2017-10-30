@@ -20,8 +20,6 @@ public class QTask extends EntityPathBase<Task> {
 
     private static final long serialVersionUID = 1339583145L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QTask task = new QTask("task");
 
     public final models.base.query.QBaseModel _super = new models.base.query.QBaseModel(this);
@@ -44,7 +42,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final DatePath<org.joda.time.LocalDate> startDate = createDate("startDate", org.joda.time.LocalDate.class);
 
-    public final QTaskable target;
+    public final NumberPath<Integer> targetId = createNumber("targetId", Integer.class);
 
     public final EnumPath<models.enums.TaskType> type = createEnum("type", models.enums.TaskType.class);
 
@@ -55,24 +53,15 @@ public class QTask extends EntityPathBase<Task> {
     public final NumberPath<Integer> version = _super.version;
 
     public QTask(String variable) {
-        this(Task.class, forVariable(variable), INITS);
+        super(Task.class, forVariable(variable));
     }
 
     public QTask(Path<? extends Task> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QTask(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QTask(PathMetadata metadata, PathInits inits) {
-        this(Task.class, metadata, inits);
-    }
-
-    public QTask(Class<? extends Task> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.target = inits.isInitialized("target") ? new QTaskable(forProperty("target")) : null;
+        super(Task.class, metadata);
     }
 
 }

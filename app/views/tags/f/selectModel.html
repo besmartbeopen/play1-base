@@ -9,7 +9,7 @@
  name = _name?:(field.name + '.id')
  value = _attrs.containsKey('value') ? _value : field.value
 }%<select #{ifnot _name}name="${name}" #{/ifnot}id="${field.id}" class="form-control" data-selectize
- ${helpers.Web.serialize(_attrs, "arg", "value", "label", "required", "values", "inline").raw()}>
+ ${common.Web.serialize(_attrs, "arg", "value", "label", "required", "values", "inline").raw()}>
   <option></option>
   #{list items:_values, as:'item'}
     <option value="${item.id}"#{if value?.id == item.id} selected#{/if}>${item}</option>

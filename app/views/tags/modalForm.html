@@ -14,7 +14,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">&{_title}</h4>
       </div>
-<form action="${action}" method="POST" autocomplete="off" class="form" ${helpers.Web.serialize(_attrs, "action", "arg", "title", "button", "id").raw()}>
+<form action="${action}" method="POST" autocomplete="off" class="form" ${common.Web.serialize(_attrs, "action", "arg", "title", "button", "id").raw()}>
       <div class="modal-body">
 	#{authenticityToken /}
         #{doBody /}

@@ -7,4 +7,4 @@
 #{f.edit _arg, checkbox:true, value:_value, label:_label, after:((_content == null || _content == true) ? ('<input type="hidden" value="false" name="'+ _arg+ '">').raw() : null)}%{
   if (_value == null) { _value = field.value }
   if (_content == null) { _content = true }
-}%<input type="checkbox" name="${field.name}" value="${_content}" #{ifnot _id}id="${field.id}" #{/ifnot}${_value ? 'checked="checked"'.raw() : ''} ${helpers.Web.serialize(_attrs, "arg", "value", "label", "required", "content", "inline").raw()} />#{/f.edit}
+}%<input type="checkbox" name="${field.name}" value="${_content}" #{ifnot _id}id="${field.id}" #{/ifnot}${_value ? 'checked="checked"'.raw() : ''} ${common.Web.serialize(_attrs, "arg", "value", "label", "required", "content", "inline").raw()} />#{/f.edit}

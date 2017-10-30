@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import javax.inject.Inject;
+import lombok.Builder;
 import lombok.Data;
 import lombok.val;
 import play.mvc.Router;
@@ -40,10 +41,12 @@ public class Menu {
     this.rules = rules;
   }
 
-//  public ContainerTag submenu(String label, FontAwesome fa) {
-//    li().withClass(".dropdown").with(a().withClass(".dropdown-toggle")
-//        .withData("toggle", "dropdown"));
-//  }
+  public ContainerTag submenu(String label, FontAwesome fa) {
+    return li().withClass("dropdown").with(
+        a(label).withClass(".dropdown-toggle").withData("toggle", "dropdown"),
+        ul().withClass("dropdown-menu")
+    );
+  }
 
   public ContainerTag functionalMenu() {
     return ul(attrs(".nav.navbar-nav"));
@@ -53,6 +56,5 @@ public class Menu {
 
   public void functionalItems() {
     val url = Router.reverse("Operators.list").url;
-
   }
 }

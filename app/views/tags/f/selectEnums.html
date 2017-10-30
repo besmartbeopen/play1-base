@@ -7,7 +7,7 @@
 }*
 #{f.edit _arg, label:_label, value:_value, required:_required}
 <select name="${field.name}" id="${field.id}" class="form-control" data-selectize
- multiple ${helpers.Web.serialize(_attrs, "arg", "value", "label", "required", "values").raw()}>
+ multiple ${common.Web.serialize(_attrs, "arg", "value", "label", "required", "values").raw()}>
   #{list items:_values, as:'item'}
     <option value="${item}"#{if field.value?.contains(item)} selected#{/if}>${item.label()}</option>
   #{/list}

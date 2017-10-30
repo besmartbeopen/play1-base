@@ -26,16 +26,10 @@ public class QOperatorProfile extends EntityPathBase<OperatorProfile> {
 
     public final BooleanPath active = createBoolean("active");
 
-    public final BooleanPath agent = createBoolean("agent");
-
     //inherited
     public final DateTimePath<org.joda.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final StringPath description = createString("description");
-
-    public final StringPath disclaimer = createString("disclaimer");
-
-    public final BooleanPath employee = createBoolean("employee");
 
     //inherited
     public final SimplePath<Object> entityId = _super.entityId;
