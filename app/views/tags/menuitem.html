@@ -13,4 +13,4 @@
   } else {
     checked = true;
   }
-}%#{if checked}<li ${request.path == _action.toString() ? 'class="active"'.raw() :''}><a href="${_action}" ${helpers.Web.serialize(_attrs, "arg", "action", "fa", "skipSecurity", "secure").raw()}>#{if _fa}<i class="fa fa-${_fa} fa-fw"></i> #{/if}#{doBody /}</a></li>#{/if}
+}%#{if checked}<li ${request.path == _action.toString() ? 'class="active"'.raw() :''}><a href="${_action}" ${common.Web.serialize(_attrs, "arg", "action", "fa", "skipSecurity", "secure").raw()}>#{if _fa}<i class="fa fa-${_fa} fa-fw"></i> #{/if}#{doBody /}</a></li>#{/if}

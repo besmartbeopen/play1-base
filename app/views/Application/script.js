@@ -6,7 +6,7 @@
     html2canvasURL: "@{'/public/javascripts/vendor/html2canvas.min.js'}"
   };
   globals.promotionalPeriods = ${$data.currentPromotionalPeriods.raw()};
-#{if webpack.WebpackPlugin.devserverEnabled}
+#{if common.webpack.WebpackPlugin.devserverEnabled}
   // spostiamoci su webpack-dev-server:
   if (window.location.port == 9000) {
     window.location.port = 8080;

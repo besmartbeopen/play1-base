@@ -15,7 +15,7 @@
 <link href="/icon-192x192.png" rel="icon" sizes="192x192">
 <link href="/icon-128x128.png" rel="icon" sizes="128x128">
 
-${webpack.WebpackLoader.head().raw()}
+${common.webpack.WebpackLoader.head().raw()}
 
     #{if controllers.Security.getCurrentUser().isPresent() && models.enums.PageLayout.AGENT == controllers.Security.getCurrentUser().get().pageLayout}
       #{stylesheet 'agent.css' /}
@@ -27,43 +27,14 @@ ${webpack.WebpackLoader.head().raw()}
   <!--[if lt IE 8]>
      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-   #{if session.username && currentOperator.pageLayout.agent}
-    <div id="wrap">
-     <nav class="navbar navbar-default sidebar">
-       <div class="container-fluid">
-         #{if !via_pjax}
-           #{include './layout/agent_menu.html' /}
-         #{/if}
-       </div>
-     </nav>
-     <div class="main">
-       <div class="fluid-container">
-         <div class="content">
-            #{if !modal}
-              #{include './layout/companyline_switcher.html' /}
-              <div class="page-header hidden-xs hidden-sm">
-                <h1>#{get 'title' /}</h1>
-              </div>
-            #{/if}
-
-            #{if breadcrumbs}#{breadcrumbs breadcrumbs /}#{/if}
-            #{notify /}
-            #{doLayout /}
-           </div>
-        </div>
-      #{include './footer.html' /}
-      </div>
-    </div>
-    #{/if} #{else}
    <div id="wrap">
       #{if !via_pjax}
         #{include './layout/default_header.html' /}
       #{/if}
 
-      <div class="container#{if session.username && currentOperator.pageLayout.defaultWide}-fluid#{/if}">
+      <div class="container-fluid">
         <div class="content">
           #{if !modal}
-            #{include './layout/companyline_switcher.html' /}
             <div class="page-header hidden-xs hidden-sm">
               <h1>#{get 'title' /}</h1>
             </div>
@@ -79,9 +50,7 @@ ${webpack.WebpackLoader.head().raw()}
       #{include 'footer.html' /}
     #{/if}
 
-    #{/else}
-
-${webpack.WebpackLoader.body().raw()}
+${common.webpack.WebpackLoader.body().raw()}
 <script src="@{Application.script}"></script>
     #{get 'moreScripts' /}
 </body>
