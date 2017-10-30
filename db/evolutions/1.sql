@@ -265,6 +265,22 @@ CREATE TABLE recovery_request (
 
 CREATE INDEX recovery_request_operator_key ON recovery_request USING btree (operator_id);
 
+
+CREATE TABLE comment (
+    id SERIAL PRIMARY KEY,
+    version integer DEFAULT 0 NOT NULL,
+    comment text NOT NULL,
+    owner_id integer REFERENCES operator(id),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    related_to_comment_id integer,
+    active boolean DEFAULT true,
+    target_type TEXT,
+    target_id INT
+);
+
+CREATE INDEX comment_owner_key ON comment USING btree (owner_id);
+
 --
 -- Name: task_candidate_assignees; Type: TABLE; Schema: public
 --
@@ -449,6 +465,7 @@ ALTER TABLE ONLY task_candidate_assignees
     
 # --- !Downs
 
+DROP TABLE comment;
 DROP TABLE notification;
 DROP TABLE task_candidate_assignees;
 DROP TABLE task;
