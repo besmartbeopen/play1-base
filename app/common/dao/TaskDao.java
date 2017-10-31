@@ -77,7 +77,7 @@ public class TaskDao {
       }
     }
     if (!types.isEmpty()) {
-      conditions.and(task.type.in(types));
+      conditions.and(task.targetType.in(types));
     }
     return ModelQuery.wrap(queryFactory.from(task)
         .where(conditions)

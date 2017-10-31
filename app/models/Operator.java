@@ -39,7 +39,8 @@ import play.db.jpa.Blob;
  * @author cristian
  *
  */
-@Entity @Audited
+@Entity
+@Audited
 public class Operator extends BaseModel implements Comparable<Operator> {
 
   private static final long serialVersionUID = 1759893672932227356L;
@@ -95,18 +96,6 @@ public class Operator extends BaseModel implements Comparable<Operator> {
 
   @Iban
   public String iban;
-
-  /**
-   * I dettagli dei messaggi ricevuti da questo operatore
-   */
-//  @OneToMany(mappedBy="operator")
-//  public Set<MessageDetail> messageDetails = Sets.newHashSet();
-
-  /**
-   * I messaggi spediti da questo operatore
-   */
-  @OneToMany(mappedBy="source")
-  public Set<Message> sentMessages = Sets.newHashSet();
 
   /**
    * Task per cui si è candidati assegnatari.

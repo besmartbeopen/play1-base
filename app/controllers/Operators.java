@@ -1,22 +1,15 @@
 package controllers;
 
-import com.google.common.base.Joiner;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableMap;
 import com.querydsl.core.QueryResults;
-import common.DateRange;
-import common.Exporters;
 import common.PhotoManager;
 import common.Tools;
 import common.ValueLabelItem;
 import common.Web;
-import common.Exporters.ISpreadsheetExporter;
-import common.Exporters.ITableRows;
-import common.ModelQuery.SimpleResults;
-import common.dao.MessageDao;
 import common.dao.OperatorDao;
 import common.jpa.JpaReferenceBinder;
 import common.security.SecurityRules;
@@ -28,10 +21,8 @@ import java.util.Set;
 import java.util.UUID;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import models.Message;
 import models.Operator;
 import models.enums.Role;
-import org.odftoolkit.simple.table.Row;
 import play.data.binding.As;
 import play.data.validation.Required;
 import play.data.validation.Valid;
@@ -52,9 +43,6 @@ public class Operators extends Controller {
 
   @Inject
   static PhotoManager photoManager;
-
-  @Inject
-  static MessageDao messageDao;
 
   @Inject
   static SecurityRules rules;
@@ -131,52 +119,6 @@ public class Operators extends Controller {
       operator.save();
     }
     renderJSON(ImmutableMap.of("result", "ok"));
-  }
-
-  public static void messages(Optional<String> subject,
-      Set<String> tags, Optional<Boolean> read,
-      Optional<Boolean> starred, Optional<DateRange> dateRange) {
-
-    final SimpleResults<Message> results  = messageDao.list(
-        Security.getCurrentUser(),
-        Security.getCurrentUser(),
-        subject, tags, read, starred,
-        dateRange);
-
-    if (params.get("_export") != null) {
-      Exporters.exportToOds("messaggi", new ISpreadsheetExporter() {
-
-        @Override
-        public void export(ITableRows rows) {
-          rows.setHeaders(Messages.get("message.createdAt"),
-              Messages.get("message.source"),
-              Messages.get("message.subject"),
-              Messages.get("message.body"),
-              Messages.get("message.tags"),
-              "letto/non letto");
-
-          for (Message message : results.list()) {
-            final Row row = rows.add();
-            row.getCellByIndex(0).setStringValue(message.createdAt.toString());
-            row.getCellByIndex(1)
-            .setStringValue(message.source.getFullname());
-            row.getCellByIndex(2)
-            .setStringValue(message.subject);
-            row.getCellByIndex(3)
-            .setStringValue(message.body);
-            row.getCellByIndex(4)
-            .setStringValue(Joiner.on(",").join(message.tags));
-            row.getCellByIndex(5)
-            .setBooleanValue(message.getDetail(Security.getCurrentUser().get()).read);
-          }
-        }
-      });
-    }
-
-    //Attenzione non utilizzare il nome messages perché collide
-    //con la variabile del play per i message...
-    final QueryResults<Message> msgs = results.listResults();
-    render(msgs, subject, tags, read, starred, dateRange);
   }
 
   public static void index() {

@@ -44,7 +44,7 @@ public class QTask extends EntityPathBase<Task> {
 
     public final NumberPath<Integer> targetId = createNumber("targetId", Integer.class);
 
-    public final EnumPath<models.enums.TaskTargetType> type = createEnum("type", models.enums.TaskTargetType.class);
+    public final EnumPath<models.enums.TaskTargetType> targetType = createEnum("targetType", models.enums.TaskTargetType.class);
 
     //inherited
     public final DateTimePath<org.joda.time.LocalDateTime> updatedAt = _super.updatedAt;

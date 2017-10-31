@@ -46,9 +46,11 @@ public class QComment extends EntityPathBase<Comment> {
     //inherited
     public final BooleanPath persistent = _super.persistent;
 
-    public final StringPath reference = createString("reference");
-
     public final QComment relatedToComment;
+
+    public final NumberPath<Integer> targetId = createNumber("targetId", Integer.class);
+
+    public final EnumPath<models.enums.CommentTargetType> targetType = createEnum("targetType", models.enums.CommentTargetType.class);
 
     //inherited
     public final DateTimePath<org.joda.time.LocalDateTime> updatedAt = _super.updatedAt;

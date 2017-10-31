@@ -3,8 +3,6 @@ package security;
 import common.security.PermissionCheck;
 
 import models.Comment;
-import models.Message;
-import models.MessageDetail;
 import models.Notification;
 import models.Operator;
 import models.Task;
