@@ -26,14 +26,10 @@ public class QOperator extends EntityPathBase<Operator> {
 
     public final models.base.query.QBaseModel _super = new models.base.query.QBaseModel(this);
 
-    public final NumberPath<java.math.BigDecimal> costPerKm = createNumber("costPerKm", java.math.BigDecimal.class);
-
     //inherited
     public final DateTimePath<org.joda.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final StringPath email = createString("email");
-
-    public final BooleanPath employee = createBoolean("employee");
 
     public final BooleanPath enabled = createBoolean("enabled");
 
@@ -53,12 +49,6 @@ public class QOperator extends EntityPathBase<Operator> {
 
     public final StringPath lastname = createString("lastname");
 
-    public final SetPath<Operator, QOperator> managedOperators = this.<Operator, QOperator>createSet("managedOperators", Operator.class, QOperator.class, PathInits.DIRECT2);
-
-    public final QOperator manager;
-
-    public final SetPath<models.MessageDetail, QMessageDetail> messageDetails = this.<models.MessageDetail, QMessageDetail>createSet("messageDetails", models.MessageDetail.class, QMessageDetail.class, PathInits.DIRECT2);
-
     public final SetPath<models.Notification, QNotification> notifications = this.<models.Notification, QNotification>createSet("notifications", models.Notification.class, QNotification.class, PathInits.DIRECT2);
 
     public final StringPath password = createString("password");
@@ -72,11 +62,7 @@ public class QOperator extends EntityPathBase<Operator> {
 
     public final SetPath<models.RecoveryRequest, QRecoveryRequest> recoveryRequests = this.<models.RecoveryRequest, QRecoveryRequest>createSet("recoveryRequests", models.RecoveryRequest.class, QRecoveryRequest.class, PathInits.DIRECT2);
 
-    public final NumberPath<java.math.BigDecimal> refundPerKm = createNumber("refundPerKm", java.math.BigDecimal.class);
-
     public final SetPath<models.enums.Role, EnumPath<models.enums.Role>> roles = this.<models.enums.Role, EnumPath<models.enums.Role>>createSet("roles", models.enums.Role.class, EnumPath.class, PathInits.DIRECT2);
-
-    public final SetPath<models.Message, QMessage> sentMessages = this.<models.Message, QMessage>createSet("sentMessages", models.Message.class, QMessage.class, PathInits.DIRECT2);
 
     public final SetPath<models.Task, QTask> taskForCandidateAssignee = this.<models.Task, QTask>createSet("taskForCandidateAssignee", models.Task.class, QTask.class, PathInits.DIRECT2);
 
@@ -104,7 +90,6 @@ public class QOperator extends EntityPathBase<Operator> {
 
     public QOperator(Class<? extends Operator> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.manager = inits.isInitialized("manager") ? new QOperator(forProperty("manager"), inits.get("manager")) : null;
         this.profile = inits.isInitialized("profile") ? new QOperatorProfile(forProperty("profile")) : null;
     }
 

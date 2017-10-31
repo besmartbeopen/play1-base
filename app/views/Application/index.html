@@ -30,8 +30,8 @@
         <i class="fa fa-spin fa-spinner fa-2x"></i> Caricamento notifiche in corso...
         </div>
     </div>
-#{secure.check 'Application.issues'}
-    <div class="panel panel-default" id="issues" data-load-async="@{issues()}">
+#{secure.check 'Issues.issues'}
+    <div class="panel panel-default" id="issues" data-load-async="@{Issues.issues()}">
         <div class="panel-heading">
         <i class="fa fa-spin fa-spinner fa-2x"></i> Caricamento in corso...
         </div>

@@ -17,9 +17,6 @@
 
 ${common.webpack.WebpackLoader.head().raw()}
 
-    #{if controllers.Security.getCurrentUser().isPresent() && models.enums.PageLayout.AGENT == controllers.Security.getCurrentUser().get().pageLayout}
-      #{stylesheet 'agent.css' /}
-    #{/if}
     #{get 'moreStyles' /}
    #{/if}
   </head>

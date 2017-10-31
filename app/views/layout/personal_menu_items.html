@@ -4,9 +4,7 @@
         (($data.notifications.count > 0) ?
            ('<sup>'+ ($data.notifications.count)+'</sup>')
            : ''))}
-          #{secure.check 'Notifications.tasks'}
-           #{menuitem @Notifications.tasks(), fa:'tasks'}&{'Notifications.tasks'}#{/menuitem}
-          #{/secure.check}
+          #{menuitem @Notifications.tasks(), fa:'tasks'}&{'Notifications.tasks'}#{/menuitem}
                 #{if $data.notifications.count > 0}
                     <li class="divider"></li>
                 #{/if}
@@ -26,15 +24,8 @@
        #{/if}
        #{if currentOperator != null}
         #{submenu ('<i class="fa fa-user fa-fw"></i> <span class="' + (session.contains("___sudo") ? 'hidden-sm hidden-md' : 'sr-only') + '">' + currentOperator.toString() + '</span>')}
-          #{secure.check 'Personal.index'}
-           #{menuitem @Personal.index(), fa:'user'}&{'personal.index'}#{/menuitem}
-          #{/secure.check}
-        #{secure.check 'Operators.messages'}
-           #{menuitem @Operators.messages(), fa:'envelope'}&{'operator.myMessages.menu'}#{/menuitem}
-          #{/secure.check}
-          #{secure.check 'Personal.editPassword'}
-           #{menuitem @Personal.editPassword(), fa:'key'}&{'personal.editPassword'}#{/menuitem}
-          #{/secure.check}
+          #{menuitem @Personal.index(), fa:'user'}&{'personal.index'}#{/menuitem}
+          #{menuitem @Personal.editPassword(), fa:'key'}&{'personal.editPassword'}#{/menuitem}
         #{/submenu}
        #{/if}
        #{if session.contains("___sudo")}
