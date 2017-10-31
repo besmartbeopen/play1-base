@@ -2,6 +2,7 @@
 <ul class="nav navbar-nav">
   #{secure.check 'Configuration'}
      #{submenu '<i class="fa fa-gears"></i> <span class="sr-only">Configurazione</span>'}
+       #{menuitem @Operators.index(), fa:'id-card'}&{'Operators.list'}#{/menuitem}
        #{menuitem @OperatorProfiles.index(), fa:'id-card'}&{'OperatorProfiles.list'}#{/menuitem}
        #{menuitem @Roles.list(), fa:'shield'}&{'roles.list'}#{/menuitem}
        <li role="presentation" class="divider"></li>

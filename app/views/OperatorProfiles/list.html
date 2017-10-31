@@ -23,8 +23,6 @@
 
            <div class="list-group-item-detail">
             #{if !item.active}<span class="label label-danger">Disabilitato</span>#{/if}
-            #{if item.employee}<span class="label label-info">Dipendenti</span>#{/if}
-            #{if item.agent}<span class="label label-success">Agenti</span>#{/if}
 
             #{list items:item.operators, as:'operator'}${operator}#{if !operator_isLast}, #{/if}#{/list}
            </div>

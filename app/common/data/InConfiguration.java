@@ -1,14 +1,5 @@
 package common.data;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.Set;
-
-import javax.validation.constraints.Min;
-
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.GsonBuilder;
@@ -16,11 +7,13 @@ import com.google.gson.InstanceCreator;
 import com.google.inject.Inject;
 import com.google.inject.ProvidedBy;
 import com.google.inject.Provider;
-import common.binders.CurrencyBinder;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import lombok.extern.slf4j.Slf4j;
 import play.Play;
 import play.cache.Cache;
-import play.data.binding.As;
 import play.data.validation.Email;
 import play.data.validation.Required;
 
@@ -39,39 +32,6 @@ public class InConfiguration implements Serializable {
   @Email
   public String generalFrom;
 
-  @Required @As(", *")
-  public Set<String> salesOrderTo;
-
-  @Required @Min(0) @As(binder=CurrencyBinder.class)
-  public BigDecimal costPerKm;
-
-  @Required @Min(0) @As(binder=CurrencyBinder.class)
-  public BigDecimal refundPerKm;
-
-  public boolean geoMaster;
-
-  /**
-   * Tempo massimo per i rilasci di saggi (in mesi).
-   * <br>
-   * <b>valore predefinito: 1</b>
-   */
-  @Required
-  @Min(0)
-  public int maximumNumberOfMonthsForSampleLeft = 1;
-
-  /**
-   * Numero di mesi precedenti all'attuale di cui calcolare 
-   * le commissioni.
-   */
-  @Required
-  @Min(0)
-  public int numberOfMonthsForMonthFeeAdvance = 0;
-  
-  /**
-   * Se abilitato automatizza l'esportazione dei csv dei clienti/indirizzi.
-   */
-  public boolean nightlyExporterEnabled;
-
   /**
    * Gestione della configurazione.
    *
@@ -80,7 +40,7 @@ public class InConfiguration implements Serializable {
    */
   @Slf4j
   public static class InConfigurationManager implements Provider<InConfiguration> {
-    private static final String PATH = "conf/inphase.json";
+    private static final String PATH = "conf/configuration.json";
     static final InConfiguration SINGLETON = new InConfiguration();
 
     private final GsonBuilder builder;

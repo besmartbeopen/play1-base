@@ -19,32 +19,6 @@
 
         #{f.text 'name', 'data-autochange':true, feedback:'user',
             value:name?.present ? name.get() : '', placeholder:'product.search'.label(), inline:true /}
-       #{f.edit 'enabled', inline:true}
-           <select name="${field.name}" id="${field.id}" data-selectize
-              class="form-control" placeholder="&{'enabled.any'}">
-              <option></option>
-              <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'enabled.true'}</option>
-              <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'enabled.false'}</option>
-           </select>
-       #{/f.edit}
-    #{secure.check 'Operators.applyFilters'}
-         #{f.edit 'agent', inline:true}
-             <select name="${field.name}" id="${field.id}" data-selectize
-                class="form-control" placeholder="&{'agent.any'}">
-                <option></option>
-                <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'agent.true'}</option>
-                <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'agent.false'}</option>
-             </select>
-         #{/f.edit}
-      #{f.edit 'employee', inline:true}
-          <select name="${field.name}" id="${field.id}" data-selectize
-            class="form-control" placeholder="&{'employee.any'}">
-              <option></option>
-              <option value="true"#{if true == field.value.orNull()} selected#{/if}>&{'employee.true'}</option>
-              <option value="false"#{if false == field.value.orNull()} selected#{/if}>&{'employee.false'}</option>
-           </select>
-      #{/f.edit}
-    #{/secure.check}
    <div class="pull-right">
     #{secure.check 'Operators.bulkAction'}
      #{b.collapse '#bulk-action', fa:'edit', btn:'default btn-sm'}Modifica ruoli#{/b.collapse}
