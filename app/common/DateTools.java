@@ -285,16 +285,4 @@ public class DateTools {
 
     return date.isBefore(LocalDate.now().withDayOfMonth(1).minusMonths(1));
   }
-
-  /**
-   * @param date
-   * @return true se la data fornita è precedente al primo del mese indicato
-   * da months, false altrimenti.
-   */
-  public static boolean isAllowedDateForSampleLeft(LocalDate date) {
-
-    return date.isBefore(LocalDate.now().withDayOfMonth(1)
-        .minusMonths(configurationManager.get()
-            .maximumNumberOfMonthsForSampleLeft));
-  }
 }

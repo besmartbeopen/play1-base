@@ -4,11 +4,8 @@
     #{f.text 'operator.lastname', required:true /}
     #{f.text 'operator.email', required:true /}
 
-    #{f.selectEnum 'operator.pageLayout', label:'pageLayout', required:true,
-      values:models.enums.PageLayout.values(), placeholder:'Scegli...' /}
-      
     #{f.selectModel 'operator.profile', required:true, values:$data.allProfiles /}
-    
+
     #{f.checkbox 'operator.enabled' /}
 
     #{f.edit 'operator.roles'}
@@ -20,16 +17,6 @@
             #{/list}
         </select>
     #{/f.edit}
-
-    #{secure.check 'Operators.edit.full'}
-      #{f.checkbox 'operator.employee'/}
-    #{/secure.check}
-
-    #{if operator.agent != null}
-     #{f.view 'operator.informant', value:'informant'.label(),
-        link:@Informants.show(operator.informant.id),
-        'data-confirm':'confirm.cancel'.label() /}
-    #{/if}
 
  #{if operator.persistent}
     #{f.view 'operator.lastLoginDate', bodyonly:true}
