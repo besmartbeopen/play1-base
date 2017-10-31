@@ -10,8 +10,8 @@ CREATE TABLE revision (
     id SERIAL PRIMARY KEY,
     "timestamp" bigint NOT NULL,
     ipaddress TEXT,
-    owner_id integer,
-    version integer DEFAULT 0
+    owner_id INTEGER,
+    version INTEGER DEFAULT 0
 );
 
 --
@@ -24,7 +24,7 @@ CREATE TABLE region (
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     geographical_distribution TEXT NOT NULL,
     name TEXT UNIQUE NOT NULL,
-    version integer DEFAULT 0
+    version INTEGER DEFAULT 0
 );
 
 --
@@ -37,21 +37,25 @@ CREATE TABLE province (
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     code TEXT NOT NULL,
     name TEXT NOT NULL,
-    region_id integer NOT NULL REFERENCES region(id),
-    version integer DEFAULT 0
+    region_id INTEGER NOT NULL REFERENCES region(id),
+    version INTEGER DEFAULT 0
 );
+
+CREATE INDEX province_region_key ON province USING btree (region_id);
 
 --
 -- Name: province_history; Type: TABLE; Schema: public
 --
 
 CREATE TABLE province_history (
-    id integer NOT NULL,
-    revision integer NOT NULL REFERENCES revision(id),
+    id INTEGER NOT NULL,
+    revision INTEGER NOT NULL REFERENCES revision(id),
     revision_type smallint,
     code TEXT,
     name TEXT
 );
+
+CREATE INDEX province_history_revision_key ON province_history USING btree (revision);
 
 --
 -- Name: municipal; Type: TABLE; Schema: public
@@ -61,11 +65,11 @@ CREATE TABLE municipal (
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    code integer NOT NULL,
+    code INTEGER NOT NULL,
     name TEXT NOT NULL,
-    province_id integer NOT NULL REFERENCES province(id),
-    province_previous_id integer REFERENCES province(id),
-    version integer DEFAULT 0,
+    province_id INTEGER NOT NULL REFERENCES province(id),
+    province_previous_id INTEGER REFERENCES province(id),
+    version INTEGER DEFAULT 0,
     enabled boolean DEFAULT true NOT NULL
 );
 
@@ -77,34 +81,54 @@ CREATE INDEX municipal_province_previous_key ON municipal USING btree (province_
 --
 
 CREATE TABLE municipal_history (
-    id integer NOT NULL,
-    revision integer NOT NULL REFERENCES revision(id),
+    id INTEGER NOT NULL,
+    revision INTEGER NOT NULL REFERENCES revision(id),
     revision_type smallint,
-    code integer,
+    code INTEGER,
     name TEXT,
-    province_id integer,
-    province_previous_id integer,
+    province_id INTEGER,
+    province_previous_id INTEGER,
     enabled boolean,
     PRIMARY KEY (id, revision)
 );
 
+CREATE INDEX municipal_history_revision_key ON municipal_history USING btree (revision);
 
 
 --
--- Name: notification; Type: TABLE; Schema: public
+-- Name: operator_profile; Type: TABLE; Schema: public
 --
 
-CREATE TABLE notification (
+CREATE TABLE operator_profile (
     id SERIAL PRIMARY KEY,
-    version integer,
-    message text,
-    destination_id integer NOT NULL,
-    read boolean DEFAULT false NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    subject_id integer,
-    subject text NOT NULL
+    version INTEGER DEFAULT 0,
+    name text UNIQUE NOT NULL,
+    description text,
+    active boolean DEFAULT true NOT NULL,
+    login_url text,
+    disclaimer text
 );
+
+--
+-- Name: operator_profile_history; Type: TABLE; Schema: public
+--
+
+CREATE TABLE operator_profile_history (
+    revision INTEGER NOT NULL REFERENCES revision(id),
+    revision_type smallint NOT NULL,
+    id INTEGER NOT NULL,
+    name text,
+    description text,
+    active boolean DEFAULT true,
+    login_url text,
+    disclaimer text,
+    page_layout text,
+    PRIMARY KEY (revision, revision_type, id)
+);
+
+CREATE INDEX operator_profile_history_revision_key ON operator_profile_history USING btree (revision);
 
 --
 -- Name: operator; Type: TABLE; Schema: public
@@ -121,20 +145,22 @@ CREATE TABLE operator (
     password TEXT NOT NULL,
     firstname text NOT NULL,
     lastname text NOT NULL,
-    version integer DEFAULT 0,
+    version INTEGER DEFAULT 0,
     photo text,
     page_layout text DEFAULT 'DEFAULT'::text,
     iban text,
-    profile_id integer NOT NULL
+    profile_id INTEGER NOT NULL REFERENCES operator_profile(id)
 );
+
+CREATE INDEX operator_profile_key ON operator USING btree (profile_id);
 
 --
 -- Name: operator_history; Type: TABLE; Schema: public
 --
 
 CREATE TABLE operator_history (
-    id integer NOT NULL,
-    revision integer NOT NULL REFERENCES revision(id),
+    id INTEGER NOT NULL,
+    revision INTEGER NOT NULL REFERENCES revision(id),
     revision_type smallint,
     email TEXT,
     enabled boolean,
@@ -143,49 +169,20 @@ CREATE TABLE operator_history (
     password TEXT,
     photo text,
     iban text,
-    profile_id integer,
+    profile_id INTEGER,
     PRIMARY KEY (id, revision)
 );
 
---
--- Name: operator_profile; Type: TABLE; Schema: public
---
-
-CREATE TABLE operator_profile (
-    id SERIAL PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    version integer DEFAULT 0,
-    name text NOT NULL,
-    description text,
-    active boolean DEFAULT true NOT NULL,
-    login_url text,
-    disclaimer text
-);
-
---
--- Name: operator_profile_history; Type: TABLE; Schema: public
---
-
-CREATE TABLE operator_profile_history (
-    revision integer NOT NULL REFERENCES revision(id),
-    revision_type smallint NOT NULL,
-    id integer NOT NULL,
-    name text,
-    description text,
-    active boolean DEFAULT true,
-    login_url text,
-    disclaimer text,
-    page_layout text
-);
+CREATE INDEX operator_history_revision_key ON operator_history USING btree (revision);
 
 --
 -- Name: operator_profile_roles; Type: TABLE; Schema: public
 --
 
 CREATE TABLE operator_profile_roles (
-    operator_profile_id integer NOT NULL,
-    roles text NOT NULL
+    operator_profile_id INTEGER NOT NULL REFERENCES operator_profile(id),
+    roles text NOT NULL,
+    PRIMARY KEY (operator_profile_id, roles)
 );
 
 --
@@ -193,19 +190,23 @@ CREATE TABLE operator_profile_roles (
 --
 
 CREATE TABLE operator_profile_roles_history (
-    revision integer NOT NULL REFERENCES revision(id),
+    revision INTEGER NOT NULL REFERENCES revision(id),
     revision_type smallint NOT NULL,
-    operator_profile_id integer NOT NULL,
-    roles text NOT NULL
+    operator_profile_id INTEGER NOT NULL,
+    roles text NOT NULL,
+    PRIMARY KEY (revision, operator_profile_id, roles)
 );
+
+CREATE INDEX operator_profile_roles_history_revision_key ON operator_profile_roles_history USING btree (revision);
 
 --
 -- Name: operator_roles; Type: TABLE; Schema: public
 --
 
 CREATE TABLE operator_roles (
-    operator_id integer NOT NULL,
-    roles text NOT NULL
+    operator_id INTEGER NOT NULL REFERENCES operator(id),
+    roles text NOT NULL,
+    PRIMARY KEY (operator_id, roles)
 );
 
 --
@@ -213,11 +214,32 @@ CREATE TABLE operator_roles (
 --
 
 CREATE TABLE operator_roles_history (
-    revision integer NOT NULL REFERENCES revision(id),
+    revision INTEGER NOT NULL REFERENCES revision(id),
     revision_type smallint,
-    operator_id integer NOT NULL,
-    roles text NOT NULL
+    operator_id INTEGER NOT NULL,
+    roles text NOT NULL,
+    PRIMARY KEY (revision, operator_id, roles)
 );
+
+CREATE INDEX operator_roles_history_revision_key ON operator_roles_history USING btree (revision);
+
+--
+-- Name: notification; Type: TABLE; Schema: public
+--
+
+CREATE TABLE notification (
+    id SERIAL PRIMARY KEY,
+    version INTEGER,
+    message text,
+    destination_id INTEGER NOT NULL REFERENCES operator(id),
+    read boolean DEFAULT false NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    subject_id INTEGER,
+    subject text NOT NULL
+);
+
+CREATE INDEX notification_destination_key ON notification USING btree (destination_id);
 
 --
 -- Name: task; Type: TABLE; Schema: public
@@ -228,14 +250,14 @@ CREATE TABLE task (
     start_date date,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    version integer DEFAULT 0,
+    version INTEGER DEFAULT 0,
     description text NOT NULL,
     target_type TEXT NOT NULL,
-    target_id integer
+    target_id INTEGER
 );
 
 --
--- Name: recovery_request; Type: TABLE; Schema: public; Owner: inphase
+-- Name: recovery_request; Type: TABLE; Schema: public
 --
 
 CREATE TABLE recovery_request (
@@ -244,8 +266,8 @@ CREATE TABLE recovery_request (
     updated_at timestamp without time zone,
     code text NOT NULL,
     ipaddress text,
-    operator_id integer NOT NULL REFERENCES operator(id),
-    version integer DEFAULT 0
+    operator_id INTEGER NOT NULL REFERENCES operator(id),
+    version INTEGER DEFAULT 0
 );
 
 CREATE INDEX recovery_request_operator_key ON recovery_request USING btree (operator_id);
@@ -253,12 +275,12 @@ CREATE INDEX recovery_request_operator_key ON recovery_request USING btree (oper
 
 CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
-    version integer DEFAULT 0 NOT NULL,
+    version INTEGER DEFAULT 0 NOT NULL,
     comment text NOT NULL,
-    owner_id integer REFERENCES operator(id),
+    owner_id INTEGER REFERENCES operator(id),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    related_to_comment_id integer,
+    related_to_comment_id INTEGER,
     active boolean DEFAULT true,
     target_type TEXT,
     target_id INT
@@ -271,164 +293,14 @@ CREATE INDEX comment_owner_key ON comment USING btree (owner_id);
 --
 
 CREATE TABLE task_candidate_assignees (
-    task_for_candidate_assignee_id integer NOT NULL,
-    candidate_assignees_id integer NOT NULL
+    task_for_candidate_assignee_id INTEGER NOT NULL REFERENCES task(id),
+    candidate_assignees_id INTEGER NOT NULL REFERENCES operator(id)
 );
 
 
---
--- Name: operator_profile_history operator_profile_history_pkey; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_profile_history
-    ADD CONSTRAINT operator_profile_history_pkey PRIMARY KEY (revision, revision_type, id);
-
-
---
--- Name: operator_profile operator_profile_name_key; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_profile
-    ADD CONSTRAINT operator_profile_name_key UNIQUE (name);
-
-
---
--- Name: operator_profile_roles_history operator_profile_roles_history_pkey; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_profile_roles_history
-    ADD CONSTRAINT operator_profile_roles_history_pkey PRIMARY KEY (revision, operator_profile_id, roles);
-
-
---
--- Name: operator_profile_roles operator_profile_roles_pkey; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_profile_roles
-    ADD CONSTRAINT operator_profile_roles_pkey PRIMARY KEY (operator_profile_id, roles);
-
-
---
--- Name: operator_roles_history operator_roles_pkey; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_roles_history
-    ADD CONSTRAINT operator_roles_pkey PRIMARY KEY (revision, operator_id, roles);
-
-
---
--- Name: operator_roles operator_roles_primary_key; Type: CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_roles
-    ADD CONSTRAINT operator_roles_primary_key PRIMARY KEY (operator_id, roles);
-
-
-
---
--- Name: municipal_history_revision_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX municipal_history_revision_key ON municipal_history USING btree (revision);
-
-
---
--- Name: notification_destination_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX notification_destination_key ON notification USING btree (destination_id);
-
-
---
--- Name: operator_history_revision_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX operator_history_revision_key ON operator_history USING btree (revision);
-
---
--- Name: operator_profile_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX operator_profile_key ON operator USING btree (profile_id);
-
-
---
--- Name: operator_roles_history_revision_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX operator_roles_history_revision_key ON operator_roles_history USING btree (revision);
-
-
---
--- Name: province_history_revision_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX province_history_revision_key ON province_history USING btree (revision);
-
-
---
--- Name: province_region_key; Type: INDEX; Schema: public
---
-
-CREATE INDEX province_region_key ON province USING btree (region_id);
-
---
--- Name: task_candidate_assignees_candidate_assignees_key; Type: INDEX; Schema: public
---
-
 CREATE INDEX task_candidate_assignees_candidate_assignees_key ON task_candidate_assignees USING btree (candidate_assignees_id);
-
-
---
--- Name: task_candidate_assignees_task_for_candidate_assignee_key; Type: INDEX; Schema: public
---
-
 CREATE INDEX task_candidate_assignees_task_for_candidate_assignee_key ON task_candidate_assignees USING btree (task_for_candidate_assignee_id);
 
---
--- Name: notification notification_destination_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY notification
-    ADD CONSTRAINT notification_destination_fkey FOREIGN KEY (destination_id) REFERENCES operator(id);
-
---
--- Name: operator operator_profile_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator
-    ADD CONSTRAINT operator_profile_fkey FOREIGN KEY (profile_id) REFERENCES operator_profile(id);
-
-
---
--- Name: operator_profile_roles operator_profile_roles_operator_profile_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_profile_roles
-    ADD CONSTRAINT operator_profile_roles_operator_profile_fkey FOREIGN KEY (operator_profile_id) REFERENCES operator_profile(id);
-
---
--- Name: operator_roles operator_roles_operator_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY operator_roles
-    ADD CONSTRAINT operator_roles_operator_fkey FOREIGN KEY (operator_id) REFERENCES operator(id);
-
-
---
--- Name: task_candidate_assignees task_candidate_assignees_candidate_assignees_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY task_candidate_assignees
-    ADD CONSTRAINT task_candidate_assignees_candidate_assignees_fkey FOREIGN KEY (candidate_assignees_id) REFERENCES operator(id);
-
-
---
--- Name: task_candidate_assignees task_candidate_assignees_task_for_candidate_assignee_fkey; Type: FK CONSTRAINT; Schema: public
---
-
-ALTER TABLE ONLY task_candidate_assignees
-    ADD CONSTRAINT task_candidate_assignees_task_for_candidate_assignee_fkey FOREIGN KEY (task_for_candidate_assignee_id) REFERENCES task(id);
 
 # --- !Downs
 
