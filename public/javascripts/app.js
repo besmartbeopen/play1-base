@@ -178,12 +178,6 @@ $(function ($) {
    */
   Dropzone.autoDiscover = false
 
-  // eslint-disable-next-line no-undef
-  const _promotionalPeriods = promotionalPeriods.reduce(function (map, item) {
-    map[item.name] = [moment(item.startAt), moment(item.endTo)]
-    return map
-  }, {})
-
   // trattamento del copia negli appunti
   inView('[data-clipboard-target]').once('enter', el => {
     // eslint-disable-next-line no-new
@@ -1078,10 +1072,10 @@ $(function ($) {
       }
     })
     $('input[data-date-range]', this).daterangepicker({
-      ranges: $.extend({}, _promotionalPeriods, {
+      ranges: {
         'Il mese scorso': [ moment().subtract(1, 'month').startOf('month'),
           moment().subtract(1, 'month').endOf('month')]
-      }),
+      },
       startDate: moment().subtract(29, 'days'),
       endDate: moment(),
       autoUpdateInput: false,
