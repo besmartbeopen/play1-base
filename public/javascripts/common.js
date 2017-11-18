@@ -260,7 +260,7 @@ $(function ($) {
    */
   $(document.body).on('change', 'input:checkbox[data-toggle-disabled]', function (e) {
     var $this = $(this)
-    var $target = $($this.data('toggle-disabled'))
+    var $target = $($this.data('toggle-disabled')).find(':input').addBack(':input')
     $target.prop('disabled', !$target.prop('disabled'))
   })
 
@@ -438,7 +438,7 @@ $(function ($) {
     $this.closest('form').submit()
   })
 
-  // Le checkbox con data-check-all" possono selezionare tutte le
+  // Le checkbox con data-check-all possono selezionare tutte le
   // checkbox della stessa lista. Layout tipico:
   // <ul>
   //  <li><input type="checkbox" data-check-all/> ...</li>
