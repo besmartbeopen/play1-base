@@ -12,7 +12,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import common.dao.GeoDao;
-import models.geo.Province;
+import models.common.geo.Province;
 
 /**
  * Province per codice.

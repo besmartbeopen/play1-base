@@ -12,7 +12,8 @@ import java.util.function.Function;
 import java.util.stream.IntStream;
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
-import models.interfaces.IGeoData;
+import models.common.interfaces.IGeoData;
+
 import org.geotools.brewer.color.ColorBrewer;
 
 /**

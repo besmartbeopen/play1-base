@@ -2,14 +2,14 @@ package security;
 
 import common.security.PermissionCheck;
 
-import models.Comment;
-import models.Notification;
-import models.Operator;
-import models.Task;
-import models.enums.Role;
-import models.interfaces.Commentable;
+import models.common.Comment;
+import models.common.Notification;
+import models.common.Operator;
+import models.common.Task;
+import models.common.enums.Role;
+import models.common.interfaces.Commentable;
 
-global models.Operator currentOperator;
+global models.common.Operator currentOperator;
 
 /* gli amministratori possono fare tutto, ad esclusione di poche... */
 rule IsAdministratorTarget

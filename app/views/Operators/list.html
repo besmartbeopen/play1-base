@@ -37,7 +37,7 @@
     #{f.radioBoolean 'toRemove', inline:true, value:toRemove?:false /}
     #{f.selectEnum 'role', required:true, inline:true,
                 placeholder:'Seleziona ruolo...',
-                values:models.enums.Role.values() /}
+                values:models.common.enums.Role.values() /}
 
     #{b.submit 'Procedi', fa:'check', btn:'success' /}
   </div>

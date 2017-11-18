@@ -4,7 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import common.injection.StaticInject;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import models.Operator;
+import models.common.Operator;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;

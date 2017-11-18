@@ -1,8 +1,9 @@
 package notifiers;
 
-import models.Operator;
-import models.RecoveryRequest;
 import common.data.InConfiguration;
+import models.common.Operator;
+import models.common.RecoveryRequest;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;

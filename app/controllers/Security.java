@@ -11,7 +11,7 @@ import common.injection.StaticInject;
 import common.security.SecurityRules;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
-import models.Operator;
+import models.common.Operator;
 
 
 /**

@@ -5,11 +5,13 @@ import common.dao.NotificationDao;
 import common.dao.TaskDao;
 import common.jpa.JpaReferenceBinder;
 import common.security.SecurityRules;
+import models.common.Notification;
+import models.common.Operator;
+import models.common.Task;
+
 import java.util.List;
 import javax.inject.Inject;
-import models.Notification;
-import models.Operator;
-import models.Task;
+
 import play.data.binding.As;
 import play.data.validation.Required;
 import play.mvc.Controller;

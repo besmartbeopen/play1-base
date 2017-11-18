@@ -7,7 +7,7 @@ import common.security.SecurityRules;
 import javax.inject.Inject;
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
-import models.OperatorProfile;
+import models.common.OperatorProfile;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.data.validation.Validation;

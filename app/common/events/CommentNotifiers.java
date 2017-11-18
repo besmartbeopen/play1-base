@@ -5,12 +5,10 @@ import com.google.common.collect.Sets;
 import com.google.common.eventbus.Subscribe;
 import common.events.bus.EventSubscriber;
 import lombok.extern.slf4j.Slf4j;
-
-import models.Comment;
-import models.Notification;
-import models.Operator;
-import models.enums.NotificationSubject;
-
+import models.common.Comment;
+import models.common.Notification;
+import models.common.Operator;
+import models.common.enums.NotificationSubject;
 import play.i18n.Messages;
 
 import javax.inject.Inject;

@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
-import models.base.BaseModel;
+import models.common.base.BaseModel;
 import play.data.binding.TypeBinder;
 import play.db.jpa.JPA;
 

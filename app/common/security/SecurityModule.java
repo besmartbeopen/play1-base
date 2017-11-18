@@ -8,7 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.name.Named;
 import common.injection.AutoRegister;
 import controllers.Security;
-import models.Operator;
+import models.common.Operator;
 
 import org.drools.KnowledgeBase;
 

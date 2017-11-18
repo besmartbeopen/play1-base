@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import lombok.val;
-import models.base.BaseModel;
+import models.common.base.BaseModel;
 
 import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 

@@ -2,7 +2,7 @@ package common.validators;
 
 import org.joda.time.LocalDate;
 
-import models.interfaces.StartEndDate;
+import models.common.interfaces.StartEndDate;
 import play.data.validation.Check;
 
 

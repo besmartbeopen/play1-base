@@ -8,8 +8,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import lombok.extern.slf4j.Slf4j;
-
-import models.Operator;
+import models.common.Operator;
 
 import org.drools.KnowledgeBase;
 import org.drools.command.Command;

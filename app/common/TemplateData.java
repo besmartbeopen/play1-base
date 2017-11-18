@@ -17,11 +17,11 @@ import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import lombok.Getter;
-import models.Notification;
-import models.Operator;
-import models.OperatorProfile;
-import models.geo.Province;
-import models.geo.Region;
+import models.common.Notification;
+import models.common.Operator;
+import models.common.OperatorProfile;
+import models.common.geo.Province;
+import models.common.geo.Region;
 
 /**
  * Injected nei template con $data.

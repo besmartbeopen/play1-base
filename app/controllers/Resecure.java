@@ -12,7 +12,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import models.Operator;
+import models.common.Operator;
 import play.Play;
 import play.exceptions.UnexpectedException;
 import play.i18n.Messages;
