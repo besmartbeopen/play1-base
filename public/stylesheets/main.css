@@ -14,6 +14,10 @@ html, body {
   padding: 0 0 60px;
 }
 
+#wrap .container-fluid .content {
+	margin-top: 60px;
+}
+
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
