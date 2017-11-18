@@ -119,7 +119,8 @@ import 'vendor/jquery.history.js'
 import 'vendor/jquery.pjax.js'
 
 import 'roboto-fontface'
-import 'main.css'
+import 'common.css'
+import 'app.css'
 
 moment.locale('it-IT')
 d3format.formatDefaultLocale(d3localeIt)
