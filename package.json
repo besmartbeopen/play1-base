@@ -1,10 +1,10 @@
 {
-  "name": "bsbo-base",
+  "name": "inphase",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
     "Select2": "3.5.7",
-    "awesome-bootstrap-checkbox": "~0.3.7",
+    "awesome-bootstrap-checkbox": "https://github.com/flatlogic/awesome-bootstrap-checkbox/tarball/master",
     "bootbox": "^4.4.0",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.7.0",
@@ -19,11 +19,13 @@
     "font-awesome": "^4.7.0",
     "fs": "^0.0.1-security",
     "fullcalendar": "^3.6.1",
+    "handlebars": "^4.0.10",
     "in-view": "^0.6.1",
     "jquery": "~2.2.4",
     "jquery-simplecolorpicker": "^0.3.1",
     "jquery-ui": "^1.12.1",
     "jschr-bootstrap-modal": "^2.2.5",
+    "knockout": "^3.4.2",
     "leaflet": "^1.2.0",
     "leaflet-fullscreen": "^1.0.2",
     "modernizr": "^3.5.0",
@@ -40,12 +42,13 @@
     "x-editable": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-beta.4",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "chunk-manifest-webpack-plugin": "^1.1.2",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
@@ -85,13 +88,16 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-manifest-plugin": "^1.3.1"
   },
+  "resolutions": {
+    "webpack-sources": "1.0.1"
+  },
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot -d --port 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Marco Andreini <marco.andreini@besmartbeopen.it>",
+  "author": "Marco Andreini <marco.andreini@gmail.com>",
   "license": "MIT",
   "description": ""
 }
