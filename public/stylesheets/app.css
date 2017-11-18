@@ -1,4 +1,9 @@
 /* 
  file: app.css
- description: it can container app specific css rules. 
+ description: it can containes application specific css rules. 
 */
+
+/* DO NOT REMOVE THIS IMPORT unless you're absolutely sure */
+@import 'common.css';
+
+/* CSS specific rules start here */
