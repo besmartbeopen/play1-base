@@ -51,7 +51,7 @@ const config = {
           use: [
             {
               loader: 'babel-loader',
-              options: { presets: ['env'] },
+              options: { presets: ['es2015'] },
             },
             {
               loader: 'eslint-loader'
@@ -83,8 +83,8 @@ const config = {
         jQuery: 'jquery',
         $: 'jquery',
         'window.jQuery': 'jquery',
-        'numeral':'numeral',
-        'moment':'moment'
+        numeral: 'numeral',
+        moment: 'moment'
       }),
       styleExtractor,
       new webpack.optimize.CommonsChunkPlugin({
@@ -153,7 +153,9 @@ if (process.env.NODE_ENV === "production") {
     },
   ])
   config.plugins = (config.plugins || []).concat([
-    new CleanWebpackPlugin(['public/dist'], {}),
+    new CleanWebpackPlugin(['public/dist'], {
+      exclude: ['versions.json']
+    }),
 //    new webpack.optimize.AggressiveSplittingPlugin({
 //      minSize: 30000,
 //      maxSize: 50000
