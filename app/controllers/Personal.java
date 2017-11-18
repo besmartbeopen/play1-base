@@ -3,8 +3,10 @@ package controllers;
 import common.ModelQuery;
 import common.Web;
 import common.security.SecurityRules;
+import models.common.Operator;
+
 import javax.inject.Inject;
-import models.Operator;
+
 import play.data.validation.Equals;
 import play.data.validation.Max;
 import play.data.validation.Min;

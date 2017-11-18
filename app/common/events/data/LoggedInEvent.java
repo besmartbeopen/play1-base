@@ -1,6 +1,6 @@
 package common.events.data;
 
-import models.Operator;
+import models.common.Operator;
 
 /**
  * @author marco

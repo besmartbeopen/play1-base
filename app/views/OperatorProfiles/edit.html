@@ -12,7 +12,7 @@
   #{f.textarea 'profile.description', required:false /}
 
   #{f.selectEnums 'profile.roles', label:'roles', required:true,
-    values:models.enums.Role.values(), placeholder:'Scegli...' /}
+    values:models.common.enums.Role.values(), placeholder:'Scegli...' /}
 
   #{f.text 'profile.loginUrl', required:false,
     placeholder:messages.get('profile.loginUrl.placeholder'),

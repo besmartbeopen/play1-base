@@ -12,7 +12,7 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Expression;
 import com.querydsl.jpa.JPQLQuery;
 
-import models.base.BaseModel;
+import models.common.base.BaseModel;
 import play.db.jpa.JPA;
 import play.mvc.Scope;
 

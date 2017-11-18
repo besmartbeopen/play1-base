@@ -14,12 +14,13 @@ import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import lombok.val;
-import models.Operator;
-import models.RecoveryRequest;
-import models.base.query.QRevision;
-import models.enums.Role;
-import models.query.QOperator;
-import models.query.QRecoveryRequest;
+import models.common.Operator;
+import models.common.RecoveryRequest;
+import models.common.base.query.QRevision;
+import models.common.enums.Role;
+import models.common.query.QOperator;
+import models.common.query.QRecoveryRequest;
+
 import org.joda.time.LocalDateTime;
 
 /**

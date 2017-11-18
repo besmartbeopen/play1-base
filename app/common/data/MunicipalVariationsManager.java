@@ -13,8 +13,8 @@ import java.util.Optional;
 import javax.inject.Inject;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import models.geo.Municipal;
-import models.geo.Province;
+import models.common.geo.Municipal;
+import models.common.geo.Province;
 
 /**
  * @author marco

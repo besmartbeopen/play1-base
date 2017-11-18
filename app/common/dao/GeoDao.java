@@ -10,12 +10,12 @@ import common.ModelQuery.SimpleResults;
 import java.util.List;
 import javax.inject.Inject;
 import lombok.val;
-import models.geo.Municipal;
-import models.geo.Province;
-import models.geo.Region;
-import models.geo.query.QMunicipal;
-import models.geo.query.QProvince;
-import models.geo.query.QRegion;
+import models.common.geo.Municipal;
+import models.common.geo.Province;
+import models.common.geo.Region;
+import models.common.geo.query.QMunicipal;
+import models.common.geo.query.QProvince;
+import models.common.geo.query.QRegion;
 
 /**
  * DAO per l'accesso a comuni/province/regioni e rispettive geometri.

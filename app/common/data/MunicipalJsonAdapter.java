@@ -12,7 +12,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import common.dao.GeoDao;
-import models.geo.Municipal;
+import models.common.geo.Municipal;
 
 /**
  * Comuni per codice-istat.

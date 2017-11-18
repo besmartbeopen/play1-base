@@ -5,7 +5,8 @@ import com.querydsl.core.types.dsl.DatePath;
 import com.querydsl.core.types.dsl.DateTimePath;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import models.interfaces.StartEndDate;
+import models.common.interfaces.StartEndDate;
+
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;

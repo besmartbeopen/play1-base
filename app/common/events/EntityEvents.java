@@ -4,7 +4,7 @@ import com.google.common.base.Verify;
 import com.google.common.eventbus.EventBus;
 import common.events.bus.EventBusKey;
 import common.injection.StaticInject;
-import models.base.BaseModel;
+import models.common.base.BaseModel;
 
 import javax.inject.Inject;
 import javax.inject.Named;

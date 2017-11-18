@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-import models.base.Steadies;
+import models.common.base.Steadies;
 import play.data.binding.TypeBinder;
 
 /**

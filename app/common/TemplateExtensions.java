@@ -30,7 +30,7 @@ import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
 import common.binders.IntervalBinder;
 import common.dto.IdText;
-import models.base.Steadies;
+import models.common.base.Steadies;
 import play.db.jpa.GenericModel;
 import play.i18n.Messages;
 import play.libs.Crypto;

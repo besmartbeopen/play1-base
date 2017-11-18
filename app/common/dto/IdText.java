@@ -10,8 +10,8 @@ import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 import common.TemplateExtensions;
 import lombok.EqualsAndHashCode;
-import models.base.BaseModel;
-import models.base.Label;
+import models.common.base.BaseModel;
+import models.common.base.Label;
 
 /**
  * @author marco

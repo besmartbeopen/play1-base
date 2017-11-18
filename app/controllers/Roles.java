@@ -5,8 +5,9 @@ import common.dao.OperatorDao;
 import common.jpa.JpaReferenceBinder;
 import java.util.List;
 import javax.inject.Inject;
-import models.Operator;
-import models.enums.Role;
+
+import models.common.Operator;
+import models.common.enums.Role;
 import play.data.binding.As;
 import play.data.validation.Required;
 import play.data.validation.Validation;

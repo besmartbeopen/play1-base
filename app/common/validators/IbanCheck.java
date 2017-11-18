@@ -1,12 +1,11 @@
 package common.validators;
 
-import models.interfaces.Iban;
-
 import org.iban4j.IbanFormatException;
 import org.iban4j.IbanUtil;
 import org.iban4j.InvalidCheckDigitException;
 import org.iban4j.UnsupportedCountryException;
 
+import models.common.interfaces.Iban;
 import play.i18n.Messages;
 
 import net.sf.oval.Validator;

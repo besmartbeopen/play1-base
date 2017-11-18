@@ -4,8 +4,9 @@ import com.querydsl.jpa.JPQLQueryFactory;
 import common.ModelQuery;
 import common.ModelQuery.SimpleResults;
 import javax.inject.Inject;
-import models.OperatorProfile;
-import models.query.QOperatorProfile;
+
+import models.common.OperatorProfile;
+import models.common.query.QOperatorProfile;
 
 /**
  * @author marco

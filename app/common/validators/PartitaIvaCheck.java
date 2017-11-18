@@ -2,8 +2,8 @@ package common.validators;
 
 import com.google.common.base.CharMatcher;
 
+import models.common.interfaces.PartitaIva;
 import play.i18n.Messages;
-import models.interfaces.PartitaIva;
 import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AbstractAnnotationCheck;
 import net.sf.oval.context.OValContext;

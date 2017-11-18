@@ -13,9 +13,10 @@ import javax.persistence.EntityManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import models.base.BaseModel;
-import models.base.Revision;
-import models.base.query.QRevision;
+import models.common.base.BaseModel;
+import models.common.base.Revision;
+import models.common.base.query.QRevision;
+
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditEntity;

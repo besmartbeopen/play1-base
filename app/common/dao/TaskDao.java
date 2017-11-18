@@ -10,10 +10,12 @@ import common.ModelQuery;
 import common.ModelQuery.SimpleResults;
 import java.util.Set;
 import javax.inject.Inject;
-import models.Operator;
-import models.Task;
-import models.enums.TaskTargetType;
-import models.query.QTask;
+
+import models.common.Operator;
+import models.common.Task;
+import models.common.enums.TaskTargetType;
+import models.common.query.QTask;
+
 import org.joda.time.LocalDate;
 
 /**

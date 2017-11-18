@@ -3,8 +3,6 @@ package common.binders;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
-import models.base.BaseModel;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +10,8 @@ import play.data.binding.Global;
 import play.data.binding.TypeUnbinder;
 
 import com.google.common.base.Optional;
+
+import models.common.base.BaseModel;
 
 /**
  * @author marco

@@ -8,8 +8,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 
-import models.base.BaseModel;
-
+import models.common.base.BaseModel;
 import play.i18n.Messages;
 
 import java.util.Map;

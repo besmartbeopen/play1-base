@@ -4,9 +4,9 @@ import com.google.inject.Inject;
 import com.querydsl.jpa.JPQLQueryFactory;
 import common.ModelQuery;
 import common.ModelQuery.SimpleResults;
-import models.Notification;
-import models.Operator;
-import models.query.QNotification;
+import models.common.Notification;
+import models.common.Operator;
+import models.common.query.QNotification;
 
 /**
  * @author marco

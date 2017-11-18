@@ -8,7 +8,7 @@ import common.dao.GeoDao;
 import java.util.List;
 import javax.inject.Inject;
 import lombok.val;
-import models.geo.Province;
+import models.common.geo.Province;
 import play.mvc.Controller;
 import play.mvc.With;
 

@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.val;
-import models.base.Steadies;
+import models.common.base.Steadies;
 
 /**
  * Dati per il grafico a torta/ciambella.

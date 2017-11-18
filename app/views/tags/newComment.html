@@ -20,19 +20,19 @@
 #{if comment && comment?.persistent}
         #{f.hidden 'comment.id', value:comment.id /}
 #{/if}#{else}
-    #{if _arg instanceof models.Activity}
+    #{if _arg instanceof models.common.Activity}
         #{f.hidden 'comment.relatedToActivity.id', value:parent.id /}
     #{/if}
-    #{if _arg instanceof models.StockMovement}
+    #{if _arg instanceof models.common.StockMovement}
         #{f.hidden 'comment.relatedToStockMovement.id', value:parent.id /}
     #{/if}
-    #{if _arg instanceof models.expenses.WorkExpenses}
+    #{if _arg instanceof models.common.expenses.WorkExpenses}
         #{f.hidden 'comment.relatedToWorkExpenses.id', value:parent.id /}
     #{/if}
-    #{if _arg instanceof models.sales.SalesOrder}
+    #{if _arg instanceof models.common.sales.SalesOrder}
         #{f.hidden 'comment.relatedToSalesOrder.id', value:parent.id /}
     #{/if}
-    #{if _arg instanceof models.Comment}
+    #{if _arg instanceof models.common.Comment}
         #{f.hidden 'comment.relatedToComment.id', value:parent.id /}
     #{/if}
  #{/else}

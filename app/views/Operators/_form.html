@@ -12,7 +12,7 @@
         <select name="${field.name}" id="${field.id}" multiple data-selectize
             class="form-control"
             placeholder="&{'operator.roles.choose'}">
-            #{list items:models.enums.Role.values(), as:'role'}
+            #{list items:models.common.enums.Role.values(), as:'role'}
                 <option value="${role.name()}"#{if role in field.value} selected#{/if}>${role.label()}</option>
             #{/list}
         </select>

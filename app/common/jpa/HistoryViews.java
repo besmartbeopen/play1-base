@@ -31,7 +31,7 @@ import javassist.CtField;
 import javassist.CtMethod;
 import javassist.LoaderClassPath;
 import javassist.NotFoundException;
-import models.base.HistoryValueFrom;
+import models.common.base.HistoryValueFrom;
 import play.Play;
 import play.classloading.ApplicationClasses.ApplicationClass;
 

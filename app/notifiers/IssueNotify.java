@@ -5,13 +5,15 @@ import com.google.common.base.Splitter;
 import common.issues.FeedbackData;
 import common.notifiers.InlineStreamHandler;
 import controllers.Security;
+import models.common.Operator;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.zip.GZIPOutputStream;
-import models.Operator;
+
 import org.apache.commons.mail.EmailAttachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

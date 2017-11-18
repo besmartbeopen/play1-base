@@ -2,8 +2,9 @@ package controllers;
 
 import common.security.SecurityRules;
 import javax.inject.Inject;
-import models.Comment;
-import models.interfaces.Commentable;
+
+import models.common.Comment;
+import models.common.interfaces.Commentable;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.data.validation.Validation;
