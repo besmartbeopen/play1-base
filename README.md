@@ -1,8 +1,6 @@
 PLAY1-BASE
 ==========
 
-[![build status](https://dev.besmartbeopen.it/besmartbeopen/bsbo-base/badges/master/build.svg)](https://dev.besmartbeopen.it/besmartbeopen/bsbo-base/badges/master/build.svg)
-
 **Play 1 project** used as **skeleton** by Be Smart Be Open during any new Play 1 project startup.
 
 It contains features (forms, controllers, helpers, etc) for:
@@ -19,7 +17,7 @@ It also contains the integration with common library and tools, such as:
  - [google guava](https://github.com/google/guava) (Collections, EventBus, etc)
  - integration with [gitlab](https://gitlab.com/) through a [Feign](https://github.com/OpenFeign/feign) based http library
  - [webpack](https://webpack.js.org/)
- - [prometheus](https://prometheus.io/)
+ - [prometheus](https://prometheus.io/) using [Micrometer](https://micrometer.io/)
  - [jboss drools](https://www.drools.org/)
  - [querydsl](http://www.querydsl.com/)
  - [hibernate envers](http://hibernate.org/orm/envers/)
