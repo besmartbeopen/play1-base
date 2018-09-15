@@ -103,6 +103,7 @@ require:
     - io.github.openfeign.form -> feign-form 2.1.0
     - com.squareup.okhttp3 -> logging-interceptor 3.8.1
     - com.j2html -> j2html 1.2.0
+    - io.micrometer -> micrometer-registry-prometheus 1.0.6
 
 repositories:
     - hibernatespatial:
